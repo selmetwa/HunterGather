@@ -1,0 +1,8 @@
+google auth
+github auth
+style
+proper users table
+- name
+- avatar
+- social links (github, twitter, personal website)
+- tier (subscriber, regular, admin)
