@@ -10,7 +10,13 @@ export const actions: Actions = {
     const { data, error: err } = await locals.sb.auth.signUp({
       email: body.email as string,
       password: body.password as string,
+      options: {
+        data: {
+          name: body.name as string,
+        }
+      }
     })
+
 
     if (err) {
       console.log({ err })

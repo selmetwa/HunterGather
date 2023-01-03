@@ -2,8 +2,34 @@ import { AuthApiError } from "@supabase/supabase-js"
 import { fail, redirect } from "@sveltejs/kit"
 import type { Actions } from "./$types"
 
+const OAUTH_PROVIDERS = ["google", "github"]
+
 export const actions: Actions = {
-	login: async ({ request, locals }) => {
+	login: async ({ request, locals, url }) => {
+
+
+    const provider = url.searchParams.get("provider") as any;
+
+		if (provider) {
+			if (!OAUTH_PROVIDERS.includes(provider)) {
+				return fail(400, {
+					error: "Provider not supported.",
+				})
+			}
+			const { data, error: err } = await locals.sb.auth.signInWithOAuth({
+				provider: provider,
+			})
+
+			if (err) {
+				console.log(err)
+				return fail(400, {
+					message: "Something went wrong.",
+				})
+			}
+
+			throw redirect(303, data.url)
+		}
+
 		const body = Object.fromEntries(await request.formData())
 
 		const { data, error: err } = await locals.sb.auth.signInWithPassword({
@@ -12,9 +38,10 @@ export const actions: Actions = {
 		})
 
 		if (err) {
+      console.log({ err })
 			if (err instanceof AuthApiError && err.status === 400) {
 				return fail(400, {
-					error: "Invalid credentials",
+					error: "Incorrect username or password.",
 				})
 			}
 			return fail(500, {
@@ -24,4 +51,5 @@ export const actions: Actions = {
 
 		throw redirect(303, "/")
 	},
+  
 }
