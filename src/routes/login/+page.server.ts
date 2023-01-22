@@ -4,10 +4,18 @@ import type { Actions } from "./$types"
 
 const OAUTH_PROVIDERS = ["google", "github"]
 
+export const load: any = async ({ locals } : any) => {
+  const sessionExists = locals?.session;
+
+  if (sessionExists) {
+    throw redirect(303, '/')
+  }
+}
+
 export const actions: Actions = {
 	login: async ({ request, locals, url }) => {
 
-
+    console.log({ locals })
     const provider = url.searchParams.get("provider") as any;
 
 		if (provider) {
@@ -27,6 +35,8 @@ export const actions: Actions = {
 				})
 			}
 
+      const a = data.url;
+      console.log({ a });
 			throw redirect(303, data.url)
 		}
 

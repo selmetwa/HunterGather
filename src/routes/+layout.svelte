@@ -13,6 +13,7 @@
 			console.log('Auth state change detected');
 			invalidateAll();
 		});
+
 		return () => {
 			subscription.unsubscribe();
 		};
@@ -20,8 +21,8 @@
 </script>
 
 <div class="bg-gray-50">
-  <Header />
 	<main>
+    <Header />
 		<slot />
 	</main>
 </div>

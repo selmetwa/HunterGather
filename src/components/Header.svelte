@@ -1,21 +1,19 @@
   <script>
     // @ts-nocheck
-
+    import { page } from '$app/stores';
 	  import { enhance } from "$app/forms";
 	  import { supabaseClient } from "$lib/supabase";
-    import { userSession } from "../store/store";
 
-    import Button from './Button.svelte';
     const submitLogout = async ({ cancel }) => {
      const { error } = await supabaseClient.auth.signOut();
       
-     if (error) {
-       console.log('error')
-     }
-
-     userSession.set(null)
      cancel();
    }
+
+  
+    console.log({ $page });
+    const activeSession = $page?.data?.session;
+    let userId = $page?.data?.session?.user?.id;
   </script>
   <nav class="bg-blue-500 border-gray-200 px-2 sm:px-4 py-2.5">
     <div class="container flex flex-wrap items-center justify-between mx-auto">
@@ -28,14 +26,14 @@
       </button>
       <div class="hidden w-full md:block md:w-auto" id="navbar-default">
         <ul class="flex flex-col p-4 mt-4 border rounded-lg md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0">
-          {#if $userSession && $userSession.session}
+          {#if activeSession}
           <li class="block py-2 pl-3 pr-4 text-gray-200 rounded md:border-0 md:hover:text-gray-300 md:p-0 ease-in-out duration-300">
-            <form action="/logout" method="POST" use:enhance={submitLogout}>
+            <form action="/logout" method="POST">
               <button type="submit" text="logout" class="font-bold font-sans">Logout</button>
             </form>
           </li>
           <li>
-            <a href="/profile" class="block py-2 pl-3 pr-4 text-gray-200 rounded md:border-0 md:hover:text-gray-300 md:p-0 ease-in-out duration-300">
+            <a href={`/profile/${userId}`} class="block py-2 pl-3 pr-4 text-gray-200 rounded md:border-0 md:hover:text-gray-300 md:p-0 ease-in-out duration-300">
               <i class="fa-solid fa-user"></i>
             </a>
           </li>

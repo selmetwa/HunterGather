@@ -12,6 +12,11 @@
 		const { data, error } = await supabaseClient.auth.signInWithOAuth({
 			provider: provider
 		});
+
+    console.log({
+      data,
+      error
+    })
 	};
 
 	const submitSocialLogin = async ({ action, cancel }) => {
@@ -40,8 +45,8 @@
         <p class="mt-4 space-y-6 text-rose-400">Error: {error}</p>
       {/if}
       <form action="?/login" method="POST" class="mt-4 space-y-6">
-        <Input type="text" text="email" iconType="at" />
-        <Input type="password" text="password" iconType="lock" />
+        <Input type="text" text="email" iconType="solid" icon="at" />
+        <Input type="password" text="password" iconType="solid" icon="lock" />
         <Button text="Login" type="submit" />
       </form>
       <div class="relative flex py-4 items-center">
@@ -52,7 +57,7 @@
         <span class="flex-shrink font-light mx-4 text-gray-400">or continue with</span>
         <div class="flex-grow border-t border-gray-200"></div>
       </div>
-      <form class="socials flex flex-row gap-4 h-12 " method="POST" use:enhance={submitSocialLogin}>
+      <form class="socials flex flex-row gap-4 h-12 " method="POST">
         <button formaction="?/login&provider=github" class="border border-gray-300 basis-1/2 bg-slate-50 rounded hover:bg-slate-100 ease-in-out duration-300	drop-shadow-sm">
           <i class="fa-brands fa-github fa-2xl"></i>
         </button>

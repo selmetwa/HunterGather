@@ -6,3 +6,7 @@ proper users table [x]
 - avatar
 - social links (github, twitter, personal website)
 - role (subscriber, regular, admin)
+- bio
+
+iron out quirks with auth
+build out profile page
