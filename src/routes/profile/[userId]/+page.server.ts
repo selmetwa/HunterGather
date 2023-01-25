@@ -4,11 +4,7 @@ import type { Actions } from './$types';
 import { AuthApiError } from "@supabase/gotrue-js";
 import { fail, redirect } from "@sveltejs/kit";
 
-interface Params {
-  userId: string
-}
-
-export const load = async ({ fetch, params }) => {
+export const load = async ({ fetch, params }: { fetch: any, params: any}) => {
 
   const userId = params?.userId;
 
@@ -39,12 +35,10 @@ export const actions: Actions = {
         personal_site: body['personal site']
       })
       .eq('id', userId)
-
     
       console.log({ data, error });
       
-      
       throw redirect(303, `/profile/${userId}`)
-  }
+  },
 }
 

@@ -1,12 +1,3 @@
-google auth [x]
-github auth [x]
-style [x]
-proper users table [x]
-- name
-- avatar
-- social links (github, twitter, personal website)
-- role (subscriber, regular, admin)
-- bio
-
-iron out quirks with auth
-build out profile page
+iron out quirks with auth []
+build out profile page []
+upload avatar (figure out blob store) []

@@ -4,10 +4,6 @@
   export let iconType: string;
   export let icon: string;
 
-  console.log({
-    iconType,
-    icon
-  })
   let placeholder = '';
 
   if (text === 'email') {

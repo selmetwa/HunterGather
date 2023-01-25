@@ -11,7 +11,6 @@
    }
 
   
-    console.log({ $page });
     const activeSession = $page?.data?.session;
     let userId = $page?.data?.session?.user?.id;
   </script>
