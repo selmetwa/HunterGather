@@ -2,6 +2,7 @@
   export let type: string;
   export let text: string;
   export let iconType: string;
+  export let value: string;
   export let icon: string;
 
   let placeholder = '';
@@ -25,7 +26,7 @@
     {#if iconType && icon}
       <i class={`fa-${iconType} fa-${icon} fa-md`}></i>
     {/if}
-    <input placeholder={placeholder} type={type} name={text} class="font-sans mt-1 relative block text-gray-400 w-full appearance-none rounded border border-gray-300 px-3 py-3 text-gray-500 placeholder-gray-200 focus:z-5 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-md drop-shadow-sm ease-in-out duration-300" />
+    <input value={value} placeholder={placeholder} type={type} name={text} class="font-sans mt-1 relative block text-gray-400 w-full appearance-none rounded border border-gray-300 px-3 py-3 text-gray-500 placeholder-gray-200 focus:z-5 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-md drop-shadow-sm ease-in-out duration-300" />
   </div>
 </div>
 

@@ -5,6 +5,7 @@
 	import { onMount } from 'svelte';
 
 	export let data;
+  export let handleToggleModal: () => boolean;
 
   let error: String;
 	let avatar: String | ArrayBuffer | null | undefined;
@@ -88,7 +89,6 @@
 	</div>
 
   <div class="text">
-    <!-- <h1 class="font-light tracking-tight text-gray-400">{name}</h1> -->
     {#if github}
       <a href={github} target="_blank" class="underline font-semibold text-blue-400">Github</a>
     {/if}
@@ -98,6 +98,7 @@
     {#if personalSite}
       <a href={personalSite} target="_blank" class="underline font-semibold text-blue-400">Personal Site</a>      
     {/if}
+    <i class="fa-solid fa-pen text-blue-400" on:click={handleToggleModal}></i>
   </div>
 
 </section>
