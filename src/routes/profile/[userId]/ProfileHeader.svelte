@@ -6,7 +6,8 @@
 
 	export let data;
 
-	let avatar: String | ArrayBuffer;
+  let error: String;
+	let avatar: String | ArrayBuffer | null | undefined;
 	let fileinput: any;
 
 	const name = data?.data[0]?.name;
@@ -31,8 +32,6 @@
 		});
 
 		const json = await res.json();
-		console.log({ json });
-		// result = JSON.stringify(json)
 	}
 
 	const onFileSelected = (e: any) => {
@@ -45,18 +44,17 @@
 		};
 	};
 
-	// export let data;
-	// console.log({ data })
-
 	onMount(async () => {
-		const { data, error } = await supabaseClient.storage.from('avatars').download(avatarId);
+		const { data, error: err }: {data: Blob | null, error: any } = await supabaseClient.storage.from('avatars').download(avatarId);
 
-		console.log({ data, error });
 		let reader = new FileReader();
-		reader.readAsDataURL(data);
-		reader.onload = (e) => {
-			avatar = e.target.result;
-		};
+    error = err;
+    if (!error && data) {
+      reader.readAsDataURL(data);
+      reader.onload = (e) => {
+        avatar = e.target?.result;
+      };
+    }
 	});
 
 	console.log({ avatar });
@@ -65,10 +63,13 @@
 <section>
 	<div class="avatar-section">
     <h1 class="text-blue-200 font-sans text-3xl xl:text-5xl md:text-4xl">{name}</h1>
+    {#if error}
+      <h1>something went wrong</h1>
+    {/if}
 		{#if avatar}
 			<img
 				class="avatar"
-				src={avatar}
+				src={avatar?.toString()}
 				alt="d"
 				on:click={() => {
 					fileinput.click();
