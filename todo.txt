@@ -1,3 +1,6 @@
 iron out quirks with auth []
 build out profile page []
 upload avatar (figure out blob store) []
+
+cleanup
+go through code and clean stuff up, then work on collections

@@ -57,8 +57,6 @@
       };
     }
 	});
-
-	console.log({ avatar });
 </script>
 
 <section>
@@ -108,6 +106,7 @@
   h1 {
     position: absolute;
     top: 70px;
+    padding-top: 30px;
     font-weight: 900;
   }
 

@@ -21,5 +21,9 @@ export const POST: RequestHandler = async ({ locals, request }) => {
     error
   })
 
-  return new Response('nice')
+  if (!error) {
+    return new Response('Error Updating Avatar')
+  }
+
+  return new Response('Avatar Updated Successfully')
 }

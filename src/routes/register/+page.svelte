@@ -17,9 +17,9 @@
       <p class="mt-4 space-y-6 text-rose-400">Error: {error}</p>
     {/if}
     <form action="?/register" method="POST" class="mt-8 space-y-6">
-      <Input type="text" text="name" iconType="solid" icon="user" />
-      <Input type="text" text="email" iconType="solid" icon="at" />
-      <Input type="password" text="password" iconType="solid" icon="lock" />
+      <Input type="text" text="name" iconType="solid" icon="user" placeholder='name' />
+      <Input type="text" text="email" iconType="solid" icon="at" placeholder='email' />
+      <Input type="password" text="password" iconType="solid" icon="lock" placeholder='**********' />
       <Button text="Register" type="submit" />
     </form>
     <div class="relative flex py-4 items-center">
