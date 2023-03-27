@@ -39,6 +39,17 @@ You can preview the production build with `npm run preview`.
 
 
 ## Todo
+- [x] create collection
+- [x] create profile page
+- [x] create block
+- [x] error handling
+- [x] upload avatar
+- [x] edit profile info
+- [x] auth
+- [x] google auth
+- [x] github auth
+- [x] add block to collection while creating block
+- [x] fetch data for collection detail pages
 - [ ] component-ize masonry
 - [ ] make block cards
 - [ ] make collection cards
