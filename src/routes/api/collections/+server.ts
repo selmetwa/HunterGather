@@ -1,8 +1,22 @@
 
 import { v4 as uuidv4 } from 'uuid';
+import { error, json } from '@sveltejs/kit';
 
 import type { RequestHandler } from "./$types";
 import { supabaseClient } from '$lib/supabase';
+
+// get all collections by userId
+export const GET: RequestHandler = async ({ locals }) => {
+  const userId = locals?.session?.user?.id;
+  console.log('fetch collections');
+
+  const { data, error } = await supabaseClient
+    .from('collections')
+    .select()
+    .eq('userId', userId)
+
+  return json(data);
+}
 
 // createCollection
 export const POST: RequestHandler = async ({ locals, request }) => {

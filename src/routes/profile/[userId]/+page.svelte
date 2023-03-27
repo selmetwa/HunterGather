@@ -1,12 +1,16 @@
 <script lang="ts">
+import { myBlocks } from '../../../store/store';
+
 	import Input from '../../../components/Input.svelte';
 	import Button from '../../../components/Button.svelte';
 	import Modal from '../../../components/Modal.svelte';
+  import Masonry from '../../../components/Masonry.svelte';
 	import ProfileHeader from './ProfileHeader.svelte';
 
   interface Data {
 	  data: any;
     name: String,
+    blocks: Array<any>,
     github: String,
     portfolio_site: String,
     twitter: String
@@ -16,10 +20,13 @@
 	const github = data?.data[0]?.github;
 	const twitter = data?.data[0]?.twitter;
 	const personalSite = data?.data[0]?.personal_site;
+  const blocks = data && data.blocks;
 
 	let isModalOpen = false;
 
   const handleToggleModal = () => isModalOpen = !isModalOpen;
+
+  console.log({ data })
 </script>
 
 <ProfileHeader {data} handleToggleModal={handleToggleModal} />
@@ -43,6 +50,24 @@
     </main>
   </Modal>
 {/if}
+<section>
+  <Masonry gridGap={'0.75rem'} colWidth={'minmax(Min(20em, 100%), 1fr)'} items={blocks}>
+    {#each blocks as o}
+      <div class="_card _padding">
+        <header>
+          <h3>{o.title}</h3>
+        </header>
+        <img src={o.src}>
+        <!-- <section>
+          <p>{o.text}</p>
+        </section> -->
+      </div>
+    {/each}
+</Masonry>
+  <!-- {#each blocks as block}
+    <img src={block.src}>
+  {/each} -->
+</section>
 
 <style>
 	main {
@@ -50,15 +75,16 @@
 		margin: auto;
 	}
 
-	.upload{
-		display:flex;
-	  height:50px;
-		width:50px;
-		cursor:pointer;
-	}
-	.avatar{
-		display:flex;
-		height:200px;
-		width:200px;
-	}
+  ._padding {
+    padding: 12px;
+  }
+  
+  ._card {
+    border: 1px solid #ccc
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+  }
 </style>

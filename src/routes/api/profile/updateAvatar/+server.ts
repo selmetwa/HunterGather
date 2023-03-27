@@ -1,5 +1,5 @@
 import { error, redirect } from "@sveltejs/kit";
-import type { RequestHandler } from "./$types";
+import type { RequestHandler } from "../$types";
 import { supabaseClient } from '$lib/supabase';
 
 // uploadAvatar
@@ -16,12 +16,7 @@ export const POST: RequestHandler = async ({ locals, request }) => {
     })
     .eq('id', userId)
 
-  console.log({
-    data,
-    error
-  })
-
-  if (!error) {
+  if (error) {
     return new Response('Error Updating Avatar')
   }
 

@@ -3,6 +3,7 @@ import { page } from '$app/stores';
 import type { Actions } from './$types';
 import { AuthApiError } from "@supabase/gotrue-js";
 import { fail, redirect } from "@sveltejs/kit";
+import { myBlocks } from '../../../store/store';
 
 export const load = async ({ fetch, params }: { fetch: any, params: any}) => {
 
@@ -13,8 +14,20 @@ export const load = async ({ fetch, params }: { fetch: any, params: any}) => {
     .select()
     .eq('id', userId)
 
+    const { data: blocks } = await supabaseClient
+      .from('blocks')
+      .select()
+      .eq('userId', userId)
+
+    myBlocks.set(blocks)
+    console.log({ blocks });
+  // const { data: user, error: userError } = await supabaseClient
+  //   .from('users')
+  //   .select()
+  //   .eq('id', userId)
   return {
     data,
+    blocks, 
     error
   }
 }
