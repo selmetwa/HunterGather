@@ -12,11 +12,6 @@
 		const { data, error } = await supabaseClient.auth.signInWithOAuth({
 			provider: provider
 		});
-
-    console.log({
-      data,
-      error
-    })
 	};
 
 	const submitSocialLogin = async ({ action, cancel }) => {

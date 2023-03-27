@@ -15,7 +15,6 @@ export const load: any = async ({ locals } : any) => {
 export const actions: Actions = {
 	login: async ({ request, locals, url }) => {
 
-    console.log({ locals })
     const provider = url.searchParams.get("provider") as any;
 
 		if (provider) {
@@ -29,14 +28,12 @@ export const actions: Actions = {
 			})
 
 			if (err) {
-				console.log(err)
 				return fail(400, {
 					message: "Something went wrong.",
 				})
 			}
 
       const a = data.url;
-      console.log({ a });
 			throw redirect(303, data.url)
 		}
 
@@ -48,7 +45,6 @@ export const actions: Actions = {
 		})
 
 		if (err) {
-      console.log({ err })
 			if (err instanceof AuthApiError && err.status === 400) {
 				return fail(400, {
 					error: "Incorrect username or password.",

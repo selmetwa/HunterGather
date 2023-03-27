@@ -8,7 +8,6 @@ import { supabaseClient } from '$lib/supabase';
 // get all collections by userId
 export const GET: RequestHandler = async ({ locals }) => {
   const userId = locals?.session?.user?.id;
-  console.log('fetch collections');
 
   const { data, error } = await supabaseClient
     .from('collections')
@@ -25,7 +24,6 @@ export const POST: RequestHandler = async ({ locals, request }) => {
   const collectionId = uuidv4();
 
   const { title, description } = data;
-  console.log({ data, userId });
 
    const { data: responseData, error } = await supabaseClient
    .from('collections')
@@ -35,11 +33,6 @@ export const POST: RequestHandler = async ({ locals, request }) => {
      description: description,
      userId: userId
     })
-
-  console.log({
-    responseData,
-    error
-  });
 
   if (error) {
     return new Response(JSON.stringify(error), { status: 500 });

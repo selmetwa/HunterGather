@@ -9,15 +9,12 @@
 	import SuccessMessage from '../SuccessMessage.svelte';
 
   export let onClose: any;
-  // let error = false;
 	let inProgress = false;
 	let successMessage = '';
   let errorMessage = ''
   let url = '';
   let toggledCollectionIds: string | any[] = [];
   let ids: any[] = [];
-
-  let a = '';
 
   collectionIds.subscribe((value) => {
     ids = value;
@@ -35,9 +32,7 @@
 		if (status === 500) {
 			setTimeout(() => {
 				inProgress = false;
-        // error = true;
         errorMessage = responseData.message
-        console.log({ responseData });
 				url = '';
         toggledCollectionIds = [];
 			}, 1000);
@@ -75,8 +70,6 @@
 		});
 
     const responseData = await res.json();
-    a = responseData && responseData[0] && responseData[0].src;
-    console.log({ res, responseData, a })
     handleResponse(res, responseData)
   }
 
@@ -130,7 +123,6 @@
     </div>
     <Button text="Create Block" type="submit" {inProgress} />
   </form>
-  <img src={a} />
 </main>
 
 <style>

@@ -25,7 +25,6 @@ export const POST: RequestHandler = async ({ locals, request }) => {
 	  const { title: responseTitle } = await getTitleAtUrl(url);
     title = responseTitle;
   } catch (e) {
-    console.log('e: ', e)
     throw error(500, {
       message: "Invalid Url"
     });
@@ -52,7 +51,6 @@ export const POST: RequestHandler = async ({ locals, request }) => {
 	const { data: responseData, error: responseError } = await supabaseClient.from('blocks').insert(insert).select();
 
 	if (responseError) {
-    console.log({ responseError });
     throw error(500, {
       message: "Something went wrong."
     });

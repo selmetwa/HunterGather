@@ -18,15 +18,9 @@
 	const avatarId = data?.data[0]?.avatar_id;
 
 	async function uploadAvatar(avatar: any) {
-		console.log({ avatar });
-
 		const avatarId = uuidv4();
 		const { data, error } = await supabaseClient.storage.from('avatars').upload(avatarId, avatar);
 
-		console.log({
-			data,
-			error
-		});
 		const res = await fetch(`${PUBLIC_API_URL}/api/profile`, {
 			method: 'POST',
 			body: JSON.stringify(avatarId)

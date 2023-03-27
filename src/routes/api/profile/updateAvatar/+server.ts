@@ -7,8 +7,6 @@ export const POST: RequestHandler = async ({ locals, request }) => {
   const avatarId = await request.json();
   const userId = locals?.session?.user?.id;
 
-  console.log({ avatarId, userId });
-
   const { data, error } = await supabaseClient
     .from('users')
     .update({ 
