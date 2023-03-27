@@ -36,3 +36,22 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+
+
+## Todo
+- [ ] component-ize masonry
+- [ ] make block cards
+- [ ] make collection cards
+- [ ] pay for url service...
+- [ ] check auth before user can edit profile (userId must equal profileId)
+- [ ] block detail page
+  - [ ] list all collections it exists in
+- [ ] link out from cards
+- [ ] pagination
+- [ ] delete a block
+- [ ] delete a collection
+- [ ] update a collection if its yours
+- [ ] remove a block from a collection
+- [ ] intersperse blocks and collections on homepage
+- [ ] add a collection to a collection :o
+
