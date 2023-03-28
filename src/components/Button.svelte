@@ -16,6 +16,3 @@
 		{text}
 	{/if}
 </button>
-
-<style>
-</style>

@@ -7,12 +7,14 @@
 	import Masonry from '../../../components/Masonry.svelte';
 	import ProfileHeader from './ProfileHeader.svelte';
 	import Tabs from '../../../components/Tabs.svelte';
+	import BlockCard from '../../../components/BlockCard.svelte';
+	import CollectionCard from '../../../components/CollectionCard.svelte';
 
 	interface Data {
 		data: any;
 		name: String;
 		blocks: Array<any>;
-    collections: Array<any>;
+		collections: Array<any>;
 		github: String;
 		portfolio_site: String;
 		twitter: String;
@@ -23,7 +25,7 @@
 	const twitter = data?.data[0]?.twitter;
 	const personalSite = data?.data[0]?.personal_site;
 	const blocks = data && data.blocks;
-  const collections = data && data.collections;
+	const collections = data && data.collections;
 
 	let isModalOpen = false;
 
@@ -103,54 +105,33 @@
 		</main>
 	</Modal>
 {/if}
+
 <section>
-
-  <div class="m-8 2xl:w-3/12 xl:w-4/12 lg:w-6/12 md:w-8/12 sm:w-8/12">
-    <Tabs tabs={tabs} activeTab={activeTab} toggleTab={toggleTab} />
+	<div class="m-8 2xl:w-3/12 xl:w-4/12 lg:w-6/12 md:w-8/12 sm:w-8/12">
+		<Tabs {tabs} {activeTab} {toggleTab} />
+	</div>
+	{#if activeTab === 'block'}
+  <div class="xl:p-x-24 lg:p-x-16 sm:p-8">
+		<Masonry gridGap={'0.75rem'} colWidth={'minmax(Min(20em, 100%), 1fr)'} items={blocks}>
+			{#each blocks as block}
+				<BlockCard {block} />
+			{/each}
+		</Masonry>
+    </div>
+	{:else}
+  <div class="xl:p-x-24 lg:p-x-16 sm:p-8">
+		<Masonry gridGap={'0.75rem'} colWidth={'minmax(Min(20em, 100%), 1fr)'} items={collections}>
+			{#each collections as collection}
+				<CollectionCard {collection} />
+			{/each}
+		</Masonry>
   </div>
-  {#if activeTab === 'block'}
-  <Masonry gridGap={'0.75rem'} colWidth={'minmax(Min(20em, 100%), 1fr)'} items={blocks}>
-		{#each blocks as o}
-			<div class="_card _padding">
-				<header>
-					<h3>{o.title}</h3>
-				</header>
-				<img src={o.src} />
-			</div>
-		{/each}
-	</Masonry>
-    {:else}
-    <Masonry gridGap={'0.75rem'} colWidth={'minmax(Min(20em, 100%), 1fr)'} items={collections}>
-      {#each collections as o}
-      <a href={`/collection/${o.collectionId}`}>
-        <div class="_card _padding">
-          <header>
-            <h3>{o.title}</h3>
-          </header>
-        </div>
-      </a>
-      {/each}
-    </Masonry>
-  {/if}
-
+	{/if}
 </section>
 
 <style>
 	main {
 		width: 100%;
 		margin: auto;
-	}
-
-	._padding {
-		padding: 12px;
-	}
-
-	._card {
-		border: 1px solid #ccc;
-	}
-
-	img {
-		width: 100%;
-		height: auto;
 	}
 </style>

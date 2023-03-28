@@ -64,5 +64,6 @@ You can preview the production build with `npm run preview`.
 - [ ] update a collection if its yours
 - [ ] remove a block from a collection
 - [ ] intersperse blocks and collections on homepage
+- [ ] add a block to a collection after creation
 - [ ] add a collection to a collection :o
 
