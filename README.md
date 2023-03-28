@@ -50,14 +50,14 @@ You can preview the production build with `npm run preview`.
 - [x] github auth
 - [x] add block to collection while creating block
 - [x] fetch data for collection detail pages
-- [ ] component-ize masonry
-- [ ] make block cards
-- [ ] make collection cards
+- [x] component-ize masonry
+- [x] make block cards
+- [x] make collection cards
 - [ ] pay for url service...
 - [ ] check auth before user can edit profile (userId must equal profileId)
 - [ ] block detail page
   - [ ] list all collections it exists in
-- [ ] link out from cards
+- [x] link out from cards
 - [ ] pagination
 - [ ] delete a block
 - [ ] delete a collection
