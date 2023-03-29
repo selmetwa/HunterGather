@@ -27,7 +27,6 @@
 		const { data } = await supabaseClient.from('users').select().eq('id', userId);
 		author = data && data[0] && data[0].name;
 	});
-	console.log({ block });
 </script>
 
 <div>

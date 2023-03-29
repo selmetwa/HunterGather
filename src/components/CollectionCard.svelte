@@ -5,8 +5,8 @@
   export let collection: any;
 
   const { collectionId, title, userId } = collection;
-  let author = '';
-  let count: number | null;
+  let author = 'author';
+  let count = 0;
 
   onMount(async () => {
     const { data } = await supabaseClient.from('users').select().eq('id', userId);
@@ -19,7 +19,7 @@
 </script>
 
 <a href={`/collection/${collectionId}`}>
-  <div class="card">
+  <div class="card bg-white">
     <h1>{title}</h1>
     <p>{author}</p>
     <p>{count}</p>

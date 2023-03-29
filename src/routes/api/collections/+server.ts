@@ -31,7 +31,8 @@ export const POST: RequestHandler = async ({ locals, request }) => {
      collectionId: collectionId,
      title: title,
      description: description,
-     userId: userId
+     userId: userId,
+    objectType: 'collection',
     })
 
   if (error) {

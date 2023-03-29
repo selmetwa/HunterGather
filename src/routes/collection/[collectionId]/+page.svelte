@@ -1,5 +1,6 @@
 <script lang="ts">
   import Masonry from "../../../components/Masonry.svelte";
+  import BlockCard from "../../../components/BlockCard.svelte";
 	export let data: any;
 
   
@@ -9,16 +10,14 @@
 </script>
 
 
-<Masonry gridGap={'0.75rem'} colWidth={'minmax(Min(20em, 100%), 1fr)'} items={blocks}>
-  {#each blocks as o}
-    <div class="_card _padding">
-      <header>
-        <h3>{o.title}</h3>
-      </header>
-      <img src={o.src} />
-    </div>
-  {/each}
-</Masonry>
+<div class="xl:p-x-24 lg:p-x-16 sm:p-8">
+  <Masonry gridGap={'0.75rem'} colWidth={'minmax(Min(20em, 100%), 1fr)'} items={blocks}>
+    {#each blocks as block}
+      <BlockCard {block} />
+    {/each}
+  </Masonry>
+</div>
+
 
 <style>
 	main {

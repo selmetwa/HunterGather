@@ -45,6 +45,7 @@ export const POST: RequestHandler = async ({ locals, request }) => {
 		src: imgUrl,
 		url: url,
 		title: title,
+    objectType: 'block',
 		collectionIds: collectionIds
 	};
 
