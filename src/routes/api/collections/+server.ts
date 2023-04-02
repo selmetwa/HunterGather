@@ -1,6 +1,6 @@
 
 import { v4 as uuidv4 } from 'uuid';
-import { error, json } from '@sveltejs/kit';
+import { json } from '@sveltejs/kit';
 
 import type { RequestHandler } from "./$types";
 import { supabaseClient } from '$lib/supabase';

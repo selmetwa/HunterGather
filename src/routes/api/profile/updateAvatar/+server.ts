@@ -1,4 +1,3 @@
-import { error, redirect } from "@sveltejs/kit";
 import type { RequestHandler } from "../$types";
 import { supabaseClient } from '$lib/supabase';
 

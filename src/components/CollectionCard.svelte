@@ -30,7 +30,8 @@
 			.select('*', { count: 'exact', head: true })
 			.contains('collectionIds', [`${collectionId}`]);
 		author = data && data[0] && data[0].name;
-		count = queryCount;
+
+    if (queryCount) count = queryCount;
 	});
 
 	const toggleCollectingModal = () => {
@@ -39,7 +40,6 @@
 	};
 </script>
 
-<!-- href={`/collection/${collectionId}`} -->
 <div on:mouseenter={enter} on:mouseleave={leave}>
 	<div class="card bg-white">
 		{#if hovering}
@@ -49,9 +49,6 @@
 			>
 				<div class="mb-4">
 					<h3 class="font-bold">{title}</h3>
-					<p class="mt-2">
-						Collection by by: <a href={`/profile/${userId}`} class="text-blue-400">{author}</a>
-					</p>
 				</div>
 				<div class="w-full flex gap-4">
 					<button
@@ -65,7 +62,7 @@
 		<a href={`/collection/${collectionId}`} class="link">
 			<div class="content">
 				<h1>{title}</h1>
-				<p>{author}</p>
+				<p class="mt-2">{author}</p>
 				<p>{count}</p>
 			</div>
 		</a>
@@ -98,5 +95,15 @@
 
 	h1 {
 		font-size: 32px;
+    overflow:hidden;
+    line-height: 2rem;
+    -webkit-box-orient: vertical;
+    display: block;
+    display: -webkit-box;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    width: 85%;
+    margin: auto;
 	}
 </style>

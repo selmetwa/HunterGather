@@ -122,6 +122,7 @@
 			onChange={updateTitle}
 			placeholder="Cool Portfolio Sites"
 			isRequired={true}
+      maxlength={50}
 		/>
 		<Input
 			type="text"
