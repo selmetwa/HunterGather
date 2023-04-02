@@ -11,7 +11,6 @@
 	<meta name="description" content="Wwwabbit" />
 </svelte:head>
 <section>
-	<h1>Wwwabbit</h1>
 	<div class="xl:p-x-24 lg:p-x-16 sm:p-8">
 		<Masonry gridGap={'0.75rem'} colWidth={'minmax(Min(20em, 100%), 1fr)'} {items}>
 			{#each items as item}

@@ -4,16 +4,23 @@
 	import { onMount } from 'svelte';
 	import { PUBLIC_API_URL } from '$env/static/public';
 
+	import { modalStore, collectionIds, collectingModal } from '../store/store';
+
 	import Header from '../components/Header.svelte';
 	import CreateModal from '../components/CreateModal/CreateModal.svelte';
-	import { modalStore, collectionIds } from '../store/store';
+  import CollectingModal from '../components/CollectingModal/CollectingModal.svelte';
 	import '../app.css';
 
 	let modalIsOpen = false;
+  let collectingModalIsOpen = false;
 
 	modalStore.subscribe((value) => {
 		modalIsOpen = value;
 	});
+
+  collectingModal.subscribe((value) => {
+    collectingModalIsOpen = value
+  });
 
 	onMount(async () => {
     const res = await fetch(`${PUBLIC_API_URL}/api/collections`, {
@@ -42,6 +49,9 @@
 		{#if modalIsOpen}
 			<CreateModal />
 		{/if}
+    {#if collectingModalIsOpen}
+      <CollectingModal />
+    {/if}
 		<slot />
 	</main>
 </div>

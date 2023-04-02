@@ -1,10 +1,12 @@
 <script lang="ts">
 	import { PUBLIC_API_URL } from '$env/static/public';
+	import { collectionIds } from '../../store/store';
 
 	import Input from '../Input.svelte';
 	import Button from '../Button.svelte';
 	import ErrorMessage from '../ErrorMessage.svelte';
 	import SuccessMessage from '../SuccessMessage.svelte';
+  import Pill from '../Pill.svelte';
 
 	export let onClose: any;
 	let error = false;
@@ -12,6 +14,12 @@
 	let successMessage = '';
 	let title = '';
 	let description = '';
+	let toggledCollectionIds: string | any[] = [];
+	let ids: any[] = [];
+
+	collectionIds.subscribe((value) => {
+		ids = value;
+	});
 
 	const updateTitle = (e: any) => {
 		title = e.target.value;
@@ -33,6 +41,7 @@
         error = true;
 				title = '';
 				description = '';
+			  toggledCollectionIds = [];
 			}, 1000);
       
       return
@@ -44,6 +53,7 @@
 			successMessage = `Collection ${title} has been created successfully.`;
 			title = '';
 			description = '';
+			toggledCollectionIds = [];
 
       /**
        * close modal and redirect user somewhere
@@ -54,6 +64,19 @@
 		}, 1000);
 	};
 
+  const onPillClick = (e: any) => {
+		const copy = [...toggledCollectionIds];
+		const id = e.target.value;
+		if (copy.includes(id)) {
+			const index = copy.indexOf(id);
+			copy.splice(index, 1);
+		} else {
+			copy.push(id);
+		}
+
+		toggledCollectionIds = copy;
+	};
+
 	const onClick = async () => {
 		inProgress = true;
 
@@ -62,7 +85,8 @@
 			headers: { accept: 'application/json' },
 			body: JSON.stringify({
 				title,
-				description
+				description,
+				collectionIds: toggledCollectionIds
 			})
 		});
 
@@ -83,6 +107,7 @@
 				Create Collection
 			</h2>
 		</div>
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<i
 			class="fa-solid fa-xmark text-2xl text-gray-400 hover:text-gray-300 hover:transition-all cursor-pointer"
 			on:click={onClose}
@@ -105,6 +130,18 @@
 			onChange={updateDescription}
 			placeholder="Collection of cool portfolios"
 		/>
+
+    <div>
+      <p class="text-gray-400">Add to collection(s)</p>
+			{#each ids as obj}
+				<Pill
+					val={obj.collectionId}
+					text={obj.title}
+					onClick={onPillClick}
+					isIncluded={toggledCollectionIds.includes(obj.collectionId)}
+				/>
+			{/each}
+		</div>
 		<Button text="Create Collection" type="submit" {inProgress} />
 	</form>
 </main>

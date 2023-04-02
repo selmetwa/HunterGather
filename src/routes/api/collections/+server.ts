@@ -23,7 +23,7 @@ export const POST: RequestHandler = async ({ locals, request }) => {
   const userId = locals?.session?.user?.id;
   const collectionId = uuidv4();
 
-  const { title, description } = data;
+  const { collectionIds, title, description } = data;
 
    const { data: responseData, error } = await supabaseClient
    .from('collections')
@@ -32,7 +32,8 @@ export const POST: RequestHandler = async ({ locals, request }) => {
      title: title,
      description: description,
      userId: userId,
-    objectType: 'collection',
+     collectionIds: collectionIds,
+     objectType: 'collection',
     })
 
   if (error) {

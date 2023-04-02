@@ -53,6 +53,7 @@ You can preview the production build with `npm run preview`.
 - [x] component-ize masonry
 - [x] make block cards
 - [x] make collection cards
+- [ ] make collection header
 - [ ] pay for url service...
 - [ ] check auth before user can edit profile (userId must equal profileId)
 - [ ] block detail page
@@ -63,7 +64,9 @@ You can preview the production build with `npm run preview`.
 - [ ] delete a collection
 - [ ] update a collection if its yours
 - [ ] remove a block from a collection
-- [ ] intersperse blocks and collections on homepage
-- [ ] add a block to a collection after creation
-- [ ] add a collection to a collection :o
+- [x] intersperse blocks and collections on homepage
+- [x] add a block to a collection after creation
+- [x] add a collection to a collection :o
+- [ ] error handling
+- [ ] optimize for mobile
 

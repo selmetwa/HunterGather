@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { supabaseClient } from '$lib/supabase';
 	import { onMount } from 'svelte';
-	import { fade } from 'svelte/transition';
 	import { scale } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
+  import  { collectingModal, objectToCollect } from '../store/store';
 	export let block: any;
 
 	const { src, title, url, blockId, userId } = block;
@@ -27,6 +27,11 @@
 		const { data } = await supabaseClient.from('users').select().eq('id', userId);
 		author = data && data[0] && data[0].name;
 	});
+
+  const toggleCollectingModal = () => {
+    collectingModal.set(true)
+    objectToCollect.set(block)
+  }
 </script>
 
 <div>
@@ -53,6 +58,7 @@
 					<button
 						type="button"
 						class="font-sans group relative flex w-full justify-center rounded-sm border border-transparent bg-gray-200 py-2 px-4 text-md font-medium text-gray-500 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:gray-300 focus:ring-offset-2 drop-shadow-sm ease-in-out duration-300"
+            on:click={toggleCollectingModal}
 						>Collect</button
 					>
 				</div>
