@@ -62,7 +62,7 @@
 				</div>
 			</div>
 		{/if}
-		<a href={`/collection/${collectionId}`}>
+		<a href={`/collection/${collectionId}`} class="link">
 			<div class="content">
 				<h1>{title}</h1>
 				<p>{author}</p>
@@ -82,9 +82,17 @@
     justify-content: center;
 	}
 
+  .link {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
 	.content {
-    border: 1px solid red;
     position: relative;
+    height: min-content;
 		text-align: center;
 	}
 
