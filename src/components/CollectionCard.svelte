@@ -37,8 +37,6 @@
 		collectingModal.set(true);
 		objectToCollect.set(collection);
 	};
-
-	console.log({ collection });
 </script>
 
 <!-- href={`/collection/${collectionId}`} -->

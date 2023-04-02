@@ -7,7 +7,6 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 	event.locals.sb = supabaseClient
 	event.locals.session = session
-  console.log({ event });
 
 	return resolve(event)
 }

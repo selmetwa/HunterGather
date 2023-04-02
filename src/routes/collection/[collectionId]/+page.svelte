@@ -31,9 +31,6 @@
 			}, []);
 		};
 
-
-    console.log({ objects})
-
     if (!isMounted) {
       objects = interweave(blocks, collections);
     } else {

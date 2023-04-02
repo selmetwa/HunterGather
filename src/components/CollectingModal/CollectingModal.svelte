@@ -54,23 +54,18 @@
 
   onMount(async () => {
     const { objectType } = objectWeAreCollecting;
-    console.log({ objectType });
 
     let data;
     let all;
     if (objectType === 'block') {
       const { data } = await supabaseClient.from('blocks').select().eq('blockId', objectWeAreCollecting.blockId);
-      console.log({ data, objectWeAreCollecting })
       all = data && data[0] && data && data[0].collectionIds
     }
 
     if (objectType === 'collection') {
       const { data } = await supabaseClient.from('collections').select().eq('collectionId', objectWeAreCollecting.collectionId);
-      console.log({ data })
       all = data && data[0] && data && data[0].collectionIds
     }
-
-    console.log({ data, all })
 
     const realIds = ids.map(i => i.collectionId);
     const filtered = all.filter((id: string) => realIds.includes(id));
