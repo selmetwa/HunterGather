@@ -54,6 +54,7 @@ You can preview the production build with `npm run preview`.
 - [x] make block cards
 - [x] make collection cards
 - [ ] make collection header
+- [ ] cleanup code.....
 - [ ] pay for url service...
 - [ ] check auth before user can edit profile (userId must equal profileId)
 - [ ] block detail page

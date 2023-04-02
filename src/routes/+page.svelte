@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Masonry from '../components/Masonry.svelte';
 	import BlockCard from '../components/BlockCard.svelte';
 	import CollectionCard from '../components/CollectionCard.svelte';
 	export let data: any;
@@ -12,7 +11,9 @@
 </svelte:head>
 <section>
 	<div class="xl:p-x-24 lg:p-x-16 sm:p-8">
-		<Masonry gridGap={'0.75rem'} colWidth={'minmax(Min(20em, 100%), 1fr)'} {items}>
+		<div
+			class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4"
+		>
 			{#each items as item}
 				{#if item.objectType === 'block'}
 					<BlockCard block={item} />
@@ -20,6 +21,6 @@
 					<CollectionCard collection={item} />
 				{/if}
 			{/each}
-		</Masonry>
+		</div>
 	</div>
 </section>

@@ -58,10 +58,8 @@
 
 <style>
 	main {
-		height: 100vh;
 		display: flex;
 		flex-direction: column;
-		min-height: 100vh;
-		background-color: #eff6ff;
+		background-color: #fafafa;
 	}
 </style>

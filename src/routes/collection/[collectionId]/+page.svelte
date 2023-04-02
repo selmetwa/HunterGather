@@ -2,20 +2,20 @@
 	import { supabaseClient } from '$lib/supabase';
 	import { onMount } from 'svelte';
 
-	import Masonry from '../../../components/Masonry.svelte';
 	import BlockCard from '../../../components/BlockCard.svelte';
 	import CollectionCard from '../../../components/CollectionCard.svelte';
+	import CollectionHeader from '../CollectionHeader.svelte';
 	export let data: any;
 
-  $: objects = [];
-	$: ({ collectionId } = data);
+	$: objects = [];
+	$: ({ collectionId, collection } = data);
 
-  $: if (collectionId) {
-    loadData()
-  }
+	$: if (collectionId) {
+		loadData();
+	}
 
-  let isMounted = false;
-  const loadData = async () => {
+	let isMounted = false;
+	const loadData = async () => {
 		const { data: blocks } = await supabaseClient
 			.from('blocks')
 			.select()
@@ -31,25 +31,25 @@
 			}, []);
 		};
 
-    if (!isMounted) {
-      objects = interweave(blocks, collections);
-    } else {
-      objects = [];
-      setTimeout(() => {
-        objects = interweave(blocks, collections);
-      }, 100)
-    }
-  }
+		if (!isMounted) {
+			objects = interweave(blocks, collections);
+		} else {
+			objects = [];
+			setTimeout(() => {
+				objects = interweave(blocks, collections);
+			}, 100);
+		}
+	};
 
 	onMount(async () => {
-    loadData();
-    isMounted = true;
+		loadData();
+		isMounted = true;
 	});
 </script>
+
 {#key collectionId}
-<p>{collectionId}</p>
-<div class="xl:p-x-24 lg:p-x-16 sm:p-8">
-	<Masonry gridGap={'0.75rem'} colWidth={'minmax(Min(20em, 100%), 1fr)'} items={objects}>
+	<CollectionHeader {collection} />
+	<div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
 		{#each objects as object}
 			{#if object.objectType === 'block'}
 				<BlockCard block={object} />
@@ -57,26 +57,5 @@
 				<CollectionCard collection={object} />
 			{/if}
 		{/each}
-	</Masonry>
-</div>
+	</div>
 {/key}
-
-<style>
-	main {
-		width: 100%;
-		margin: auto;
-	}
-
-	._padding {
-		padding: 12px;
-	}
-
-	._card {
-		border: 1px solid #ccc;
-	}
-
-	img {
-		width: 100%;
-		height: auto;
-	}
-</style>

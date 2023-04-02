@@ -4,7 +4,6 @@
 	import Input from '../../../components/Input.svelte';
 	import Button from '../../../components/Button.svelte';
 	import Modal from '../../../components/Modal.svelte';
-	import Masonry from '../../../components/Masonry.svelte';
 	import ProfileHeader from './ProfileHeader.svelte';
 	import Tabs from '../../../components/Tabs.svelte';
 	import BlockCard from '../../../components/BlockCard.svelte';
@@ -111,21 +110,21 @@
 		<Tabs {tabs} {activeTab} {toggleTab} />
 	</div>
 	{#if activeTab === 'block'}
-  <div class="xl:p-x-24 lg:p-x-16 sm:p-8">
-		<Masonry gridGap={'0.75rem'} colWidth={'minmax(Min(20em, 100%), 1fr)'} items={blocks}>
-			{#each blocks as block}
-				<BlockCard {block} />
-			{/each}
-		</Masonry>
-    </div>
+		<div class="xl:p-x-24 lg:p-x-16 sm:p-8">
+			<div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
+				{#each blocks as block}
+					<BlockCard {block} />
+				{/each}
+			</div>
+		</div>
 	{:else}
-  <div class="xl:p-x-24 lg:p-x-16 sm:p-8">
-		<Masonry gridGap={'0.75rem'} colWidth={'minmax(Min(20em, 100%), 1fr)'} items={collections}>
-			{#each collections as collection}
-				<CollectionCard {collection} />
-			{/each}
-		</Masonry>
-  </div>
+		<div class="xl:p-x-24 lg:p-x-16 sm:p-8">
+			<div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
+				{#each collections as collection}
+					<CollectionCard {collection} />
+				{/each}
+			</div>
+		</div>
 	{/if}
 </section>
 

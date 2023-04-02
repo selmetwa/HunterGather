@@ -76,10 +76,15 @@
 	.card {
 		border: 1px solid #ccc;
 		position: relative;
+    aspect-ratio: 4/3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 	}
 
 	.content {
-		padding: 60px;
+    border: 1px solid red;
+    position: relative;
 		text-align: center;
 	}
 
