@@ -7,7 +7,8 @@
 </script> 
 
 <header class="header">
-  <h1>{title}</h1>
+  <h1 class="text-blue-200 font-sans text-3xl xl:text-5xl md:text-4xl">{title}</h1>
+  <p>{description}</p>
 </header>
 
 <style>
