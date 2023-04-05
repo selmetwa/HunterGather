@@ -7,13 +7,12 @@
 </script> 
 
 <header class="header">
-  <h1 class="text-blue-200 font-sans text-3xl xl:text-5xl md:text-4xl">{title}</h1>
-  <p>{description}</p>
+  <h1 class="text-gray-500 font-sans text-3xl xl:text-5xl md:text-4xl">{title}</h1>
 </header>
 
 <style>
   .header { 
-		background: #3b82f6;
+		background: #EBEBEB;
     height: 150px;
     display: flex;
     justify-content: center;

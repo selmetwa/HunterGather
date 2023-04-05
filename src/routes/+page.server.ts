@@ -3,8 +3,8 @@
 import { supabaseClient } from '$lib/supabase';
 
 export const load = async ({ fetch, params }: { fetch: any; params: any }) => {
-	const { data: blocks } = await supabaseClient.from('blocks').select().limit(20)
-	const { data: collections } = await supabaseClient.from('collections').select().limit(20)
+	const { data: blocks } = await supabaseClient.from('blocks').select()
+	const { data: collections } = await supabaseClient.from('collections').select()
 
   const interweave = (arr1: any, arr2: any) => {
     return arr1.reduce((acc: any, current: any, index: number) => {

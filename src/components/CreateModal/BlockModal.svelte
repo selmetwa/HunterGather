@@ -86,17 +86,8 @@
 	};
 </script>
 
-<!-- 
-  1. fetch all collections on server
-  3. save in a store
-  2. get in client
-  3. make table in supabase for blocks
-  4. make dropdown of collections
--->
-
-<main
-	class="2xl:w-3/12 xl:w-4/12 lg:w-6/12 md:w-8/12 sm:w-8/12 bg-white p-8 m-auto rounded mt-20 height-auto"
->
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<main class="2xl:w-3/12 xl:w-4/12 lg:w-6/12 md:w-8/12 sm:w-8/12 bg-white p-8 m-auto rounded mt-20 height-auto">
 	{#if errorMessage}
 		<ErrorMessage message={errorMessage} />
 	{/if}
@@ -112,16 +103,15 @@
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<i
 			class="fa-solid fa-xmark text-2xl text-gray-400 hover:text-gray-300 hover:transition-all cursor-pointer"
+			id="close-modal-root"
 			on:click={onClose}
 		/>
 	</div>
 	<div class="flex-grow border-t border-gray-200" />
 	<form class="mt-8 space-y-6" on:submit={onSubmit}>
 		<Input type="text" text="URL" value={url} onChange={updateUrl} placeholder="url" />
-
-
 		<div>
-      <p class="text-gray-400">Add to collection(s)</p>
+			<p class="text-gray-400">Add to collection(s)</p>
 			{#each ids as obj}
 				<Pill
 					val={obj.collectionId}

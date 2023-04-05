@@ -110,6 +110,7 @@
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<i
 			class="fa-solid fa-xmark text-2xl text-gray-400 hover:text-gray-300 hover:transition-all cursor-pointer"
+			id="close-modal-root"
 			on:click={onClose}
 		/>
 	</div>
