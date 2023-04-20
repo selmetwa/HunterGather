@@ -132,18 +132,20 @@
 			onChange={updateDescription}
 			placeholder="Collection of cool portfolios"
 		/>
+    {#if !!ids.length}
+      <div>
+        <p class="text-gray-400">Add to collection(s)</p>
+        {#each ids as obj}
+          <Pill
+            val={obj.collectionId}
+            text={obj.title}
+            onClick={onPillClick}
+            isIncluded={toggledCollectionIds.includes(obj.collectionId)}
+          />
+        {/each}
+      </div>
+    {/if}
 
-    <div>
-      <p class="text-gray-400">Add to collection(s)</p>
-			{#each ids as obj}
-				<Pill
-					val={obj.collectionId}
-					text={obj.title}
-					onClick={onPillClick}
-					isIncluded={toggledCollectionIds.includes(obj.collectionId)}
-				/>
-			{/each}
-		</div>
 		<Button text="Create Collection" type="submit" {inProgress} />
 	</form>
 </main>

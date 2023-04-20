@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { myBlocks } from '../../../store/store';
+	import { blockPreviewPanel } from '../../../store/store';
 
 	import Input from '../../../components/Input.svelte';
 	import Button from '../../../components/Button.svelte';
@@ -46,6 +46,11 @@
 			val: 'collection'
 		}
 	];
+
+  let gridRules: string 
+  blockPreviewPanel.subscribe(v => {
+    gridRules = v ? 'grid-cols-2' : 'sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5'
+  })
 </script>
 
 <ProfileHeader {data} {handleToggleModal} />
@@ -112,7 +117,7 @@
 	</div>
 	{#if activeTab === 'block'}
 		<div class="xl:p-x-24 lg:p-x-16 sm:p-8">
-			<div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
+			<div class={`grid gap-4 ${gridRules}`}>
 				{#each blocks as block}
 					<BlockCard {block} />
 				{/each}
@@ -120,7 +125,7 @@
 		</div>
 	{:else}
 		<div class="xl:p-x-24 lg:p-x-16 sm:p-8">
-			<div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
+			<div class={`grid gap-4 ${gridRules}`}>
 				{#each collections as collection}
 					<CollectionCard {collection} />
 				{/each}

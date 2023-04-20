@@ -31,7 +31,8 @@
   const error = $page?.form?.error;
 </script>
 <body>
-    <main class="2xl:w-3/12 xl:w-4/12 lg:w-6/12 md:w-8/12 sm:w-8/12 bg-white	p-8 m-auto rounded drop-shadow-md mt-20">
+  <section class="modal-wrapper">
+    <main class="2xl:w-3/12 xl:w-4/12 lg:w-6/12 md:w-8/12 sm:w-8/12 bg-white mb-20 p-8 m-auto rounded drop-shadow-md mt-20 overflow-hidden">
       <div class="w-full max-w-md space-y-4">
         <h2 class="font-sans text-left text-2xl font-light tracking-tight text-gray-400">Sign in to your account</h2>
         <div class="flex-grow border-t border-gray-200"></div>
@@ -45,7 +46,7 @@
         <Button text="Login" type="submit" />
       </form>
       <div class="relative flex py-4 items-center">
-        <a href="/register" class="m-auto	font-light text-gray-400">not a member? <span class="font-semibold text-blue-400">Join</span></a>
+        <a href="/register" class="m-auto	font-light text-gray-400">not a member? <span class="font-semibold text-action-400">Join</span></a>
       </div>
       <div class="relative flex py-4 items-center">
         <div class="flex-grow border-t border-gray-200"></div>
@@ -61,11 +62,12 @@
         </button>
       </form>
     </main>
+  </section>
 </body>
 
 <style>
-  body {
-    background: linear-gradient(#3b82f6 50%, #eff6ff 50%);
-    height: 60%;
+  .modal-wrapper {
+    background: linear-gradient(#f3f4f6 50%, #fff 50%);
+    overflow: hidden!important;
   }
 </style>

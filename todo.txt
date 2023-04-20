@@ -4,3 +4,5 @@ upload avatar (figure out blob store) []
 
 cleanup
 go through code and clean stuff up, then work on collections
+
+

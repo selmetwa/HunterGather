@@ -157,7 +157,7 @@
 		<div class="flex-grow border-t border-gray-200" />
 
 		{#if objectWeAreCollecting.src}
-			<div class="preview w-full bg-blue-100 mt-6">
+			<div class="preview w-full bg-gray-100 mt-6">
 				<img src={objectWeAreCollecting.src} alt={objectWeAreCollecting.title} />
 				<h3>{objectWeAreCollecting.title}</h3>
 			</div>

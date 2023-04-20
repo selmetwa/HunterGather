@@ -53,9 +53,9 @@
 	});
 </script>
 
-<section>
+<section class="bg-gray-100 py-12">
 	<div class="avatar-section">
-    <h1 class="text-blue-200 font-sans text-3xl xl:text-5xl md:text-4xl">{name}</h1>
+    <h1 class="text-gray-500 font-sans text-2xl xl:text-2xl md:text-4xl">{name}</h1>
     {#if error}
       <h1>something went wrong</h1>
     {/if}
@@ -105,8 +105,8 @@
   }
 
 	.avatar-section {
-		background: linear-gradient(#3b82f6 calc(200px - 50px), #eff6ff 50%);
-    height: 200px;
+		/* background: linear-gradient(#3b82f6 calc(200px - 50px), #eff6ff 50%); */
+    /* height: 200px; */
     display: flex;
     justify-content: center;
     align-items: flex-end;

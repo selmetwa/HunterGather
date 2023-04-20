@@ -3,16 +3,15 @@
 
   console.log({ collection })
 
-  const { title, description } = collection[0];
+  const { title, description } = collection && collection[0];
 </script> 
 
-<header class="header">
+<header class="header bg-gray-100">
   <h1 class="text-gray-500 font-sans text-3xl xl:text-5xl md:text-4xl">{title}</h1>
 </header>
 
 <style>
   .header { 
-		background: #EBEBEB;
     height: 150px;
     display: flex;
     justify-content: center;

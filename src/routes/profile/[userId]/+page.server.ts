@@ -1,8 +1,6 @@
 import { supabaseClient } from '$lib/supabase';
-import { page } from '$app/stores';
 import type { Actions } from './$types';
-import { AuthApiError } from '@supabase/gotrue-js';
-import { fail, redirect } from '@sveltejs/kit';
+import { redirect } from '@sveltejs/kit';
 import { myBlocks } from '../../../store/store';
 
 export const load = async ({ fetch, params }: { fetch: any; params: any }) => {

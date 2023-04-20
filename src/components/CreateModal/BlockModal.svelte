@@ -17,6 +17,7 @@
 	let ids: any[] = [];
 
 	collectionIds.subscribe((value) => {
+    console.log({ value })
 		ids = value;
 	});
 
@@ -110,17 +111,19 @@
 	<div class="flex-grow border-t border-gray-200" />
 	<form class="mt-8 space-y-6" on:submit={onSubmit}>
 		<Input type="text" text="URL" value={url} onChange={updateUrl} placeholder="url" />
-		<div>
-			<p class="text-gray-400">Add to collection(s)</p>
-			{#each ids as obj}
-				<Pill
-					val={obj.collectionId}
-					text={obj.title}
-					onClick={onPillClick}
-					isIncluded={toggledCollectionIds.includes(obj.collectionId)}
-				/>
-			{/each}
-		</div>
+    {#if !!ids.length}
+      <div>
+        <p class="text-gray-400">Add to collection(s)</p>
+        {#each ids as obj}
+          <Pill
+            val={obj.collectionId}
+            text={obj.title}
+            onClick={onPillClick}
+            isIncluded={toggledCollectionIds.includes(obj.collectionId)}
+          />
+        {/each}
+      </div>
+    {/if}
 		<Button text="Create Block" type="submit" {inProgress} />
 	</form>
 </main>

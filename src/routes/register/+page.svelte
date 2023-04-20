@@ -5,10 +5,14 @@
   import Input from '../../components/Input.svelte';
 
   const error = $page?.form?.error;
+	export let data: any;
+
+  console.log({ data });
+
 </script>
 
 <div class="wrapper">
-  <main class="2xl:w-3/12 xl:w-4/12 lg:w-6/12 md:w-8/12 sm:w-8/12 bg-white p-8 m-auto rounded drop-shadow-md mt-20">
+  <main class="2xl:w-3/12 xl:w-4/12 lg:w-6/12 md:w-8/12 sm:w-8/12 bg-white p-8 m-auto rounded drop-shadow-md mt-20 mb-20">
     <div class="w-full max-w-md space-y-4">
       <h2 class="font-sans text-left text-2xl font-light tracking-tight text-gray-400">Register new account</h2>
       <div class="flex-grow border-t border-gray-200"></div>
@@ -23,14 +27,14 @@
       <Button text="Register" type="submit" />
     </form>
     <div class="relative flex py-4 items-center">
-      <a href="/login" class="m-auto	font-light text-gray-400">already have an account? <span class="font-semibold text-blue-400">Login</span></a>
+      <a href="/login" class="m-auto	font-light text-gray-400">already have an account? <span class="font-semibold text-action-400">Login</span></a>
     </div>
   </main>
 </div>
 
 <style>
   .wrapper {
-    background: linear-gradient(#3b82f6 50%, #eff6ff 50%);
-    height: 60%;
+    background: linear-gradient(#f3f4f6 50%, #fff 50%);
+    overflow: hidden!important;
   }
 </style>

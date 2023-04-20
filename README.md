@@ -57,14 +57,19 @@ You can preview the production build with `npm run preview`.
 - [ ] cleanup code.....
 - [x] pay for url service...
 - [ ] check auth before user can edit profile (userId must equal profileId)
-- [ ] block detail page
-  - [ ] list all collections it exists in
+- [ ] send user somewhere after they create a block or collection
+- [x] only let signed in users collect
+- [x] block detail page
+  - [x] list all collections it exists in
+  - [x] embed webpage in block detail
+  - [ ] fall back to image if we cant embed
 - [x] link out from cards
-- [ ] pagination
+- [ ] pagination 
+- [ ] resolve styling inconsistencies
 - [ ] delete a block
 - [ ] delete a collection
 - [ ] update a collection if its yours
-- [ ] remove a block from a collection
+- [x] remove a block from a collection
 - [x] intersperse blocks and collections on homepage
 - [x] add a block to a collection after creation
 - [x] add a collection to a collection :o

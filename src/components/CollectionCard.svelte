@@ -1,12 +1,16 @@
 <script lang="ts">
+  import { page } from '$app/stores';
+  import { goto } from '$app/navigation';
 	import { supabaseClient } from '$lib/supabase';
 	import { onMount } from 'svelte';
 	import { scale } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 
-	import { collectingModal, objectToCollect } from '../store/store';
+	import { blockPreviewPanel, collectingModal, objectToCollect } from '../store/store';
 
+  const activeSession = $page?.data?.session;
 	export let collection: any;
+  export let isRow = false;
 	let hovering = false;
 	let requested = false;
 
@@ -19,7 +23,11 @@
 
 	const leave = () => (hovering = false);
 
-	const { collectionId, title, userId } = collection;
+	// const { collectionId, title, userId } = collection;
+  const collectionId = collection?.collectionId;
+  const title = collection?.title;
+  const userId = collection?.userId;
+
 	let author = 'author';
 	let count = 0;
 
@@ -34,22 +42,29 @@
     if (queryCount) count = queryCount;
 	});
 
+  const goToCollection = () => {
+    goto(`/collection/${collectionId}`)
+    if (isRow) {
+      blockPreviewPanel.set(false);
+    }
+  }
 	const toggleCollectingModal = () => {
-		collectingModal.set(true);
-		objectToCollect.set(collection);
+    if (activeSession) {
+      collectingModal.set(true);
+		  objectToCollect.set(collection);
+    } else {
+      alert('You must have a registered account to do that')
+    }
 	};
 </script>
 
 <div on:mouseenter={enter} on:mouseleave={leave}>
-	<div class="card bg-white">
-		{#if hovering}
+	<div class={`${isRow ? 'row bg-gray-200 border border-gray-300' : 'card'}  bg-gray-100 border-2 border-gray-300`}>
+		{#if hovering && !isRow}
 			<div
 				in:scale={{ duration: 150, easing: quintOut, opacity: 0 }}
-				class="absolute border shadow-md top-0 m-auto z-50 bg-white shadow-xl p-6 w-full cursor-default"
+				class="absolute border shadow-md top-0 m-auto z-50 bg-white shadow-xl p-6 w-full cursor-default rounded-md"
 			>
-				<div class="mb-4">
-					<h3 class="font-bold">{title}</h3>
-				</div>
 				<div class="w-full flex gap-4">
 					<button
 						type="button"
@@ -60,10 +75,14 @@
 			</div>
 		{/if}
 		<a href={`/collection/${collectionId}`} class="link">
-			<div class="content">
-				<h1>{title}</h1>
-				<p class="mt-2">{author}</p>
-				<p>{count}</p>
+			<div class={`${isRow ? 'row-content' : 'card-content'}`}>
+        <div>
+          <h1 class="font-sans text-gray-500 font-semibold">{title}</h1>
+          {#if !isRow}
+            <p class={`${isRow ? 'mt-0' : 'mt-2'} font-sans text-gray-500`}>{author}</p>
+          {/if}
+        </div>
+				<p class="font-sans text-gray-600">{count}</p>
 			</div>
 		</a>
 	</div>
@@ -71,13 +90,38 @@
 
 <style>
 	.card {
-		border: 1px solid #ccc;
 		position: relative;
     aspect-ratio: 4/3;
     display: flex;
     align-items: center;
     justify-content: center;
 	}
+
+  .row {
+    aspect-ratio: 6/1;
+    display: flex;
+		position: relative;
+    padding: 20px;
+    flex-direction: row;
+  }
+
+  .row-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    padding: 5px 10px;
+  }
+
+  .row-content h1 {
+    font-size: 16px;
+    white-space: nowrap;
+  }
+
+  .row-content p {
+    font-size: 14px;
+  }
 
   .link {
     height: 100%;
@@ -87,14 +131,14 @@
     justify-content: center;
   }
 
-	.content {
+	.card-content {
     position: relative;
     height: min-content;
 		text-align: center;
 	}
 
 	h1 {
-		font-size: 32px;
+		font-size: 24px;
     overflow:hidden;
     line-height: 2rem;
     -webkit-box-orient: vertical;
@@ -103,7 +147,7 @@
     overflow: hidden !important;
     text-overflow: ellipsis;
     -webkit-line-clamp: 2;
-    width: 85%;
     margin: auto;
+    width: 85%;
 	}
 </style>

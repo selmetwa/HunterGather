@@ -45,9 +45,11 @@ export const actions: Actions = {
 		})
 
 		if (err) {
+
+      console.log({ err });
 			if (err instanceof AuthApiError && err.status === 400) {
 				return fail(400, {
-					error: "Incorrect username or password.",
+					error: 'Invalid email or password, or your email is not verified',
 				})
 			}
 			return fail(500, {

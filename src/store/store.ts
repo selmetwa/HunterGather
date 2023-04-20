@@ -5,3 +5,6 @@ export const collectionIds = writable([]);
 export const myBlocks = writable([]);
 export const collectingModal = writable(false);
 export const objectToCollect = writable({});
+
+export const blockPreviewObject = writable({});
+export const blockPreviewPanel = writable(false);
