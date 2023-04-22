@@ -4,7 +4,12 @@
   import { page } from '$app/stores';
 	import { scale } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
-	import { blockPreviewPanel, blockPreviewObject, collectingModal, objectToCollect } from '../store/store';
+	import { 
+    collectingModal, 
+    objectToCollect,
+    previewPanel,
+    previewPanelObject
+  } from '../store/store';
 	export let block: any;
 
 	const { src, title, url, blockId, userId } = block;
@@ -31,21 +36,23 @@
     }
 	};
 
-  const toggleDetailPage = (e: any) => {
+  const togglePreview = (e: any) => {
     if (e.target.id !== 'collect-button') {
-      blockPreviewPanel.set(true);
-		  blockPreviewObject.set(block);
+      previewPanel.set(true);
+		  previewPanelObject.set({
+        type: 'block',
+        object: block
+      });
     }
   }
 </script>
 
 <div>
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
-
 	<div class="card border border-gray-500" on:mouseenter={enter} on:mouseleave={leave}>
-  <a on:click={toggleDetailPage}>
-		<img class="w-full" {src} alt={title} />
-  </a>
+    <button on:click={togglePreview}>
+      <img class="w-full" {src} alt={title} />
+    </button>
 		{#if hovering}
 			<div
 				in:scale={{ duration: 150, easing: quintOut, opacity: 0 }}
@@ -71,9 +78,9 @@
 	</div>
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<div class="py-2">
-    <a href={`/block/${blockId}`}>
+    <button on:click={togglePreview}>
 		  <h2 class="title text-text-100">{title}</h2>
-    </a>
+    </button>
 	</div>
 </div>
 

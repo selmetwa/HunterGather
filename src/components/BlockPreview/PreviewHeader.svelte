@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { blockPreviewPanel } from '../../store/store';
+	import { previewPanel } from '../../store/store';
 	import { goto } from '$app/navigation';
 
 	export let blockId: String;
@@ -8,7 +8,7 @@
 
 	console.log({ blockId });
 	const onClose = () => {
-		blockPreviewPanel.set(false);
+		previewPanel.set(false);
 	};
 
 	const sendToFullPage = () => {

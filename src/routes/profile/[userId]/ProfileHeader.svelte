@@ -5,9 +5,9 @@
 	import { onMount } from 'svelte';
 
 	export let data;
-  export let handleToggleModal: () => boolean;
+	export let handleToggleModal: () => boolean;
 
-  let error: String;
+	let error: String;
 	let avatar: String | ArrayBuffer | null | undefined;
 	let fileinput: any;
 
@@ -40,26 +40,29 @@
 	};
 
 	onMount(async () => {
-		const { data, error: err }: {data: Blob | null, error: any } = await supabaseClient.storage.from('avatars').download(avatarId);
+		const { data, error: err }: { data: Blob | null; error: any } = await supabaseClient.storage
+			.from('avatars')
+			.download(avatarId);
 
 		let reader = new FileReader();
-    error = err;
-    if (!error && data) {
-      reader.readAsDataURL(data);
-      reader.onload = (e) => {
-        avatar = e.target?.result;
-      };
-    }
+		error = err;
+		if (!error && data) {
+			reader.readAsDataURL(data);
+			reader.onload = (e) => {
+				avatar = e.target?.result;
+			};
+		}
 	});
 </script>
 
 <section class="bg-gray-100 py-12">
 	<div class="avatar-section">
-    <h1 class="text-gray-500 font-sans text-2xl xl:text-2xl md:text-4xl">{name}</h1>
-    {#if error}
-      <h1>something went wrong</h1>
-    {/if}
+		<h1 class="text-gray-500 font-sans text-2xl xl:text-2xl md:text-4xl">{name}</h1>
+		{#if error}
+			<h1>something went wrong</h1>
+		{/if}
 		{#if avatar}
+			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<img
 				class="avatar"
 				src={avatar?.toString()}
@@ -80,36 +83,36 @@
 		/>
 	</div>
 
-  <div class="text">
-    {#if github}
-      <a href={github} target="_blank" class="underline font-semibold text-blue-400">Github</a>
-    {/if}
-    {#if twitter}
-      <a href={twitter} target="_blank" class="underline font-semibold text-blue-400">Twitter</a>
-    {/if}
-    {#if personalSite}
-      <a href={personalSite} target="_blank" class="underline font-semibold text-blue-400">Personal Site</a>      
-    {/if}
-    <i class="fa-solid fa-pen text-blue-400" on:click={handleToggleModal}></i>
-  </div>
-
+	<div class="text">
+		{#if github}
+			<a href={github} target="_blank" class="underline font-semibold text-blue-400">Github</a>
+		{/if}
+		{#if twitter}
+			<a href={twitter} target="_blank" class="underline font-semibold text-blue-400">Twitter</a>
+		{/if}
+		{#if personalSite}
+			<a href={personalSite} target="_blank" class="underline font-semibold text-blue-400"
+				>Personal Site</a
+			>
+		{/if}
+		<i class="fa-solid fa-pen text-blue-400" on:click={handleToggleModal} />
+	</div>
 </section>
 
 <style>
-
-  h1 {
-    position: absolute;
-    top: 70px;
-    padding-top: 30px;
-    font-weight: 900;
-  }
+	h1 {
+		position: absolute;
+		top: 70px;
+		padding-top: 30px;
+		font-weight: 900;
+	}
 
 	.avatar-section {
 		/* background: linear-gradient(#3b82f6 calc(200px - 50px), #eff6ff 50%); */
-    /* height: 200px; */
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
+		/* height: 200px; */
+		display: flex;
+		justify-content: center;
+		align-items: flex-end;
 	}
 
 	.avatar {
@@ -118,26 +121,26 @@
 		border-radius: 50%;
 	}
 
-  img {
-    object-position: 50% 50%;
+	img {
+		object-position: 50% 50%;
 		object-fit: cover;
 		background-color: gainsboro;
-    aspect-ratio: 1/1;
-  }
+		aspect-ratio: 1/1;
+	}
 
-  img:hover {
-    filter: opacity(.9);
-    cursor: pointer;
-    transition: filter 300ms ease-in-out;
-  }
+	img:hover {
+		filter: opacity(0.9);
+		cursor: pointer;
+		transition: filter 300ms ease-in-out;
+	}
 
-  .text {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    text-align: center;
-    width: min-content;
-    white-space: nowrap;
-    margin: 12px auto;
-  }
+	.text {
+		display: flex;
+		flex-direction: row;
+		gap: 10px;
+		text-align: center;
+		width: min-content;
+		white-space: nowrap;
+		margin: 12px auto;
+	}
 </style>

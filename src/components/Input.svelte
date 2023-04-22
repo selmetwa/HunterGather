@@ -43,7 +43,7 @@
 		top: calc((4em / 1.25 - 1em) / 2);
 		left: 12px;
 		z-index: 10;
-		color: #FFCE99;
+		color: #ffce99;
 	}
 
 	input.hasIcon {

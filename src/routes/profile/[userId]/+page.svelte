@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { blockPreviewPanel } from '../../../store/store';
+	import { previewPanel } from '../../../store/store';
 
 	import Input from '../../../components/Input.svelte';
 	import Button from '../../../components/Button.svelte';
@@ -47,10 +47,12 @@
 		}
 	];
 
-  let gridRules: string 
-  blockPreviewPanel.subscribe(v => {
-    gridRules = v ? 'grid-cols-2' : 'sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5'
-  })
+	let gridRules: string;
+	previewPanel.subscribe((v) => {
+		gridRules = v
+			? 'grid-cols-2'
+			: 'sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5';
+	});
 </script>
 
 <ProfileHeader {data} {handleToggleModal} />

@@ -1,8 +1,5 @@
-<script>
-	/**
-	 * @type {any}
-	 */
-	export let onClose;
+<script lang="ts">
+	export let onClose: () => void;
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->

@@ -1,9 +1,6 @@
-<script>
-  export let collection;
-
-  console.log({ collection })
-
-  const { title, description } = collection && collection[0];
+<script lang="ts">
+  export let collection: any;
+  $:( { title } = collection && collection[0]);
 </script> 
 
 <header class="header bg-gray-100">

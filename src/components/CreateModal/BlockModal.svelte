@@ -1,7 +1,13 @@
 <script lang="ts">
 	import { PUBLIC_API_URL } from '$env/static/public';
 
-	import { collectionIds } from '../../store/store';
+	import {
+		previewPanel,
+		previewPanelObject,
+		collectionIds,
+		objectToCollect,
+		modalStore
+	} from '../../store/store';
 	import Input from '../Input.svelte';
 	import Button from '../Button.svelte';
 	import Pill from '../Pill.svelte';
@@ -17,7 +23,7 @@
 	let ids: any[] = [];
 
 	collectionIds.subscribe((value) => {
-    console.log({ value })
+		console.log({ value });
 		ids = value;
 	});
 
@@ -42,6 +48,8 @@
 		}
 
 		errorMessage = '';
+
+		console.log({ responseData });
 		setTimeout(() => {
 			inProgress = false;
 			successMessage = `Block has been created successfully.`;
@@ -53,6 +61,10 @@
 			 */
 			setTimeout(() => {
 				successMessage = '';
+				modalStore.set(false);
+				previewPanel.set(true);
+				objectToCollect.set(responseData[0]);
+				previewPanelObject.set({ type: 'block', object: responseData[0] });
 			}, 2000);
 		}, 1000);
 	};
@@ -88,7 +100,9 @@
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<main class="2xl:w-3/12 xl:w-4/12 lg:w-6/12 md:w-8/12 sm:w-8/12 bg-white p-8 m-auto rounded mt-20 height-auto">
+<main
+	class="2xl:w-3/12 xl:w-4/12 lg:w-6/12 md:w-8/12 sm:w-8/12 bg-white p-8 m-auto rounded mt-20 height-auto"
+>
 	{#if errorMessage}
 		<ErrorMessage message={errorMessage} />
 	{/if}
@@ -111,19 +125,19 @@
 	<div class="flex-grow border-t border-gray-200" />
 	<form class="mt-8 space-y-6" on:submit={onSubmit}>
 		<Input type="text" text="URL" value={url} onChange={updateUrl} placeholder="url" />
-    {#if !!ids.length}
-      <div>
-        <p class="text-gray-400">Add to collection(s)</p>
-        {#each ids as obj}
-          <Pill
-            val={obj.collectionId}
-            text={obj.title}
-            onClick={onPillClick}
-            isIncluded={toggledCollectionIds.includes(obj.collectionId)}
-          />
-        {/each}
-      </div>
-    {/if}
+		{#if !!ids.length}
+			<div>
+				<p class="text-gray-400">Add to collection(s)</p>
+				{#each ids as obj}
+					<Pill
+						val={obj.collectionId}
+						text={obj.title}
+						onClick={onPillClick}
+						isIncluded={toggledCollectionIds.includes(obj.collectionId)}
+					/>
+				{/each}
+			</div>
+		{/if}
 		<Button text="Create Block" type="submit" {inProgress} />
 	</form>
 </main>

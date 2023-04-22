@@ -1,12 +1,13 @@
 <script lang="ts">
 	import { PUBLIC_API_URL } from '$env/static/public';
 	import { collectionIds } from '../../store/store';
+	import { modalStore } from '../../store/store';
 
 	import Input from '../Input.svelte';
 	import Button from '../Button.svelte';
 	import ErrorMessage from '../ErrorMessage.svelte';
 	import SuccessMessage from '../SuccessMessage.svelte';
-  import Pill from '../Pill.svelte';
+	import Pill from '../Pill.svelte';
 
 	export let onClose: any;
 	let error = false;
@@ -38,13 +39,13 @@
 		if (status === 500) {
 			setTimeout(() => {
 				inProgress = false;
-        error = true;
+				error = true;
 				title = '';
 				description = '';
-			  toggledCollectionIds = [];
+				toggledCollectionIds = [];
 			}, 1000);
-      
-      return
+
+			return;
 		}
 
 		error = false;
@@ -55,16 +56,17 @@
 			description = '';
 			toggledCollectionIds = [];
 
-      /**
-       * close modal and redirect user somewhere
-      */
+			/**
+			 * close modal and redirect user somewhere
+			 */
 			setTimeout(() => {
 				successMessage = '';
+				modalStore.set(false);
 			}, 2000);
 		}, 1000);
 	};
 
-  const onPillClick = (e: any) => {
+	const onPillClick = (e: any) => {
 		const copy = [...toggledCollectionIds];
 		const id = e.target.value;
 		if (copy.includes(id)) {
@@ -123,7 +125,7 @@
 			onChange={updateTitle}
 			placeholder="Cool Portfolio Sites"
 			isRequired={true}
-      maxlength={50}
+			maxlength={50}
 		/>
 		<Input
 			type="text"
@@ -132,19 +134,19 @@
 			onChange={updateDescription}
 			placeholder="Collection of cool portfolios"
 		/>
-    {#if !!ids.length}
-      <div>
-        <p class="text-gray-400">Add to collection(s)</p>
-        {#each ids as obj}
-          <Pill
-            val={obj.collectionId}
-            text={obj.title}
-            onClick={onPillClick}
-            isIncluded={toggledCollectionIds.includes(obj.collectionId)}
-          />
-        {/each}
-      </div>
-    {/if}
+		{#if !!ids.length}
+			<div>
+				<p class="text-gray-400">Add to collection(s)</p>
+				{#each ids as obj}
+					<Pill
+						val={obj.collectionId}
+						text={obj.title}
+						onClick={onPillClick}
+						isIncluded={toggledCollectionIds.includes(obj.collectionId)}
+					/>
+				{/each}
+			</div>
+		{/if}
 
 		<Button text="Create Collection" type="submit" {inProgress} />
 	</form>

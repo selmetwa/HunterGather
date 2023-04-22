@@ -1,12 +1,16 @@
 <script lang="ts">
   import { page } from '$app/stores';
-  import { goto } from '$app/navigation';
 	import { supabaseClient } from '$lib/supabase';
 	import { onMount } from 'svelte';
 	import { scale } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 
-	import { blockPreviewPanel, collectingModal, objectToCollect } from '../store/store';
+	import { 
+    collectingModal, 
+    objectToCollect, 
+    previewPanel,
+    previewPanelObject
+  } from '../store/store';
 
   const activeSession = $page?.data?.session;
 	export let collection: any;
@@ -42,12 +46,6 @@
     if (queryCount) count = queryCount;
 	});
 
-  const goToCollection = () => {
-    goto(`/collection/${collectionId}`)
-    if (isRow) {
-      blockPreviewPanel.set(false);
-    }
-  }
 	const toggleCollectingModal = () => {
     if (activeSession) {
       collectingModal.set(true);
@@ -56,6 +54,16 @@
       alert('You must have a registered account to do that')
     }
 	};
+
+  const togglePreview = () => {
+    // collectionPreviewPanel.set(true)
+    // collectionPreviewObject.set(collectionId)
+    previewPanel.set(true);
+    previewPanelObject.set({
+      type: 'collection',
+      object: { id: collectionId }
+    });
+  }
 </script>
 
 <div on:mouseenter={enter} on:mouseleave={leave}>
@@ -74,17 +82,19 @@
 				</div>
 			</div>
 		{/if}
-		<a href={`/collection/${collectionId}`} class="link">
-			<div class={`${isRow ? 'row-content' : 'card-content'}`}>
-        <div>
-          <h1 class="font-sans text-gray-500 font-semibold">{title}</h1>
-          {#if !isRow}
-            <p class={`${isRow ? 'mt-0' : 'mt-2'} font-sans text-gray-500`}>{author}</p>
-          {/if}
+		<!-- <a href={`/collection/${collectionId}`} class="link"> -->
+      <button on:click={togglePreview} class="h-full w-full">
+        <div class={`${isRow ? 'row-content' : 'card-content'}`}>
+          <div>
+            <h1 class="font-sans text-gray-500 font-semibold">{title}</h1>
+            {#if !isRow}
+              <p class={`${isRow ? 'mt-0' : 'mt-2'} font-sans text-gray-500`}>{author}</p>
+            {/if}
+          </div>
+          <p class="font-sans text-gray-600">{count}</p>
         </div>
-				<p class="font-sans text-gray-600">{count}</p>
-			</div>
-		</a>
+      </button>
+		<!-- </a> -->
 	</div>
 </div>
 

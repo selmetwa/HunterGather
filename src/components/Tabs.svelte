@@ -1,11 +1,11 @@
 <script lang="ts">
-  interface Tab {
-    name: string,
-    val: string
-  }
+	interface Tab {
+		name: string;
+		val: string;
+	}
 	export let tabs: Array<Tab>;
 	export let activeTab: string;
-  export let toggleTab: any;
+	export let toggleTab: any;
 </script>
 
 <section class="flex">
