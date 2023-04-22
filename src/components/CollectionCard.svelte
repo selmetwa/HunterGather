@@ -67,7 +67,7 @@
 </script>
 
 <div on:mouseenter={enter} on:mouseleave={leave}>
-	<div class={`${isRow ? 'row bg-gray-200 border border-gray-300' : 'card'}  bg-gray-100 border-2 border-gray-300`}>
+	<div class={`${isRow ? 'row bg-gray-200 border border-gray-300' : 'card'} transition-all bg-gray-100 border-2 border-gray-300 hover:bg-gray-200`}>
 		{#if hovering && !isRow}
 			<div
 				in:scale={{ duration: 150, easing: quintOut, opacity: 0 }}

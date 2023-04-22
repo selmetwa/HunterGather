@@ -1,11 +1,9 @@
 <script lang="ts">
-	import PreviewHeader from './PreviewHeader.svelte';
   export let object: any;
-	$: ({ url, blockId, src, title } = object);
+	$: ({ url, src, title } = object);
 </script>
 
 <div>
-	<PreviewHeader {blockId} {url} {src} />
 	<div class="content mt-10 mx-auto">
 		<a href={url} class="text-blue-500" target="_blank">{url}</a>
 		{#if url && src}
