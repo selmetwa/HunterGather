@@ -44,7 +44,7 @@
 </script>
 
 <div class="bg-gray-50 flex flex-row">
-	<main>
+	<main class="w-full">
 		<Header />
 		{#if modalIsOpen}
 			<CreateModal />
