@@ -56,6 +56,7 @@ You can preview the production build with `npm run preview`.
 - [ ] consolidate panels and then cleanup break
 - [ ] make collection header
 - [ ] cleanup code.....
+- [ ] rate limiting
 - [x] pay for url service...
 - [ ] check auth before user can edit profile (userId must equal profileId)
 - [x] send user somewhere after they create a block 
@@ -79,4 +80,5 @@ You can preview the production build with `npm run preview`.
 - [x] add a collection to a collection :o
 - [ ] error handling
 - [ ] optimize for mobile
+- [ ] add option to disable previews
 

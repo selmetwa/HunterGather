@@ -4,27 +4,22 @@
 	import { supabaseClient } from '$lib/supabase';
 	import {
 		collectingModal,
-		objectToCollect
+		objectToCollect,
+    previewPanel
 	} from '../../../store/store';
 	import CollectionCard from '../../../components/CollectionCard.svelte';
-	import Button from '../../../components/Button.svelte';
-	// let block = {};
 
 	export let data;
 
 	const block = data && data.block && data.block[0];
 	const activeSession = $page?.data?.session;
+
 	let author;
 	let authorId;
 	let title;
 	$: collections = [];
 	let src;
 	let url;
-	// export let block;
-
-	// blockPreviewObject.subscribe((v) => {
-	// 	objectToCollect.set(v);
-	// });
 
 	const openCollectingModal = () => {
 		if (activeSession) {
@@ -35,17 +30,9 @@
 		}
 	};
 
-	const onClose = () => {
-		// blockPreviewPanel.set(false)
-		collectingModal.set(false);
-	};
-
-	// console.log({ block });
-
 	$: if (block) loadData();
 
 	const loadData = async () => {
-		// const { collectionIds, blockId, title, url, src, userId} = block;
 		const { data: user, error: userError } = await supabaseClient
 			.from('users')
 			.select()
@@ -74,29 +61,35 @@
 	};
 
 	console.log({ collections });
+
+  let gridRules = '';
+  previewPanel.subscribe(v => {
+    gridRules = v ? 'grid-cols-1' : 'grid-cols-1 lg:grid-cols-3 2xl:grid-cols-4';
+  })
 </script>
 
-<div class="w-full h-screen overflow-x-hidden overflow-hidden opacity-100 bg-gray-100">
-	<div class="content">
-		<div>
+<div class="w-full h-full overflow-x-hidden overflow-hidden opacity-100 bg-gray-100">
+	<div class={`content px-4 lg:px-8 my-16 gap-10 grid ${gridRules}`}>
+		<div class="col-span-1 lg:col-span-2 2xl:col-span-3 lg:order-1 bg-gray-100 border-4 border-gray-300">
 			{#if url && src}
 				<object
 					{title}
 					data={url}
-					class="lg:w-[650px] 2xl:w-[800px] lg:h-[600px] 2xl:h-[800px] border border-gray-400"
+          style="width: 100%; display: block;"
+					class="h-[500px] lg:h-[600px] 2xl:h-[800px]"
 				>
 					<p class="text-gray-500 m-4">Cannot embed this website, heres a picture</p>
           <a href={url} target="_blank">
             <img
 						alt={title}
 						{src}
-						class="lg:w-[650px] 2xl:w-[800px] border border-gray-400"
+						class="lg:w-[800px] 2xl:w-[1000px]"
 					/>
           </a>
 				</object>
 			{/if}
 		</div>
-		<div>
+		<div class="col-span-1 lg:col-span-1 lg:order-2 bg-gray-200 border-4 border-gray-300 p-4 w-full">
 			<a href={url} class="text-blue-500" target="_blank">{url}</a>
 			<h1 class="text-2xl font-bold mt-2">{title}</h1>
 			<p class="mt-2">
@@ -109,7 +102,7 @@
 			>
 
 			{#if collections.length > 0}
-				<div class="collections mt-4">
+				<div class="collections mt-4 flex flex-col gap-2">
 					<h1>This block is included in the following collections</h1>
 					{#each collections as col}
 						<CollectionCard collection={col} isRow={true} />
@@ -117,58 +110,5 @@
 				</div>
 			{/if}
 		</div>
-		<!-- <div class="column bg-gray-200">
-        <h1 class="text-2xl font-bold">{title}</h1>
-        <p class="mt-2">
-          Added by: <a href={`/profile/${authorId}`} class="text-gray-500">{author}</a>
-        </p>
-  
-
-        
-        <button on:click={onClose}>close</button>
-      </div> -->
 	</div>
 </div>
-
-<style>
-	.content {
-		display: grid;
-		grid-template-columns: 2fr 1fr;
-		/* max-width: 1500px; */
-		gap: 50px;
-		padding: 40px;
-	}
-
-	/* @media only screen and (max-width: 1500px) {
-      .content {
-        max-width: 1280px;
-      }
-    }
-  
-    @media only screen and (max-width: 900px) {
-      .content {
-        max-width: 700px;
-        grid-template-columns: 1fr;
-        gap: 30px;
-        padding: 15px;
-      }
-    } */
-	@media only screen and (max-width: 1100px) {
-		.content {
-			/* max-width: 700px; */
-			grid-template-columns: 1fr;
-			gap: 30px;
-			padding: 15px;
-		}
-	}
-	.column {
-		height: 100%;
-		padding: 20px;
-	}
-
-	.collections {
-		display: flex;
-		flex-direction: column;
-		gap: 12px;
-	}
-</style>

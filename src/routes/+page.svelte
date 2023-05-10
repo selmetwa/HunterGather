@@ -16,9 +16,9 @@
 	<meta name="description" content="Wwwabbit" />
 </svelte:head>
 <section>
-	<div class="xl:p-x-24 lg:p-x-16 md:p-x-16 sm:p-16">
+	<div class="xl:p-x-24 lg:p-x-16 md:p-x-16 p-8">
 		<div
-			class={`grid gap-4 ${gridRules}`}
+			class={`grid gap-2 md:gap-4 ${gridRules}`}
 		>
 			{#each items as item}
 				{#if item.objectType === 'block'}

@@ -5,6 +5,9 @@ module.exports = {
   content: ['./src/**/*.{html,js,svelte,ts}'],
   theme: {
     extend: {
+      aspectRatio: {
+        '4/3': '4 / 3',
+      },
       fontFamily: {
         'sans': ['Proxima Nova', ...defaultTheme.fontFamily.sans],
       },

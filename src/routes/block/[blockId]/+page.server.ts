@@ -8,5 +8,4 @@ export const load = async ({ params }: { fetch: any; params: any }) => {
   return {
     block: block,
   };
-
 };

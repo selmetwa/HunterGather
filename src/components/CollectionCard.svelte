@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { goto } from '$app/navigation';
   import { page } from '$app/stores';
 	import { supabaseClient } from '$lib/supabase';
 	import { onMount } from 'svelte';
@@ -56,8 +57,12 @@
 	};
 
   const togglePreview = () => {
-    // collectionPreviewPanel.set(true)
-    // collectionPreviewObject.set(collectionId)
+    const isMobile = window.innerWidth <= 1100;
+    if (isMobile) {
+      goto(`/collection/${collectionId}`)
+      return
+    }
+  
     previewPanel.set(true);
     previewPanelObject.set({
       type: 'collection',
@@ -67,7 +72,7 @@
 </script>
 
 <div on:mouseenter={enter} on:mouseleave={leave}>
-	<div class={`${isRow ? 'row bg-gray-200 border border-gray-300' : 'card'} transition-all bg-gray-100 border-2 border-gray-300 hover:bg-gray-200`}>
+	<div class={`${isRow ? 'row bg-gray-200 border border-gray-300 flex row py-4' : 'card aspect-4/3'} transition-all bg-gray-100 border-2 border-gray-300 hover:bg-gray-200 relative`}>
 		{#if hovering && !isRow}
 			<div
 				in:scale={{ duration: 150, easing: quintOut, opacity: 0 }}
@@ -82,11 +87,10 @@
 				</div>
 			</div>
 		{/if}
-		<!-- <a href={`/collection/${collectionId}`} class="link"> -->
       <button on:click={togglePreview} class="h-full w-full">
-        <div class={`${isRow ? 'row-content' : 'card-content'}`}>
+        <div class={`${isRow ? 'row-content flex flex-row px-4 justify-between border' : 'text-center'}`}>
           <div>
-            <h1 class="font-sans text-gray-500 font-semibold">{title}</h1>
+            <h1 class={`${isRow ? 'whitespace-nowrap text-ellipsis line-clamp-1 truncate' : 'whitespace-normal m-auto'} font-sans text-gray-500 font-semibold text-xl w-10/12`}>{title}</h1>
             {#if !isRow}
               <p class={`${isRow ? 'mt-0' : 'mt-2'} font-sans text-gray-500`}>{author}</p>
             {/if}
@@ -94,70 +98,5 @@
           <p class="font-sans text-gray-600">{count}</p>
         </div>
       </button>
-		<!-- </a> -->
 	</div>
 </div>
-
-<style>
-	.card {
-		position: relative;
-    aspect-ratio: 4/3;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-	}
-
-  .row {
-    aspect-ratio: 6/1;
-    display: flex;
-		position: relative;
-    padding: 20px;
-    flex-direction: row;
-  }
-
-  .row-content {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
-    justify-content: space-between;
-    padding: 5px 10px;
-  }
-
-  .row-content h1 {
-    font-size: 16px;
-    white-space: nowrap;
-  }
-
-  .row-content p {
-    font-size: 14px;
-  }
-
-  .link {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-	.card-content {
-    position: relative;
-    height: min-content;
-		text-align: center;
-	}
-
-	h1 {
-		font-size: 24px;
-    overflow:hidden;
-    line-height: 2rem;
-    -webkit-box-orient: vertical;
-    display: block;
-    display: -webkit-box;
-    overflow: hidden !important;
-    text-overflow: ellipsis;
-    -webkit-line-clamp: 2;
-    margin: auto;
-    width: 85%;
-	}
-</style>

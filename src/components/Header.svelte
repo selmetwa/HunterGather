@@ -1,19 +1,22 @@
 <script>
   // @ts-nocheck
   import { page } from '$app/stores';
-  import { modalStore } from '../store/store';
+  import { modalStore, previewPanel } from '../store/store';
 
   let showMenu = false;
   const toggleMenu = () => showMenu = !showMenu;
   const activeSession = $page?.data?.session;
   let userId = $page?.data?.session?.user?.id;
 
+  let previewPanelIsOpen = false;
+
+  previewPanel.subscribe(v=>previewPanelIsOpen=v)
   const toggleModal = () => {
     modalStore.update(() => true)
   };
 </script>
 
-<nav class="border-gray-500 px-2 sm:px-4 py-2.5 bg-gray-100">
+<nav class={`border-gray-500 px-2 sm:px-4 py-2.5 bg-gray-100 ${previewPanelIsOpen ? 'w-6/12' : 'w-full'}`}>
   <div class="container flex flex-wrap items-center justify-between mx-auto">
     <a href="/" class="flex items-center">
         <span class="text-gray-500 self-center text-xl font-semibold whitespace-nowrap">wwwabbit</span>

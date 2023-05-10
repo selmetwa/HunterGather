@@ -1,6 +1,5 @@
   <script lang="ts">
-	// import { supabaseClient } from '$lib/supabase';
-	// import { onMount } from 'svelte';
+  import { goto } from '$app/navigation';
   import { page } from '$app/stores';
 	import { scale } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
@@ -37,6 +36,13 @@
 	};
 
   const togglePreview = (e: any) => {
+    const isMobile = window.innerWidth <= 1100;
+    if (isMobile) {
+      goto(`/block/${block.blockId}`)
+      return
+    }
+
+    // console.log({ isMobile });
     if (e.target.id !== 'collect-button') {
       previewPanel.set(true);
 		  previewPanelObject.set({
@@ -48,10 +54,9 @@
 </script>
 
 <div>
-	<!-- svelte-ignore a11y-click-events-have-key-events -->
-	<div class="card border border-gray-500" on:mouseenter={enter} on:mouseleave={leave}>
+	<div class="relative" on:mouseenter={enter} on:mouseleave={leave}>
     <button on:click={togglePreview}>
-      <img class="w-full" {src} alt={title} />
+      <img class="w-full aspect-4/3 border-2 border-gray-300" {src} alt={title} />
     </button>
 		{#if hovering}
 			<div
@@ -76,36 +81,9 @@
 			</div>
 		{/if}
 	</div>
-	<!-- svelte-ignore a11y-click-events-have-key-events -->
-	<div class="py-2">
+	<div class="py-2 inline-block">
     <button on:click={togglePreview}>
-		  <h2 class="title text-text-100">{title}</h2>
+		  <h2 class="text-gray-500 text-left line-clamp-2">{title}</h2>
     </button>
 	</div>
 </div>
-
-<style>
-	.card {
-		position: relative;
-	}
-
-	.card:hover {
-		cursor: pointer;
-	}
-
-	img {
-		width: 100%;
-		aspect-ratio: 4/3;
-	}
-
-	.title {
-		overflow: hidden;
-		line-height: 1.4rem;
-		-webkit-box-orient: vertical;
-		display: block;
-		display: -webkit-box;
-		overflow: hidden !important;
-		text-overflow: ellipsis;
-		-webkit-line-clamp: 2;
-	}
-</style>
