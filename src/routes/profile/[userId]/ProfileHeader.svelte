@@ -55,16 +55,16 @@
 	});
 </script>
 
-<section class="bg-gray-100 py-12">
-	<div class="avatar-section">
-		<h1 class="text-gray-500 font-sans text-2xl xl:text-2xl md:text-4xl">{name}</h1>
+<section class="bg-gray-100 py-12 flex justify-center items-center">
+  <div class="flex  items-center gap-4 flex-col md:flex-row">
+    	<div class="avatar-section">
 		{#if error}
 			<h1>something went wrong</h1>
 		{/if}
 		{#if avatar}
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<img
-				class="avatar"
+				class="h-24 w-24 rounded-md"
 				src={avatar?.toString()}
 				alt="d"
 				on:click={() => {
@@ -82,45 +82,29 @@
 			bind:this={fileinput}
 		/>
 	</div>
+    <div>
+      <h1 class="text-gray-500 font-sans text-2xl xl:text-3xl md:text-2xl font-light w-min whitespace-nowrap">{name}</h1>
+      <div class="flex flex-row text-center whitespace-nowrap	gap-2 my-1">
+        {#if github}
+          <a href={github} target="_blank" class="underline font-semibold text-blue-400">Github</a>
+        {/if}
+        {#if twitter}
+          <a href={twitter} target="_blank" class="underline font-semibold text-blue-400">Twitter</a>
+        {/if}
+        {#if personalSite}
+          <a href={personalSite} target="_blank" class="underline font-semibold text-blue-400"
+            >Personal Site</a
+          >
+        {/if}
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <i class="fa-solid fa-pen text-blue-400" on:click={handleToggleModal} />
+      </div>
+    </div>
+  </div>
 
-	<div class="text">
-		{#if github}
-			<a href={github} target="_blank" class="underline font-semibold text-blue-400">Github</a>
-		{/if}
-		{#if twitter}
-			<a href={twitter} target="_blank" class="underline font-semibold text-blue-400">Twitter</a>
-		{/if}
-		{#if personalSite}
-			<a href={personalSite} target="_blank" class="underline font-semibold text-blue-400"
-				>Personal Site</a
-			>
-		{/if}
-		<i class="fa-solid fa-pen text-blue-400" on:click={handleToggleModal} />
-	</div>
 </section>
 
 <style>
-	h1 {
-		position: absolute;
-		top: 70px;
-		padding-top: 30px;
-		font-weight: 900;
-	}
-
-	.avatar-section {
-		/* background: linear-gradient(#3b82f6 calc(200px - 50px), #eff6ff 50%); */
-		/* height: 200px; */
-		display: flex;
-		justify-content: center;
-		align-items: flex-end;
-	}
-
-	.avatar {
-		height: 100px;
-		width: 100px;
-		border-radius: 50%;
-	}
-
 	img {
 		object-position: 50% 50%;
 		object-fit: cover;
@@ -132,15 +116,5 @@
 		filter: opacity(0.9);
 		cursor: pointer;
 		transition: filter 300ms ease-in-out;
-	}
-
-	.text {
-		display: flex;
-		flex-direction: row;
-		gap: 10px;
-		text-align: center;
-		width: min-content;
-		white-space: nowrap;
-		margin: 12px auto;
 	}
 </style>

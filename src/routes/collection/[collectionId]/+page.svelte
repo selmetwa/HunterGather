@@ -55,7 +55,7 @@
 </script>
 
 <CollectionHeader {collection} />
-<main class="2xl:w-3/12 xl:w-4/12 lg:w-6/12 md:w-8/12 sm:w-8/12 bg-white p-4 lg:p-24 m-auto rounded mt-20">
+<main class="xl:p-x-24 lg:p-x-16 md:p-x-16 p-8">
 	{#if !!objects.length}
 		<div class={`grid gap-4 w-full ${gridRules}`}>
 			{#each objects as object}
@@ -74,8 +74,8 @@
 </main>
 
 <style>
-	main {
+	/* main {
 		width: 100%;
 		margin: auto;
-	}
+	} */
 </style>

@@ -67,10 +67,10 @@ You can preview the production build with `npm run preview`.
   - [x] embed webpage in block detail
   - [x] fall back to image if we cant embed
 - [x] link out from cards
-- [ ] collection previews
+- [x] collection previews
 - [ ] private collections
 - [ ] pagination 
-- [ ] resolve styling inconsistencies
+- [x] resolve styling inconsistencies
 - [ ] delete a block
 - [ ] delete a collection
 - [ ] update a collection if its yours
@@ -78,6 +78,8 @@ You can preview the production build with `npm run preview`.
 - [x] intersperse blocks and collections on homepage
 - [x] add a block to a collection after creation
 - [x] add a collection to a collection :o
+- [ ] turn off preview
+- [ ] preview breadcrumbs
 - [ ] error handling
 - [ ] optimize for mobile
 - [ ] add option to disable previews
