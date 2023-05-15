@@ -53,14 +53,14 @@ You can preview the production build with `npm run preview`.
 - [x] component-ize masonry
 - [x] make block cards
 - [x] make collection cards
-- [ ] consolidate panels and then cleanup break
-- [ ] make collection header
+- [x] consolidate panels and then cleanup break
+- [x] make collection header
 - [ ] cleanup code.....
 - [ ] rate limiting
 - [x] pay for url service...
 - [ ] check auth before user can edit profile (userId must equal profileId)
 - [x] send user somewhere after they create a block 
-- [ ] send user somewhere after they create a collection
+- [x] send user somewhere after they create a collection
 - [x] only let signed in users collect
 - [x] block detail page
   - [x] list all collections it exists in
@@ -68,19 +68,19 @@ You can preview the production build with `npm run preview`.
   - [x] fall back to image if we cant embed
 - [x] link out from cards
 - [x] collection previews
-- [ ] private collections
 - [ ] pagination 
 - [x] resolve styling inconsistencies
-- [ ] delete a block
-- [ ] delete a collection
-- [ ] update a collection if its yours
+- [x] delete a block
+- [x] delete a collection
+- [?] update a collection if its yours
 - [x] remove a block from a collection
 - [x] intersperse blocks and collections on homepage
 - [x] add a block to a collection after creation
 - [x] add a collection to a collection :o
-- [ ] turn off preview
-- [ ] preview breadcrumbs
-- [ ] error handling
+- [x] turn off preview
+- [?] preview breadcrumbs
+- [x] error handling
 - [ ] optimize for mobile
-- [ ] add option to disable previews
-- [ ] duplicate collection names
+- [x] duplicate collection names
+- [ ] search
+- [ ] turn cards into rows

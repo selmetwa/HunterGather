@@ -28,7 +28,6 @@
 	onMount(async () => {
 		if (userId) {
 			const { data } = await supabaseClient.from('collections').select().eq('userId', userId);
-
 			collectionIds.set(data);
 		}
 

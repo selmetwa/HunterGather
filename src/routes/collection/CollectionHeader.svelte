@@ -45,7 +45,6 @@
 		isDeleteModalOpen.set(true);
 	};
 
-	// const isOwner = userId === $page?.data?.session?.user?.id;
 	console.log({ isOwner, userId });
 	console.log($page?.data?.session?.user?.id);
 </script>
