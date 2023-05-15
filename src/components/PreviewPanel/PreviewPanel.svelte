@@ -37,9 +37,3 @@
 		{/if}
 	</div>
 </section>
-<!-- 
-<style>
-	.panel-wrapper {
-		top: 88px;
-	}
-</style> -->

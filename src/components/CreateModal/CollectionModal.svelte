@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { PUBLIC_API_URL } from '$env/static/public';
 	import { collectionIds } from '../../store/store';
-	import { modalStore } from '../../store/store';
+	import { modalStore, previewPanel, previewPanelObject } from '../../store/store';
+  import { goto } from '$app/navigation';
 
 	import Input from '../Input.svelte';
 	import Button from '../Button.svelte';
@@ -10,8 +11,8 @@
 	import Pill from '../Pill.svelte';
 
 	export let onClose: any;
-	let error = false;
 	let inProgress = false;
+	let errorMessage = '';
 	let successMessage = '';
 	let title = '';
 	let description = '';
@@ -32,14 +33,15 @@
 		return true;
 	};
 
-	const handleResponse = (res: any) => {
+	const handleResponse = (res: any, responseData: any) => {
 		const { status } = res;
 
+    console.log({ res, responseData})
 		// handle error
 		if (status === 500) {
 			setTimeout(() => {
 				inProgress = false;
-				error = true;
+				errorMessage = responseData.message;
 				title = '';
 				description = '';
 				toggledCollectionIds = [];
@@ -48,7 +50,6 @@
 			return;
 		}
 
-		error = false;
 		setTimeout(() => {
 			inProgress = false;
 			successMessage = `Collection ${title} has been created successfully.`;
@@ -56,11 +57,13 @@
 			description = '';
 			toggledCollectionIds = [];
 
-			/**
-			 * close modal and redirect user somewhere
-			 */
+      const {collectionId} = responseData[0]
+
 			setTimeout(() => {
 				successMessage = '';
+        previewPanel.set(true)
+        const { collectionId } = responseData[0];
+        previewPanelObject.set({type: 'collection', object: { id: collectionId }})
 				modalStore.set(false);
 			}, 2000);
 		}, 1000);
@@ -92,13 +95,15 @@
 			})
 		});
 
-		handleResponse(res);
+		// handleResponse(res);
+    const responseData = await res.json();
+		handleResponse(res, responseData);
 	};
 </script>
 
 <main class="2xl:w-3/12 xl:w-4/12 lg:w-6/12 md:w-8/12 sm:w-8/12 bg-white p-8 m-auto rounded mt-20">
-	{#if error}
-		<ErrorMessage />
+	{#if errorMessage}
+		<ErrorMessage message={errorMessage} />
 	{/if}
 	{#if successMessage}
 		<SuccessMessage message={successMessage} />

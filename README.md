@@ -83,4 +83,4 @@ You can preview the production build with `npm run preview`.
 - [ ] error handling
 - [ ] optimize for mobile
 - [ ] add option to disable previews
-
+- [ ] duplicate collection names

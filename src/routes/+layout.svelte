@@ -4,12 +4,13 @@
 	import { supabaseClient } from '$lib/supabase';
 	import { onMount } from 'svelte';
 
-	import { previewPanel, modalStore, collectionIds, collectingModal } from '../store/store';
+	import { previewPanel, modalStore, collectionIds, collectingModal, isDeleteModalOpen } from '../store/store';
 
 	import Header from '../components/Header.svelte';
 	import CreateModal from '../components/CreateModal/CreateModal.svelte';
 	import CollectingModal from '../components/CollectingModal/CollectingModal.svelte';
 	import PreviewPanel from '../components/PreviewPanel/PreviewPanel.svelte';
+  import DeleteModal from '../components/DeleteModal/DeleteModal.svelte';
 	import '../app.css';
 
 	let modalIsOpen = false;
@@ -58,6 +59,9 @@
 		{#if $previewPanel}
 			<PreviewPanel />
 		{/if}
+    {#if $isDeleteModalOpen}
+      <DeleteModal />
+    {/if}
 	</main>
 </div>
 

@@ -3,9 +3,6 @@
 	$: ({ url, src, title } = object);
 </script>
 
-<!-- 
-	class="lg:w-[650px] 2xl:w-[800px] lg:h-[600px] 2xl:h-[800px] border border-gray-400"
--->
 <div>
 	<div class="content mt-10 mx-auto">
 		<a href={url} class="text-blue-500 line-clamp-1" target="_blank">{url}</a>

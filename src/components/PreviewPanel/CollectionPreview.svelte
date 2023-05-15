@@ -6,6 +6,7 @@
 
   export let collectionId = '';
 
+  console.log({ collectionId })
 	$: objects = [];
 	$: title = '';
 
@@ -15,7 +16,7 @@
 	}
 
 	const loadData = async () => {
-		console.log({ objects });
+    console.log('load')
 		const { data: collection } = await supabaseClient
 			.from('collections')
 			.select()

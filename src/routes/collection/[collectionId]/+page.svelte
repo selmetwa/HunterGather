@@ -51,7 +51,8 @@
 	let gridRules: string
 	previewPanel.subscribe(isOpen => {
 	  gridRules = isOpen ? 'grid-cols-2' : 'sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5'
-	})
+	});
+
 </script>
 
 <CollectionHeader {collection} />
@@ -72,10 +73,3 @@
 		</div>
 	{/if}
 </main>
-
-<style>
-	/* main {
-		width: 100%;
-		margin: auto;
-	} */
-</style>

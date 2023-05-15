@@ -1,17 +1,15 @@
 <script>
 	// @ts-nocheck
 	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
 	import { supabaseClient } from '$lib/supabase';
-	import {
-		collectingModal,
-		objectToCollect,
-    previewPanel
-	} from '../../../store/store';
+	import { collectingModal, objectToCollect, previewPanel, deleteModalObject, isDeleteModalOpen } from '../../../store/store';
 	import CollectionCard from '../../../components/CollectionCard.svelte';
 
 	export let data;
 
 	const block = data && data.block && data.block[0];
+	let userId = $page?.data?.session?.user?.id;
 	const activeSession = $page?.data?.session;
 
 	let author;
@@ -62,44 +60,60 @@
 
 	console.log({ collections });
 
-  let gridRules = '';
-  previewPanel.subscribe(v => {
-    gridRules = v ? 'grid-cols-1' : 'grid-cols-1 lg:grid-cols-3 2xl:grid-cols-4';
-  })
+	let gridRules = '';
+	previewPanel.subscribe((v) => {
+		gridRules = v ? 'grid-cols-1' : 'grid-cols-1 lg:grid-cols-3 2xl:grid-cols-4';
+	});
+
+  const openDeleteModal = () => {
+    deleteModalObject.set({type: 'block', object: block});
+    isDeleteModalOpen.set(true)
+  }
+
+	const isOwner = userId === block.userId;
 </script>
 
 <div class="w-full h-full overflow-x-hidden overflow-hidden opacity-100 bg-gray-100">
 	<div class={`content px-4 lg:px-8 my-16 gap-10 grid ${gridRules}`}>
-		<div class="col-span-1 lg:col-span-2 2xl:col-span-3 lg:order-1 bg-gray-100 border-4 border-gray-300">
+		<div
+			class="col-span-1 lg:col-span-2 2xl:col-span-3 lg:order-1 bg-gray-100 border-4 border-gray-300"
+		>
 			{#if url && src}
 				<object
 					{title}
 					data={url}
-          style="width: 100%; display: block;"
+					style="width: 100%; display: block;"
 					class="h-[500px] lg:h-[600px] 2xl:h-[800px]"
 				>
 					<p class="text-gray-500 m-4">Cannot embed this website, heres a picture</p>
-          <a href={url} target="_blank">
-            <img
-						alt={title}
-						{src}
-						class="lg:w-[800px] 2xl:w-[1000px]"
-					/>
-          </a>
+					<a href={url} target="_blank">
+						<img alt={title} {src} class="lg:w-[800px] 2xl:w-[1000px]" />
+					</a>
 				</object>
 			{/if}
 		</div>
-		<div class="col-span-1 lg:col-span-1 lg:order-2 bg-gray-200 border-4 border-gray-300 p-4 w-full">
+		<div
+			class="col-span-1 lg:col-span-1 lg:order-2 bg-gray-200 border-4 border-gray-300 p-4 w-full"
+		>
 			<a href={url} class="text-blue-500" target="_blank">{url}</a>
 			<h1 class="text-2xl font-bold mt-2">{title}</h1>
 			<p class="mt-2">
 				Added by: <a href={`/profile/${authorId}`} class="text-blue-500">{author}</a>
 			</p>
-			<button
-				on:click={openCollectingModal}
-				class="font-bold font-sans group relative flex w-full justify-center rounded-md border border-transparent bg-action py-2 px-4 text-lg font-medium text-white bg-action-400 hover:bg-action-500 focus:outline-none focus:ring-2 focus:gray-300 focus:ring-offset-2 drop-shadow-sm ease-in-out duration-300 mt-6"
-				>Collect</button
-			>
+			<div class="flex lg:flex-row gap-2">
+				<button
+					on:click={openCollectingModal}
+					class="font-bold font-sans group relative flex w-full justify-center rounded-md border border-transparent bg-action py-2 px-4 text-lg font-medium text-white bg-action-400 hover:bg-action-500 focus:outline-none focus:ring-2 focus:gray-300 focus:ring-offset-2 drop-shadow-sm ease-in-out duration-300 mt-6"
+					>Collect</button
+				>
+				{#if isOwner}
+					<button
+						on:click={openDeleteModal}
+						class="font-bold font-sans group relative flex w-full justify-center rounded-md border border-transparent bg-action py-2 px-4 text-lg font-medium text-white bg-red-400 hover:bg-red-500 focus:outline-none focus:ring-2 focus:gray-300 focus:ring-offset-2 drop-shadow-sm ease-in-out duration-300 mt-6"
+						>Delete</button
+					>
+				{/if}
+			</div>
 
 			{#if collections.length > 0}
 				<div class="collections mt-4 flex flex-col gap-2">

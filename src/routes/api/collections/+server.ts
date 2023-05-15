@@ -1,6 +1,6 @@
 
 import { v4 as uuidv4 } from 'uuid';
-import { json } from '@sveltejs/kit';
+import { error, json } from '@sveltejs/kit';
 
 import type { RequestHandler } from "./$types";
 import { supabaseClient } from '$lib/supabase';
@@ -24,21 +24,33 @@ export const POST: RequestHandler = async ({ locals, request }) => {
   const collectionId = uuidv4();
 
   const { collectionIds, title, description } = data;
+   
+  // check if user has a collection with existing name
+	const { data: existingCollection, error: existingCollectionError } = await supabaseClient.from('collections').select().eq('title', title).eq('userId', userId);
 
-   const { data: responseData, error } = await supabaseClient
-   .from('collections')
-   .insert({ 
-     collectionId: collectionId,
-     title: title,
-     description: description,
-     userId: userId,
-     collectionIds: collectionIds,
-     objectType: 'collection',
-    })
-
-  if (error) {
-    return new Response(JSON.stringify(error), { status: 500 });
+  if (existingCollection) {
+    throw error(500, {
+      message: "You already have a collection with that name."
+    });
   }
 
-  return new Response(JSON.stringify('Collection Created Successfully'), { status: 200 });
+   const { data: responseData, error: responseError } = await supabaseClient
+    .from('collections')
+    .insert({ 
+      collectionId: collectionId,
+      title: title,
+      description: description,
+      userId: userId,
+      collectionIds: collectionIds,
+      objectType: 'collection',
+      })
+      .select()
+
+  if (responseError) {
+    throw error(500, {
+      message: "Something went wrong creating collection."
+    });
+  }
+
+	return json(responseData);
 }
