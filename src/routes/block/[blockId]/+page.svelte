@@ -3,21 +3,27 @@
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
 	import { supabaseClient } from '$lib/supabase';
+
+  import getCollection from '../../../queries/collections/getCollection';
+  import getUserById from '../../../queries/user/getUserById';
 	import { collectingModal, objectToCollect, previewPanel, deleteModalObject, isDeleteModalOpen } from '../../../store/store';
 	import CollectionCard from '../../../components/CollectionCard.svelte';
 
 	export let data;
+	const userId = $page?.data?.session?.user?.id;
 
 	const block = data && data.block && data.block[0];
-	let userId = $page?.data?.session?.user?.id;
 	const activeSession = $page?.data?.session;
+	const isOwner = userId === block.userId;
 
+	$: collections = [];
 	let author;
 	let authorId;
 	let title;
-	$: collections = [];
 	let src;
 	let url;
+
+	$: if (block) loadData();
 
 	const openCollectingModal = () => {
 		if (activeSession) {
@@ -28,30 +34,19 @@
 		}
 	};
 
-	$: if (block) loadData();
-
 	const loadData = async () => {
-		const { data: user, error: userError } = await supabaseClient
-			.from('users')
-			.select()
-			.eq('id', block.userId);
+    const user = await getUserById('block.userId')
 
 		title = block.title;
 		author = user && user[0] && user[0].name;
 		authorId = user && user[0] && user[0].id;
 		src = block.src;
 		url = block.url;
-		console.log({ user });
 
 		// fetch collections
 		let collectionIds = block.collectionIds;
-
 		collectionIds.forEach(async (id) => {
-			let { data: collection } = await supabaseClient
-				.from('collections')
-				.select()
-				.eq('collectionId', id);
-
+      const collection = await getCollection(id)
 			collections.push(collection[0]);
 			collections = collections;
 			console.log({ collection });
@@ -61,8 +56,8 @@
 	console.log({ collections });
 
 	let gridRules = '';
-	previewPanel.subscribe((v) => {
-		gridRules = v ? 'grid-cols-1' : 'grid-cols-1 lg:grid-cols-3 2xl:grid-cols-4';
+	previewPanel.subscribe((isPreviewPanelOpen) => {
+		gridRules = isPreviewPanelOpen ? 'grid-cols-1' : 'grid-cols-1 lg:grid-cols-3 2xl:grid-cols-4';
 	});
 
   const openDeleteModal = () => {
@@ -70,7 +65,6 @@
     isDeleteModalOpen.set(true)
   }
 
-	const isOwner = userId === block.userId;
 </script>
 
 <div class="w-full h-full overflow-x-hidden overflow-hidden opacity-100 bg-gray-100">

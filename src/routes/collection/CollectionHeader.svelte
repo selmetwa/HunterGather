@@ -2,6 +2,7 @@
 	import { page } from '$app/stores';
 	import { supabaseClient } from '$lib/supabase';
 	export let collection: any;
+  export let count: number;
 	import {
 		collectingModal,
 		objectToCollect,
@@ -13,7 +14,6 @@
 	const activeSession = $page?.data?.session;
 
 	let author = 'author';
-	let count = 0;
 	let isOwner = false;
 
 	$: if (collectionId) {
@@ -22,13 +22,8 @@
 
 	const loadData = async () => {
 		const { data } = await supabaseClient.from('users').select().eq('id', userId);
-		const { count: queryCount } = await supabaseClient
-			.from('blocks')
-			.select('*', { count: 'exact', head: true })
-			.contains('collectionIds', [`${collectionId}`]);
 		author = data && data[0] && data[0].name;
 		isOwner = userId === $page?.data?.session?.user?.id;
-		if (queryCount) count = queryCount;
 	};
 
 	const toggleCollectingModal = () => {
@@ -44,9 +39,6 @@
 		deleteModalObject.set({ type: 'collection', object: { id: collectionId } });
 		isDeleteModalOpen.set(true);
 	};
-
-	console.log({ isOwner, userId });
-	console.log($page?.data?.session?.user?.id);
 </script>
 
 <header class="header bg-gray-100 flex flex-col items-center">

@@ -6,6 +6,7 @@
 	import { scale } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 
+  import getCollectionCount from '../queries/collections/getCollectionCount';
 	import { 
     collectingModal, 
     objectToCollect, 
@@ -13,11 +14,14 @@
     previewPanelObject
   } from '../store/store';
 
-  const activeSession = $page?.data?.session;
 	export let collection: any;
   export let isRow = false;
+
+  const activeSession = $page?.data?.session;
 	let hovering = false;
 	let requested = false;
+	let author = 'author';
+	let count = 0;
 
 	const enter = () => {
 		hovering = true;
@@ -31,18 +35,12 @@
   const title = collection?.title;
   const userId = collection?.userId;
 
-	let author = 'author';
-	let count = 0;
 
 	onMount(async () => {
 		const { data } = await supabaseClient.from('users').select().eq('id', userId);
-		const { count: queryCount } = await supabaseClient
-			.from('blocks')
-			.select('*', { count: 'exact', head: true })
-			.contains('collectionIds', [`${collectionId}`]);
 		author = data && data[0] && data[0].name;
 
-    if (queryCount) count = queryCount;
+    count = await getCollectionCount(collectionId)
 	});
 
 	const toggleCollectingModal = () => {

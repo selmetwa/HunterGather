@@ -1,32 +1,41 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	import { v4 as uuidv4 } from 'uuid';
 	import { PUBLIC_API_URL } from '$env/static/public';
 	import { supabaseClient } from '$lib/supabase';
 	import { onMount } from 'svelte';
 
 	export let data;
-	export let handleToggleModal: () => boolean;
+	export let handleToggleModal: (e: any) => void;
 
 	let error: String;
 	let avatar: String | ArrayBuffer | null | undefined;
 	let fileinput: any;
 
+	let userId = $page?.data?.session?.user?.id;
 	const name = data?.data[0]?.name;
 	const github = data?.data[0]?.github;
 	const twitter = data?.data[0]?.twitter;
 	const personalSite = data?.data[0]?.personal_site;
 	const avatarId = data?.data[0]?.avatar_id;
-
+  const profileId = data?.data[0]?.id;
 	async function uploadAvatar(avatar: any) {
 		const avatarId = uuidv4();
 		const { data, error } = await supabaseClient.storage.from('avatars').upload(avatarId, avatar);
 
-		const res = await fetch(`${PUBLIC_API_URL}/api/profile`, {
-			method: 'POST',
-			body: JSON.stringify(avatarId)
-		});
+    const { data: updateData, error: updateError } = await supabaseClient
+    .from('users')
+    .update({ 
+      avatar_id: avatarId,
+    })
+    .eq('id', userId)
 
-		const json = await res.json();
+		// const res = await fetch(`${PUBLIC_API_URL}/api/profile`, {
+		// 	method: 'POST',
+		// 	body: JSON.stringify(avatarId)
+		// });
+
+		// const json = await res.json();
 	}
 
 	const onFileSelected = (e: any) => {
@@ -97,7 +106,9 @@
           >
         {/if}
         <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <i class="fa-solid fa-pen text-blue-400" on:click={handleToggleModal} />
+        {#if userId === profileId}
+          <i class="fa-solid fa-pen text-blue-400" id="open-modal-root" on:click={handleToggleModal} />
+        {/if}
       </div>
     </div>
   </div>

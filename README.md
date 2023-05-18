@@ -37,7 +37,6 @@ You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
 
-
 ## Todo
 - [x] create collection
 - [x] create profile page
@@ -55,10 +54,7 @@ You can preview the production build with `npm run preview`.
 - [x] make collection cards
 - [x] consolidate panels and then cleanup break
 - [x] make collection header
-- [ ] cleanup code.....
-- [ ] rate limiting
 - [x] pay for url service...
-- [ ] check auth before user can edit profile (userId must equal profileId)
 - [x] send user somewhere after they create a block 
 - [x] send user somewhere after they create a collection
 - [x] only let signed in users collect
@@ -69,6 +65,12 @@ You can preview the production build with `npm run preview`.
 - [x] link out from cards
 - [x] collection previews
 - [ ] pagination 
+  - [x] main page
+  - [x] collection detail
+  - [x] collection preview
+  - [ ] profile blocks
+  - [ ] profile collections
+- [ ] make blocks and collections separate pages on profile
 - [x] resolve styling inconsistencies
 - [x] delete a block
 - [x] delete a collection
@@ -80,7 +82,14 @@ You can preview the production build with `npm run preview`.
 - [x] turn off preview
 - [?] preview breadcrumbs
 - [x] error handling
-- [ ] optimize for mobile
 - [x] duplicate collection names
 - [ ] search
+- [ ] optimize for mobile
 - [ ] turn cards into rows
+- [x] edit profile modal issue
+- [x] correct counts on collection cards
+- [ ] weird navigation with previews
+- [x] check auth before user can edit profile (userId must equal profileId)
+- [ ] link to profile from collection header
+- [ ] move supabasequeries into their own place...
+- [ ] remove social auth stuff

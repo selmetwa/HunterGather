@@ -3,9 +3,11 @@
 import { supabaseClient } from '$lib/supabase';
 
 export const load = async ({ fetch, params }: { fetch: any; params: any }) => {
-	const { data: blocks } = await supabaseClient.from('blocks').select()
-	const { data: collections } = await supabaseClient.from('collections').select()
+	const { data: blocks } = await supabaseClient.from('blocks').select().range(0, 15)
+	const { data: collections } = await supabaseClient.from('collections').select().range(0, 15)
 
+  const { count: blocksCount } = await supabaseClient.from('blocks').select('*', { count: 'exact' });
+  const { count: collectionsCount } = await supabaseClient.from('collections').select('*', { count: 'exact' });
   const interweave = (arr1: any, arr2: any) => {
     return arr1.reduce((acc: any, current: any, index: number) => {
       return [
@@ -20,5 +22,6 @@ export const load = async ({ fetch, params }: { fetch: any; params: any }) => {
 
   return {
     items,
+    count: (blocksCount + collectionsCount)
   }
 };

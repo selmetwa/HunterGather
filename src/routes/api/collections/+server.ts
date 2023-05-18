@@ -28,7 +28,7 @@ export const POST: RequestHandler = async ({ locals, request }) => {
   // check if user has a collection with existing name
 	const { data: existingCollection, error: existingCollectionError } = await supabaseClient.from('collections').select().eq('title', title).eq('userId', userId);
 
-  if (existingCollection) {
+  if (existingCollection && !!existingCollection.length) {
     throw error(500, {
       message: "You already have a collection with that name."
     });
