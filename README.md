@@ -86,10 +86,21 @@ You can preview the production build with `npm run preview`.
 - [x] edit profile modal issue
 - [x] correct counts on collection cards
 - [x] check auth before user can edit profile (userId must equal profileId)
-- [ ] link to profile from collection header
+- [x] truncate long urls
+- [x] handle null names?
+- [?] weird navigation with previews
+- [ ] link to profile from collection header (today)
 - [ ] move supabasequeries into their own place...
-- [ ] remove social auth stuff
-- [ ] search
+- [ ] remove social auth stuff (today)
+- [ ] checkout modals on smaller screens (today)
+- [ ] make sure register works (today)
+
+// tomorrow
 - [ ] optimize for mobile
+- [ ] search
 - [ ] turn cards into rows
-- [ ] weird navigation with previews
+- [ ] clean up collection rows on block detail pages
+- [ ] toggle row view
+- [ ] blocks only
+- [ ] collections only
+

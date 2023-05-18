@@ -35,7 +35,7 @@
 	};
 
 	const loadData = async () => {
-    const user = await getUserById('block.userId')
+    const user = await getUserById(block.userId)
 
 		title = block.title;
 		author = user && user[0] && user[0].name;
@@ -64,7 +64,6 @@
     deleteModalObject.set({type: 'block', object: block});
     isDeleteModalOpen.set(true)
   }
-
 </script>
 
 <div class="w-full h-full overflow-x-hidden overflow-hidden opacity-100 bg-gray-100">
@@ -89,7 +88,7 @@
 		<div
 			class="col-span-1 lg:col-span-1 lg:order-2 bg-gray-200 border-4 border-gray-300 p-4 w-full"
 		>
-			<a href={url} class="text-blue-500" target="_blank">{url}</a>
+			<a href={url} class="text-blue-500" target="_blank">{url?.slice(0,45)}...</a>
 			<h1 class="text-2xl font-bold mt-2">{title}</h1>
 			<p class="mt-2">
 				Added by: <a href={`/profile/blocks/${authorId}`} class="text-blue-500">{author}</a>
