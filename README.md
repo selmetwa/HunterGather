@@ -64,13 +64,13 @@ You can preview the production build with `npm run preview`.
   - [x] fall back to image if we cant embed
 - [x] link out from cards
 - [x] collection previews
-- [ ] pagination 
+- [x] pagination 
   - [x] main page
   - [x] collection detail
   - [x] collection preview
-  - [ ] profile blocks
-  - [ ] profile collections
-- [ ] make blocks and collections separate pages on profile
+  - [x] profile blocks
+  - [x] profile collections
+- [x] make blocks and collections separate pages on profile
 - [x] resolve styling inconsistencies
 - [x] delete a block
 - [x] delete a collection
@@ -83,13 +83,13 @@ You can preview the production build with `npm run preview`.
 - [?] preview breadcrumbs
 - [x] error handling
 - [x] duplicate collection names
-- [ ] search
-- [ ] optimize for mobile
-- [ ] turn cards into rows
 - [x] edit profile modal issue
 - [x] correct counts on collection cards
-- [ ] weird navigation with previews
 - [x] check auth before user can edit profile (userId must equal profileId)
 - [ ] link to profile from collection header
 - [ ] move supabasequeries into their own place...
 - [ ] remove social auth stuff
+- [ ] search
+- [ ] optimize for mobile
+- [ ] turn cards into rows
+- [ ] weird navigation with previews

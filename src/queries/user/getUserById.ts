@@ -9,7 +9,7 @@ async function getUserById(userId: string) {
     .select()
     .eq('id', userId);
 
-  return user;
+  return user || [{}];
 }
 
 export default getUserById;

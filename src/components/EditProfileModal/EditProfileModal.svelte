@@ -3,10 +3,14 @@
   import Input from "../Input.svelte";
   import Button from "../Button.svelte";
 
-  export let user: any;
+  // export let user: any;
+  export let name: any;
+  export let twitter: any;
+  export let github: any;
+  export let personalSite: any;
   export let handleToggleModal: (e: any) => void;
 
-  const { name, twitter, github, personalSite } = user;
+  // const { name, twitter, github, personalSite } = user;
 </script>
 
 <Modal onClose={handleToggleModal}>

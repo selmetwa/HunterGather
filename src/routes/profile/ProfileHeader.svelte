@@ -5,37 +5,44 @@
 	import { supabaseClient } from '$lib/supabase';
 	import { onMount } from 'svelte';
 
-	export let data;
-	export let handleToggleModal: (e: any) => void;
+  import getUserById from '../../queries/user/getUserById';
+  import EditProfileModal from '../../components/EditProfileModal/EditProfileModal.svelte';
+
+	// export let data;
+  // export let user: any;
 
 	let error: String;
 	let avatar: String | ArrayBuffer | null | undefined;
 	let fileinput: any;
 
 	let userId = $page?.data?.session?.user?.id;
-	const name = data?.data[0]?.name;
-	const github = data?.data[0]?.github;
-	const twitter = data?.data[0]?.twitter;
-	const personalSite = data?.data[0]?.personal_site;
-	const avatarId = data?.data[0]?.avatar_id;
-  const profileId = data?.data[0]?.id;
+  let isModalOpen = false;
+  // const { name, github, twitter } = user;
+  // const avatarId = user.avatar_id;
+  // const personalSite = user.personal_site;
+  // const profileId = user.id;
+
+  $: name = '';
+  $: github = '';
+  $: twitter = '';
+  $: avatarId = '';
+  $: personalSite = '';
+  $: profileId = '';
+
+  $: if (avatarId) {
+    loadAvatar()
+  }
+
+  // console.log({ user })
 	async function uploadAvatar(avatar: any) {
 		const avatarId = uuidv4();
 		const { data, error } = await supabaseClient.storage.from('avatars').upload(avatarId, avatar);
-
     const { data: updateData, error: updateError } = await supabaseClient
-    .from('users')
-    .update({ 
-      avatar_id: avatarId,
-    })
-    .eq('id', userId)
-
-		// const res = await fetch(`${PUBLIC_API_URL}/api/profile`, {
-		// 	method: 'POST',
-		// 	body: JSON.stringify(avatarId)
-		// });
-
-		// const json = await res.json();
+      .from('users')
+      .update({ 
+        avatar_id: avatarId,
+      })
+      .eq('id', userId)
 	}
 
 	const onFileSelected = (e: any) => {
@@ -48,7 +55,7 @@
 		};
 	};
 
-	onMount(async () => {
+  const loadAvatar = async () => {
 		const { data, error: err }: { data: Blob | null; error: any } = await supabaseClient.storage
 			.from('avatars')
 			.download(avatarId);
@@ -61,14 +68,32 @@
 				avatar = e.target?.result;
 			};
 		}
+  }
+
+
+	onMount(async () => {
+    const user = await getUserById(userId || '')
+    console.log({ user })
+    name =  user && user[0].name;
+    github = user && user[0].github;
+    twitter = user && user[0].twitter;
+    avatarId = user && user[0].avatar_id;
+    personalSite = user && user[0].personal_site;
+    profileId = user && user[0].id;
 	});
+
+  const handleToggleModal = (e: any) => {
+    if (['close-modal-root', 'open-modal-root'].includes(e.target.id)) {
+      isModalOpen = !isModalOpen
+    }
+  }
 </script>
 
 <section class="bg-gray-100 py-12 flex justify-center items-center">
   <div class="flex  items-center gap-4 flex-col md:flex-row">
     	<div class="avatar-section">
 		{#if error}
-			<h1>something went wrong</h1>
+      <div class="h-24 w-24 rounded-md bg-gray-200"></div>
 		{/if}
 		{#if avatar}
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -114,7 +139,9 @@
   </div>
 
 </section>
-
+{#if isModalOpen}
+  <EditProfileModal {handleToggleModal} {name} {github} {personalSite} {twitter}  />
+{/if}
 <style>
 	img {
 		object-position: 50% 50%;

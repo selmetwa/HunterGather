@@ -92,7 +92,7 @@
 			<a href={url} class="text-blue-500" target="_blank">{url}</a>
 			<h1 class="text-2xl font-bold mt-2">{title}</h1>
 			<p class="mt-2">
-				Added by: <a href={`/profile/${authorId}`} class="text-blue-500">{author}</a>
+				Added by: <a href={`/profile/blocks/${authorId}`} class="text-blue-500">{author}</a>
 			</p>
 			<div class="flex lg:flex-row gap-2">
 				<button

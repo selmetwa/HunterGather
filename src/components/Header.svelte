@@ -39,7 +39,7 @@
           </form>
         </li>
         <li>
-          <a href={`/profile/${userId}`} class="block py-2 px-4 pl-3 pr-4 font-bold text-gray-500 rounded md:border-0 md:hover:text-gray-300 ease-in-out duration-300">
+          <a href={`/profile/blocks/${userId}`} class="block py-2 px-4 pl-3 pr-4 font-bold text-gray-500 rounded md:border-0 md:hover:text-gray-300 ease-in-out duration-300">
             Profile
           </a>
         </li>

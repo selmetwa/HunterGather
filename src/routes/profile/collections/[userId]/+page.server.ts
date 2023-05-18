@@ -2,23 +2,16 @@ import { supabaseClient } from '$lib/supabase';
 import type { Actions } from './$types';
 import { redirect } from '@sveltejs/kit';
 
-import { myBlocks } from '../../../store/store';
-import getCollectionsByUserId from '../../../queries/user/getCollectionsByUserId';
-import getBlocksByUserId from '../../../queries/user/getBlocksByUserId';
+import getCollectionsByUserId from '../../../../queries/user/getCollectionsByUserId';
 
 export const load = async ({ fetch, params }: { fetch: any; params: any }) => {
 	const userId = params?.userId;
-	const { data, error } = await supabaseClient.from('users').select().eq('id', userId);
-  const blocks = await getBlocksByUserId(userId, 0, 15);
-  const collections = await getCollectionsByUserId(userId, 0, 2)
+  const collections = await getCollectionsByUserId(userId, 0, 10);
 
-	myBlocks.set(blocks);
-
+  console.log({ collections })
 	return {
-		data,
 		collections,
-		blocks,
-		error
+    userId
 	};
 };
 
@@ -37,6 +30,6 @@ export const actions: Actions = {
 			})
 			.eq('id', userId);
 
-		throw redirect(303, `/profile/${userId}`);
+		throw redirect(303, `/profile/collections/${userId}`);
 	}
 };
