@@ -48,7 +48,7 @@
       <div class="relative flex py-4 items-center">
         <a href="/register" class="m-auto	font-light text-gray-400">not a member? <span class="font-semibold text-action-400">Join</span></a>
       </div>
-      <div class="relative flex py-4 items-center">
+      <!-- <div class="relative flex py-4 items-center">
         <div class="flex-grow border-t border-gray-200"></div>
         <span class="flex-shrink font-light mx-4 text-gray-400">or continue with</span>
         <div class="flex-grow border-t border-gray-200"></div>
@@ -60,7 +60,7 @@
         <button formaction="?/login&provider=google" class="border border-gray-300 basis-1/2 bg-slate-50 rounded hover:bg-slate-100 ease-in-out duration-300 drop-shadow-sm">
           <i class="fa-brands fa-google fa-2xl"></i>
         </button>
-      </form>
+      </form> -->
     </main>
   </section>
 </body>
