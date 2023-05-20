@@ -89,11 +89,11 @@ You can preview the production build with `npm run preview`.
 - [x] truncate long urls
 - [x] handle null names?
 - [?] weird navigation with previews
-- [ ] link to profile from collection header (today)
-- [ ] move supabasequeries into their own place...
+- [x] link to profile from collection header
 - [ ] remove social auth stuff (today)
 - [ ] checkout modals on smaller screens (today)
-- [ ] make sure register works (today)
+- [x] make sure register works (today)
+- [ ] move supabasequeries into their own place...
 
 // tomorrow
 - [ ] optimize for mobile
@@ -104,3 +104,9 @@ You can preview the production build with `npm run preview`.
 - [ ] blocks only
 - [ ] collections only
 
+- [ ] profile not reacting correctly to profileId change
+- [ ] blocks only view
+- [ ] collections only view
+- [ ] searchResults page
+- [ ] search filter for profile pages
+- [ ] search filter for collection pages

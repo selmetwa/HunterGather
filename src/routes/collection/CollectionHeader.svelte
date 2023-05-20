@@ -44,7 +44,7 @@
 <header class="header bg-gray-100 flex flex-col items-center">
 	<h1 class="text-gray-500 font-sans text-3xl xl:text-5xl md:text-4xl font-medium">{title}</h1>
 	<h3 class="text-gray-500 font-sans text-1xl xl:text-2xl md:text-2xl font-light my-2">
-		Created by: {author}
+		Created by: <a class="text-blue-400 underline" href={`/profile/blocks/${userId}`}>{author}</a>
 	</h3>
 	<h3 class="text-gray-500 font-sans text-1xl xl:text-2xl md:text-2xl font-light my-2">
 		{count} items

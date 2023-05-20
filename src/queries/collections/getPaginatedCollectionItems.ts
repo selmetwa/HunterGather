@@ -35,8 +35,8 @@ async function getPaginatedCollectionItems(
 		return interweave(blocks, collections);
 	}
 
-	const { data: blocks } = await supabaseClient.from('blocks').select().range(start, end);
-	const { data: collections } = await supabaseClient.from('collections').select().range(start, end);
+	const { data: blocks } = await supabaseClient.from('blocks').select().order('created_at', { ascending: false }).range(start, end);
+	const { data: collections } = await supabaseClient.from('collections').select().order('created_at', { ascending: false }).range(start, end);
 	return interweave(blocks, collections);
 }
 

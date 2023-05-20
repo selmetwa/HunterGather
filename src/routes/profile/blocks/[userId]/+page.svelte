@@ -53,7 +53,7 @@
 	});
 </script>
 
-<ProfileHeader />
+<ProfileHeader userId={data.userId} />
 <section>
 	<!-- <div class="m-8 2xl:w-3/12 xl:w-4/12 lg:w-6/12 md:w-8/12 sm:w-8/12">
 		<Tabs {tabs} {activeTab} {toggleTab} />
