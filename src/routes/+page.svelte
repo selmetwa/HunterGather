@@ -5,6 +5,7 @@
 	import CollectionCard from '../components/CollectionCard.svelte';
 	import { previewPanel } from '../store/store';
 	import LoadingSpinner from '../components/LoadingSpinner.svelte';
+  import ObjectTypeNav from '../components/ObjectTypeNav.svelte';
 
 	export let data: any;
 	const count = data.count;
@@ -34,6 +35,7 @@
 	<meta name="description" content="Wwwabbit" />
 </svelte:head>
 <section>
+  <ObjectTypeNav currentPath='/' />
 	<div class="xl:p-x-24 lg:p-x-16 md:p-x-16 p-8">
 		<div class={`grid gap-2 md:gap-4 ${gridRules}`}>
 			{#each objects as object}

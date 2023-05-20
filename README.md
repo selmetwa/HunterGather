@@ -91,22 +91,19 @@ You can preview the production build with `npm run preview`.
 - [?] weird navigation with previews
 - [x] link to profile from collection header
 - [x] remove social auth stuff
-- [ ] checkout modals on smaller screens (today)
+- [x] checkout modals on smaller screens
 - [x] make sure register works (today)
-- [ ] move supabasequeries into their own place...
-
-// tomorrow
+- [ ] move supabasequeries into their own place
 - [ ] optimize for mobile
 - [ ] search
 - [ ] turn cards into rows
 - [ ] clean up collection rows on block detail pages
 - [ ] toggle row view
-- [ ] blocks only
-- [ ] collections only
-
 - [ ] profile not reacting correctly to profileId change
-- [ ] blocks only view
+- [x] blocks only view
 - [ ] collections only view
 - [ ] searchResults page
 - [ ] search filter for profile pages
 - [ ] search filter for collection pages
+- [ ] use loadMore button everywhere
+- [ ] use grid component everywhere
