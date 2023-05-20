@@ -2,31 +2,31 @@
 // @ts-nocheck
   import { page } from '$app/stores';
 
-  import { enhance } from '$app/forms';
-	import { supabaseClient } from '$lib/supabase';
+  // import { enhance } from '$app/forms';
+	// import { supabaseClient } from '$lib/supabase';
 
   import Button from '../../components/Button.svelte';
   import Input from '../../components/Input.svelte';
 
-	const signInWithProvider = async (provider) => {
-		const { data, error } = await supabaseClient.auth.signInWithOAuth({
-			provider: provider
-		});
-	};
+	// const signInWithProvider = async (provider) => {
+	// 	const { data, error } = await supabaseClient.auth.signInWithOAuth({
+	// 		provider: provider
+	// 	});
+	// };
 
-	const submitSocialLogin = async ({ action, cancel }) => {
-		switch (action.searchParams.get('provider')) {
-			case 'google':
-				await signInWithProvider('google');
-				break;
-			case 'github':
-				await signInWithProvider('github');
-				break;
-			default:
-				break;
-		}
-		cancel();
-	};
+	// const submitSocialLogin = async ({ action, cancel }) => {
+	// 	switch (action.searchParams.get('provider')) {
+	// 		case 'google':
+	// 			await signInWithProvider('google');
+	// 			break;
+	// 		case 'github':
+	// 			await signInWithProvider('github');
+	// 			break;
+	// 		default:
+	// 			break;
+	// 	}
+	// 	cancel();
+	// };
 
   const error = $page?.form?.error;
 </script>

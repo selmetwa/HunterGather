@@ -90,7 +90,7 @@ You can preview the production build with `npm run preview`.
 - [x] handle null names?
 - [?] weird navigation with previews
 - [x] link to profile from collection header
-- [ ] remove social auth stuff (today)
+- [x] remove social auth stuff
 - [ ] checkout modals on smaller screens (today)
 - [x] make sure register works (today)
 - [ ] move supabasequeries into their own place...
