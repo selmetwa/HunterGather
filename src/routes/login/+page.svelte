@@ -2,6 +2,7 @@
 // @ts-nocheck
   import { page } from '$app/stores';
 
+  import { previewPanel } from '../../store/store';
   // import { enhance } from '$app/forms';
 	// import { supabaseClient } from '$lib/supabase';
 
@@ -32,7 +33,7 @@
 </script>
 <body>
   <section class="modal-wrapper">
-    <main class="2xl:w-3/12 xl:w-4/12 lg:w-6/12 md:w-8/12 sm:w-8/12 bg-white mb-20 p-8 m-auto rounded drop-shadow-md mt-20 overflow-hidden">
+      <main class={`${$previewPanel ? 'xl:w-6/12 sm:w-8/12' : '2xl:w-3/12 xl:w-4/12 lg:w-6/12 md:w-8/12 sm:w-8/12'} bg-white mb-20 p-8 m-auto rounded drop-shadow-md mt-20 overflow-hidden`}>
       <div class="w-full max-w-md space-y-4">
         <h2 class="font-sans text-left text-2xl font-light tracking-tight text-gray-400">Sign in to your account</h2>
         <div class="flex-grow border-t border-gray-200"></div>
