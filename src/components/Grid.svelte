@@ -10,7 +10,7 @@
 </script>
 
 <section>
-	<div class="xl:p-x-24 lg:p-x-16 md:p-x-16 p-8">
+	<div class="sm:px-8 md:px-16 xl:px-24">
     <div class={`grid gap-2 md:gap-4 ${gridRules}`}>
       <slot />
     </div>

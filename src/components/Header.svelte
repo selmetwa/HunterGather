@@ -2,6 +2,7 @@
   // @ts-nocheck
   import { page } from '$app/stores';
   import { modalStore, previewPanel } from '../store/store';
+  import SearchBar from './SearchBar.svelte';
 
   let showMenu = false;
   const toggleMenu = () => showMenu = !showMenu;

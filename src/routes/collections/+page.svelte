@@ -8,7 +8,8 @@
 	import LoadMoreButton from '../../components/LoadMoreButton.svelte';
 	import ObjectTypeNav from '../../components/ObjectTypeNav.svelte';
 	import CollectionCard from '../../components/CollectionCard.svelte';
-
+  import SearchBar from '../../components/SearchBar.svelte';
+  
 	export let data;
 	let { collections } = data;
 	$: page = 0;
@@ -25,8 +26,10 @@
 	});
 </script>
 
-<ObjectTypeNav currentPath="collections" />
-
+<div class="my-8 sm:px-8 md:px-16 xl:px-24 flex justify-between">
+  <ObjectTypeNav currentPath='collections' />
+  <SearchBar />
+</div>
 {#if collections}
 	<Grid>
 		{#each collections as collection}

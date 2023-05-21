@@ -9,6 +9,7 @@
 	import BlockCard from '../../components/BlockCard.svelte';
 	import LoadMoreButton from '../../components/LoadMoreButton.svelte';
 	import ObjectTypeNav from '../../components/ObjectTypeNav.svelte';
+  import SearchBar from '../../components/SearchBar.svelte';
 
 	export let data;
 
@@ -27,8 +28,10 @@
 	};
 </script>
 
-<ObjectTypeNav currentPath="blocks" />
-
+<div class="my-8 sm:px-8 md:px-16 xl:px-24 flex justify-between">
+  <ObjectTypeNav currentPath='blocks' />
+  <SearchBar />
+</div>
 {#if blocks}
 	<Grid>
 		{#each blocks as block}

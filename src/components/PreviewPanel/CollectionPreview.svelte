@@ -1,12 +1,11 @@
 <script lang="ts">
-	import { supabaseClient } from '$lib/supabase';
-
-  import { createUniqueArray } from '../../utils/createUniqueArray';
-  import getCollection from '../../queries/collections/getCollection';
-  import getCollectionCount from '../../queries/collections/getCollectionCount';
-  import getPaginatedCollectionItems from '../../queries/collections/getPaginatedCollectionItems';
+	import { createUniqueArray } from '../../utils/createUniqueArray';
+	import getCollection from '../../queries/collections/getCollection';
+	import getCollectionCount from '../../queries/collections/getCollectionCount';
+	import getPaginatedCollectionItems from '../../queries/collections/getPaginatedCollectionItems';
 	import BlockCard from '../BlockCard.svelte';
 	import CollectionCard from '../CollectionCard.svelte';
+	import LoadMoreButton from '../LoadMoreButton.svelte';
 
 	export let collectionId = '';
 	let page = 0;
@@ -21,18 +20,21 @@
 	$: if (collectionId) {
 		page = 0;
 		objects = [];
-    loadCount();
+		loadCount();
 		loadData();
 	}
 
 	const loadCount = async () => {
-		count = await getCollectionCount(collectionId)
+		count = await getCollectionCount(collectionId);
 	};
 
 	const loadData = async () => {
-    const collection = await getCollection(collectionId)
+		const collection = await getCollection(collectionId);
 		title = collection && collection[0] && collection[0].title;
-    objects = createUniqueArray(objects, await getPaginatedCollectionItems(collectionId, page, 5, true))
+		objects = createUniqueArray(
+			objects,
+			await getPaginatedCollectionItems(collectionId, page, 5, true)
+		);
 	};
 </script>
 
@@ -56,11 +58,6 @@
 		</div>
 	{/if}
 	{#if objects.length < count}
-		<button
-			class="font-bold font-sans group relative flex w-min justify-center rounded-md border border-transparent bg-action-400 hover:bg-action-500 py-2 px-4 text-lg font-medium text-white focus:outline-none focus:ring-2 focus:gray-300 focus:ring-offset-2 drop-shadow-sm ease-in-out duration-300 mt-24 whitespace-nowrap mx-auto"
-			on:click={() => (page += 1)}
-		>
-			Load More
-		</button>
+		<LoadMoreButton onClick={() => (page += 1)} />
 	{/if}
 </div>

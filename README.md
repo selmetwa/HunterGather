@@ -101,9 +101,12 @@ You can preview the production build with `npm run preview`.
 - [ ] toggle row view
 - [ ] profile not reacting correctly to profileId change
 - [x] blocks only view
-- [ ] collections only view
+- [x] collections only view
 - [ ] searchResults page
 - [ ] search filter for profile pages
 - [ ] search filter for collection pages
-- [ ] use loadMore button everywhere
-- [ ] use grid component everywhere
+- [x] use loadMore button everywhere
+- [x] use grid component everywhere
+- [ ] move interweave into utils
+- [ ] move search queries into query giles
+- [ ] add pagination to search
