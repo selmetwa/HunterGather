@@ -30,7 +30,7 @@
 
 <div class="my-8 sm:px-8 md:px-16 xl:px-24 flex justify-between">
   <ObjectTypeNav currentPath='blocks' />
-  <SearchBar />
+  <SearchBar currentPath="blocks" />
 </div>
 {#if blocks}
 	<Grid>

@@ -1,10 +1,6 @@
 import { supabaseClient } from '$lib/supabase';
 
-const interweave = (arr1: any, arr2: any) => {
-	return arr1.reduce((acc: any, current: any, index: number) => {
-		return [...acc, current, ...arr2.splice(0, arr1[index + 1] ? 2 : arr2.length)];
-	}, []);
-};
+import { interweave } from '../../utils/interweave';
 
 /**
  * This function fetches blocks and collections

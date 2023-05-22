@@ -80,7 +80,7 @@
 	{/if}
 	</div>
 	<div class="py-2 inline-block">
-		<a href={`block/${blockId}`} class="flex items-center justify-center h-full w-full">
+		<a href={`/block/${blockId}`} class="flex items-center justify-center h-full w-full">
 			<h2 class="text-gray-500 text-left line-clamp-2">{title}</h2>
 		</a>
 	</div>

@@ -28,7 +28,7 @@
 
 <div class="my-8 sm:px-8 md:px-16 xl:px-24 flex justify-between">
   <ObjectTypeNav currentPath='collections' />
-  <SearchBar />
+  <SearchBar currentPath="collections" />
 </div>
 {#if collections}
 	<Grid>

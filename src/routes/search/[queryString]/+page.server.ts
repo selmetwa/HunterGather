@@ -1,40 +1,43 @@
-import { supabaseClient } from '$lib/supabase';
-import { createUniqueArray } from '../../../utils/createUniqueArray';
-
-const interweave = (arr1: any, arr2: any) => {
-	return arr1.reduce((acc: any, current: any, index: number) => {
-		return [...acc, current, ...arr2.splice(0, arr1[index + 1] ? 2 : arr2.length)];
-	}, []);
-};
+import { interweave } from '../../../utils/interweave';
+import paginatedBlocksBySearch from '../../../queries/search/paginatedBlocksBySearch';
+import paginatedCollectionsBySearch from '../../../queries/search/paginationCollectionsBySearch';
 
 export const load = async ({ params }: { fetch: any; params: any }) => {
-	console.log({ params })
+	const query = params.queryString.split('-')[0];
+	const objectType = params.queryString.split('-')[1];
 
-  const q = params.queryString;
+	if (objectType === 'blocks') {
+		const { blocks, blocksCount } = await paginatedBlocksBySearch(query, 0, 10);
 
-  const { data: blocks, error: blocksError } = 
-  await supabaseClient
-    .from('blocks')
-    .select()
-    .filter('title', 'ilike', `%${q}%`);
+		return {
+			searchTerm: query,
+			objects: blocks,
+			count: blocksCount,
+      objectType,
+		};
+	}
 
-  const { data: blocksFromUrl, error: blocksFromUrlError } =
-  await supabaseClient
-    .from('blocks')
-    .select()
-    .filter('url', 'ilike', `%${q}%`); 
+	if (objectType === 'collections') {
+		const { collections, collectionsCount } = await paginatedCollectionsBySearch(query, 0, 10);
+		return {
+			searchTerm: query,
+			objects: collections,
+			count: collectionsCount,
+      objectType,
+		};
+	}
 
-  const { data: collections, error: collectionsError } 
-    = await supabaseClient.from('collections').select().filter('title', 'ilike', `%${q}%`)
+	const { blocks, blocksCount } = await paginatedBlocksBySearch(query, 0, 10);
+	const { collections, collectionsCount } = await paginatedCollectionsBySearch(query, 0, 10);
 
-  const blocksArr = createUniqueArray(blocks, blocksFromUrl)
-  const a = interweave(blocksArr, collections);
+	const objects = interweave(blocks, collections);
+	const count = blocksCount + collectionsCount;
 
-  return {
-    searchTerm: params.queryString,
-    a,
-    blocksFromUrl: blocksFromUrl,
-    blocks: blocks,
-    collections: collections
-  }
+  console.log({ query })
+	return {
+		searchTerm: query,
+		objects,
+		count,
+    objectType,
+	};
 };

@@ -95,18 +95,19 @@ You can preview the production build with `npm run preview`.
 - [x] make sure register works (today)
 - [ ] move supabasequeries into their own place
 - [ ] optimize for mobile
-- [ ] search
+- [x] search
 - [ ] turn cards into rows
 - [ ] clean up collection rows on block detail pages
 - [ ] toggle row view
 - [ ] profile not reacting correctly to profileId change
 - [x] blocks only view
 - [x] collections only view
-- [ ] searchResults page
+- [x] searchResults page
 - [ ] search filter for profile pages
 - [ ] search filter for collection pages
 - [x] use loadMore button everywhere
 - [x] use grid component everywhere
-- [ ] move interweave into utils
-- [ ] move search queries into query giles
-- [ ] add pagination to search
+- [x] move interweave into utils
+- [x] move search queries into query files
+- [x] add pagination to search
+- [ ] fix header on mobile
