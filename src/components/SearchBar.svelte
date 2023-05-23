@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 
-	export let currentPath = '';
+	// $: objectType = '';
 
 	function submit(event: any) {
 		if (event.key === 'Enter') {
@@ -9,7 +9,8 @@
 		}
 	}
 
-	$: searchQuery = '';
+	export let searchQuery = '';
+	export let objectType = '';
 
   const update = (event: Event) => {
     const element = event.currentTarget as HTMLInputElement
@@ -20,14 +21,15 @@
 	const handleSearch = async () => {
     if (searchQuery.length === 0) return
 
-    const path = !!currentPath ? `-${currentPath}` : '';
+    const path = !!objectType ? `-${objectType}` : '';
 		await goto(`/search/${encodeURIComponent(searchQuery.trim().toLowerCase())}${path}`);
 	};
 
 	const handleSearchByPress = async (q: string) => {
     if (q.length === 0) return
 
-    const path = !!currentPath ? `-${currentPath}` : '';
+    console.log({ objectType })
+    const path = !!objectType ? `-${objectType}` : '';
 		await goto(`/search/${encodeURIComponent(q.trim().toLowerCase())}${path}`);
 	};
 </script>

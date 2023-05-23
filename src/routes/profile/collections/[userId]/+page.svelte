@@ -32,8 +32,8 @@
 
 <ProfileHeader userId={data.userId} />
 <section>
-  <div class="mt-8 ml-8">
-    <a href={`/profile/blocks/${data.userId}`} class='text-blue-400 font-sans font-light color-blue'>Blocks</a> / <a href="#top" class='text-blue-400 font-sans font-bold color-blue'>Collections</a>
+  <div class="sm:px-8 md:px-16 xl:px-24 my-8">
+    <a href={`/profile/blocks/${data.userId}`} class='text-blue-400 font-sans font-light color-blue'>Blocks</a> / <a href="#top" class='text-blue-400 font-sans font-medium color-blue'>Collections</a>
   </div>
   <Grid>
     {#each collections as collection}

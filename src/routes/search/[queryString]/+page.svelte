@@ -8,8 +8,7 @@
 	import Grid from '../../../components/Grid.svelte';
 	import BlockCard from '../../../components/BlockCard.svelte';
 	import CollectionCard from '../../../components/CollectionCard.svelte';
-	import SearchBar from '../../../components/SearchBar.svelte';
-	import ObjectTypeNavSearch from '../../../components/ObjectTypeNavSearch.svelte';
+  import PageNav from '../../../components/PageNav.svelte';
 
 	let page = 0;
 
@@ -52,15 +51,7 @@
 	};
 </script>
 
-<div class="my-8 sm:px-8 md:px-16 xl:px-24 flex justify-between items-center flex-col md:flex-row">
-	<h1 class="font-sans text-left text-3xl font-light tracking-tight text-gray-400 my-6">
-		{count} Search Results for <span class="text-action-400">{searchTerm}</span>
-	</h1>
-	<div>
-		<ObjectTypeNavSearch {objectType} {searchTerm} />
-		<SearchBar currentPath={objectType} />
-	</div>
-</div>
+<PageNav isSearchPage={true} {objectType} {searchTerm} {count} />
 {#if objects.length > 0}
 	<Grid>
 		{#each objects as object}

@@ -19,7 +19,6 @@
     const value = element.value;
 
     const path = !!value ? `-${value}` : '';
-
     await goto(`/search/${encodeURIComponent(searchTerm.trim().toLowerCase())}${path}`)
 	};
 </script>

@@ -4,13 +4,11 @@
 	import { createUniqueArray } from '../../utils/createUniqueArray.js';
 	import getPaginatedBlocks from '../../queries/blocks/getPaginatedBlocks';
 	import getBlocksCount from '../../queries/blocks/getBlocksCount';
-	import { objectView } from '../../store/store';
 
 	import Grid from '../../components/Grid.svelte';
 	import BlockCard from '../../components/BlockCard.svelte';
 	import LoadMoreButton from '../../components/LoadMoreButton.svelte';
-	import ObjectTypeNav from '../../components/ObjectTypeNav.svelte';
-	import SearchBar from '../../components/SearchBar.svelte';
+  import PageNav from '../../components/PageNav.svelte';
 
 	export let data;
 
@@ -29,10 +27,7 @@
 	};
 </script>
 
-<div class="my-8 sm:px-8 md:px-16 xl:px-24 flex justify-between items-center flex-col md:flex-row">
-	<ObjectTypeNav currentPath="blocks" />
-	<SearchBar currentPath="blocks" />
-</div>
+<PageNav currentPath="blocks" objectType="blocks" />
 {#if blocks}
 	<Grid>
 		{#each blocks as block}

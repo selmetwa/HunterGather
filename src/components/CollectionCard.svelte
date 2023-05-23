@@ -71,7 +71,7 @@
 	<CollectionCardRow {count} {collectionId} {title} {author} {userId} {toggleCollectingModal} {togglePreview} />
 {:else}
 	<div
-		class="card aspect-4/3transition-all bg-gray-100 border-2 border-gray-300 hover:bg-gray-200 relative"
+		class="card aspect-4/3 transition-all bg-gray-100 border-2 border-gray-300 hover:bg-gray-200 relative"
 		on:mouseenter={enter}
 		on:mouseleave={leave}
 	>

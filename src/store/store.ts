@@ -16,4 +16,4 @@ export const isDeleteModalOpen = writable(false);
 export const deleteModalObject = writable({ type: '', object: {} });
 
 // layout style
-export const objectView = writable('row');
+export const objectView = writable('card');

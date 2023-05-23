@@ -31,8 +31,8 @@
 </script>
 
 <ProfileHeader userId={data.userId} />
-	<div class="mt-8 ml-8">
-		<a href="#top" class="text-blue-400 font-sans font-bold color-blue">Blocks</a> /
+	<div class="sm:px-8 md:px-16 xl:px-24 my-8">
+		<a href="#top" class="text-blue-400 font-sans font-medium color-blue">Blocks</a> /
 		<a
 			href={`/profile/collections/${data.userId}`}
 			class="text-blue-400 font-sans font-light color-blue">Collections</a

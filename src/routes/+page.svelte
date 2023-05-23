@@ -3,10 +3,9 @@
   import getPaginatedCollectionItems from '../queries/collections/getPaginatedCollectionItems';
 	import BlockCard from '../components/BlockCard.svelte';
 	import CollectionCard from '../components/CollectionCard.svelte';
-  import ObjectTypeNav from '../components/ObjectTypeNav.svelte';
   import Grid from '../components/Grid.svelte';
   import LoadMoreButton from '../components/LoadMoreButton.svelte';
-  import SearchBar from '../components/SearchBar.svelte';
+  import PageNav from '../components/PageNav.svelte';
 
 	export let data: any;
 	const count = data.count;
@@ -25,10 +24,7 @@
 	<meta name="description" content="Wwwabbit" />
 </svelte:head>
 <section>
-  <div class="my-8 sm:px-8 md:px-16 xl:px-24 flex justify-between items-center flex-col md:flex-row">
-    <ObjectTypeNav currentPath='/' />
-    <SearchBar currentPath='' />
-  </div>
+  <PageNav currentPath="/" objectType="" />
 	<Grid>
     {#each objects as object}
     {#if object.objectType === 'block'}
