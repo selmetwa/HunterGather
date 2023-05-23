@@ -17,6 +17,7 @@
 	} from '../store/store';
 
 	export let collection: any;
+  export let isRow = false;
 
 	const activeSession = $page?.data?.session;
 	let hovering = false;
@@ -67,7 +68,7 @@
 	};
 </script>
 
-{#if $objectView === 'row'}
+{#if ($objectView === 'row' || isRow)}
 	<CollectionCardRow {count} {collectionId} {title} {author} {userId} {toggleCollectingModal} {togglePreview} />
 {:else}
 	<div

@@ -80,7 +80,6 @@ You can preview the production build with `npm run preview`.
 - [x] add a block to a collection after creation
 - [x] add a collection to a collection :o
 - [x] turn off preview
-- [?] preview breadcrumbs
 - [x] error handling
 - [x] duplicate collection names
 - [x] edit profile modal issue
@@ -93,22 +92,26 @@ You can preview the production build with `npm run preview`.
 - [x] remove social auth stuff
 - [x] checkout modals on smaller screens
 - [x] make sure register works (today)
-- [ ] move supabasequeries into their own place
-- [ ] optimize for mobile
 - [x] search
-- [ ] turn cards into rows
-- [ ] clean up collection rows on block detail pages
-- [ ] toggle row view
-- [ ] profile not reacting correctly to profileId change
+- [x] turn cards into rows
+- [x] toggle row view
 - [x] blocks only view
 - [x] collections only view
 - [x] searchResults page
-- [ ] search filter for profile pages
-- [ ] search filter for collection pages
 - [x] use loadMore button everywhere
 - [x] use grid component everywhere
 - [x] move interweave into utils
 - [x] move search queries into query files
 - [x] add pagination to search
-- [ ] fix header on mobile
-- [ ] search loading screen
+- [x] loadMore buttons not working on search pages
+- [x] add buttons to toggle views everywhere
+- [ ] profile not reacting correctly to profileId change
+- [ ] optimize for mobile
+  - [ ] fix header on mobile
+- [x] clean up collection rows on block detail pages
+- [ ] code cleanup
+- [x] handle background when there arent many items
+  - [ ] move supabasequeries into their own place
+  - [ ] add a bunch of comments
+- [ ] search filter for profile pages
+- [ ] search filter for collection pages

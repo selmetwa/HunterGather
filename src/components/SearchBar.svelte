@@ -1,8 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 
-	// $: objectType = '';
-
 	function submit(event: any) {
 		if (event.key === 'Enter') {
 			handleSearchByPress(searchQuery);

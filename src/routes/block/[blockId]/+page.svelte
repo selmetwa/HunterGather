@@ -112,7 +112,7 @@
 				<div class="collections mt-4 flex flex-col gap-2">
 					<h1>This block is included in the following collections</h1>
 					{#each collections as col}
-						<CollectionCard collection={col} />
+						<CollectionCard collection={col} isRow={true} />
 					{/each}
 				</div>
 			{/if}

@@ -30,6 +30,7 @@ export const load = async ({ params }: { fetch: any; params: any }) => {
 	const { blocks, blocksCount } = await paginatedBlocksBySearch(query, 0, 10);
 	const { collections, collectionsCount } = await paginatedCollectionsBySearch(query, 0, 10);
 
+  console.log({ blocks });
 	const objects = interweave(blocks, collections);
 	const count = blocksCount + collectionsCount;
 

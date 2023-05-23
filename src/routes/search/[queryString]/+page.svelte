@@ -16,7 +16,7 @@
 
 	$: ({ objects, count, objectType, searchTerm } = data);
 
-	/**
+	/** 
 	 * Weird workaround to reset objects when user changes search query
 	 */
 	$: if (searchTerm) {
@@ -49,6 +49,14 @@
 		const collections = await paginatedCollectionsBySearch(data.searchTerm, page, 10);
 		objects = createUniqueArray(objects, [...blocks.blocks, ...collections.collections]);
 	};
+
+  $: if (objects) {
+    console.log({ objects })
+  }
+
+  $: if (count) {
+    console.log({ count })
+  }
 </script>
 
 <PageNav isSearchPage={true} {objectType} {searchTerm} {count} />
@@ -70,6 +78,8 @@
 	</div>
 {/if}
 
+<p>count: {count}</p>
 {#if objects.length < count}
 	<LoadMoreButton onClick={() => (page += 1)} />
 {/if}
+
