@@ -25,7 +25,7 @@
 	<meta name="description" content="Wwwabbit" />
 </svelte:head>
 <section>
-  <div class="my-8 sm:px-8 md:px-16 xl:px-24 flex justify-between">
+  <div class="my-8 sm:px-8 md:px-16 xl:px-24 flex justify-between items-center flex-col md:flex-row">
     <ObjectTypeNav currentPath='/' />
     <SearchBar currentPath='' />
   </div>

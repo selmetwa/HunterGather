@@ -32,7 +32,7 @@
 	};
 </script>
 
-<div class="font-sans text-gray-400 flex items-center justify-center">
+<div class="font-sans text-gray-400 flex items-center justify-center mt-4 md:mt-0">
 	<div class="border rounded overflow-hidden flex">
 		<input
 			type="text"

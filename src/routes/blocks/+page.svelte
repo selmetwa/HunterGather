@@ -28,16 +28,21 @@
 	};
 </script>
 
-<div class="my-8 sm:px-8 md:px-16 xl:px-24 flex justify-between">
+<div class="my-8 sm:px-8 md:px-16 xl:px-24 flex justify-between items-center flex-col md:flex-row">
   <ObjectTypeNav currentPath='blocks' />
   <SearchBar currentPath="blocks" />
 </div>
 {#if blocks}
-	<Grid>
+<section class="sm:px-8 md:px-16 xl:px-24 flex flex-col gap-4">
 		{#each blocks as block}
 			<BlockCard {block} />
 		{/each}
-	</Grid>
+</section>
+	<!-- <Grid>
+		{#each blocks as block}
+			<BlockCard {block} />
+		{/each}
+	</Grid> -->
 	{#if blocks.length < count}
 		<LoadMoreButton onClick={() => (page += 1)} />
 	{/if}

@@ -111,3 +111,4 @@ You can preview the production build with `npm run preview`.
 - [x] move search queries into query files
 - [x] add pagination to search
 - [ ] fix header on mobile
+- [ ] search loading screen

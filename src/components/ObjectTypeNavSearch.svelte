@@ -24,7 +24,7 @@
 	};
 </script>
 
-<div class="my-2">
+<div class="my-2 whitespace-nowrap">
 	<button
 		class={`text-blue-400 font-sans ${checkIfAll} color-blue cursor-pointer`}
 		value=""

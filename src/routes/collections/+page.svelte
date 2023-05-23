@@ -26,7 +26,7 @@
 	});
 </script>
 
-<div class="my-8 sm:px-8 md:px-16 xl:px-24 flex justify-between">
+<div class="my-8 sm:px-8 md:px-16 xl:px-24 flex justify-between items-center flex-col md:flex-row">
   <ObjectTypeNav currentPath='collections' />
   <SearchBar currentPath="collections" />
 </div>

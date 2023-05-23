@@ -43,7 +43,7 @@
 	});
 </script>
 
-<div class="bg-gray-50 flex flex-row">
+<div class="bg-gray-50 flex flex-row overflow-hidden">
 	<main class="w-full">
 		<Header />
 		{#if modalIsOpen}
