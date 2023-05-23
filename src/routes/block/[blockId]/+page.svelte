@@ -86,7 +86,7 @@
 			{/if}
 		</div>
 		<div
-			class="col-span-1 lg:col-span-1 lg:order-2 bg-gray-200 border-4 border-gray-300 p-4 w-full"
+			class="col-span-1 lg:col-span-1 lg:order-2 bg-gray-100 border-4 border-gray-300 p-4 w-full"
 		>
 			<a href={url} class="text-blue-500" target="_blank">{url?.slice(0,45)}...</a>
 			<h1 class="text-2xl font-bold mt-2">{title}</h1>
@@ -112,7 +112,7 @@
 				<div class="collections mt-4 flex flex-col gap-2">
 					<h1>This block is included in the following collections</h1>
 					{#each collections as col}
-						<CollectionCard collection={col} isRow={true} />
+						<CollectionCard collection={col} />
 					{/each}
 				</div>
 			{/if}

@@ -1,7 +1,7 @@
 <script>
-  import { previewPanel } from "../store/store";
+	import { previewPanel, objectView } from '../store/store';
 
-  let gridRules = '';
+	let gridRules = '';
 	previewPanel.subscribe((isPreviewPanelOpen) => {
 		gridRules = isPreviewPanelOpen
 			? 'grid-cols-2'
@@ -10,9 +10,15 @@
 </script>
 
 <section>
-	<div class="sm:px-8 md:px-16 xl:px-24">
-    <div class={`grid gap-2 md:gap-4 ${gridRules}`}>
-      <slot />
-    </div>
-  </div>
+	{#if $objectView === 'card'}
+		<div class="sm:px-8 md:px-16 xl:px-24">
+			<div class={`grid gap-2 md:gap-4 ${gridRules}`}>
+				<slot />
+			</div>
+		</div>
+	{:else}
+		<div class="sm:px-8 md:px-16 xl:px-24 flex flex-col gap-4">
+			<slot />
+		</div>
+	{/if}
 </section>

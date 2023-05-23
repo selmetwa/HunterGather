@@ -8,8 +8,8 @@
 	import LoadMoreButton from '../../components/LoadMoreButton.svelte';
 	import ObjectTypeNav from '../../components/ObjectTypeNav.svelte';
 	import CollectionCard from '../../components/CollectionCard.svelte';
-  import SearchBar from '../../components/SearchBar.svelte';
-  
+	import SearchBar from '../../components/SearchBar.svelte';
+
 	export let data;
 	let { collections } = data;
 	$: page = 0;
@@ -27,8 +27,8 @@
 </script>
 
 <div class="my-8 sm:px-8 md:px-16 xl:px-24 flex justify-between items-center flex-col md:flex-row">
-  <ObjectTypeNav currentPath='collections' />
-  <SearchBar currentPath="collections" />
+	<ObjectTypeNav currentPath="collections" />
+	<SearchBar currentPath="collections" />
 </div>
 {#if collections}
 	<Grid>
@@ -36,7 +36,6 @@
 			<CollectionCard {collection} />
 		{/each}
 	</Grid>
-
 	{#if collections.length < count}
 		<LoadMoreButton onClick={() => (page += 1)} />
 	{/if}

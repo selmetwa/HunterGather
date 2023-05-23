@@ -7,7 +7,8 @@
 		collectingModal,
 		objectToCollect,
 		previewPanel,
-		previewPanelObject
+		previewPanelObject,
+    objectView
 	} from '../store/store';
 
   import BlockCardRow from './BlockCardRow.svelte';
@@ -56,7 +57,7 @@
   let test = true
 </script>
 
-{#if test}
+{#if $objectView === 'row'}
   <BlockCardRow {title} {blockId} {src} {url} {toggleCollectingModal} {togglePreview} />
   {:else}
   <div>

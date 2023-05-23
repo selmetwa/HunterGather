@@ -9,8 +9,6 @@
 	export let toggleCollectingModal: () => void;
 	export let togglePreview: (e: any) => void;
 
-	import { truncateString } from '../utils/truncateString';
-
 	let hovering = false;
 	let requested = false;
 
@@ -24,14 +22,16 @@
 	const leave = () => (hovering = false);
 </script>
 
-<div class="border-y border-gray-100 py-4 relative" on:mouseenter={enter} on:mouseleave={leave}>
+<div class="border border-gray-200 py-4 relative" on:mouseenter={enter} on:mouseleave={leave}>
+  <a href={`/block/${blockId}`} class="relative">
 	<div class="flex items-center gap-4 flex-row">
-		<img class="h-16 w-16 rounded-md border border-gray-200" {src} alt="d" />
+		<img class="ml-3 h-16 w-16 rounded-md border border-gray-200" {src} alt="d" />
 		<div class="flex flex-col pr-12">
 			<a href={`/block/${blockId}`} class="flex flex-wrap">{title}</a>
 			<a href={url} class="text-blue-400 underline flex flex-wrap">{url}</a>
 		</div>
 	</div>
+</a>
 	{#if hovering}
 		<div
 			in:scale={{ duration: 150, easing: quintOut, opacity: 0 }}

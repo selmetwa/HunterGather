@@ -14,3 +14,6 @@ export const previewPanelObject = writable({ type: '', object: {} });
 // destroy objects
 export const isDeleteModalOpen = writable(false);
 export const deleteModalObject = writable({ type: '', object: {} });
+
+// layout style
+export const objectView = writable('row');

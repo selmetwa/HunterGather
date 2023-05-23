@@ -4,12 +4,13 @@
 	import { createUniqueArray } from '../../utils/createUniqueArray.js';
 	import getPaginatedBlocks from '../../queries/blocks/getPaginatedBlocks';
 	import getBlocksCount from '../../queries/blocks/getBlocksCount';
+	import { objectView } from '../../store/store';
 
 	import Grid from '../../components/Grid.svelte';
 	import BlockCard from '../../components/BlockCard.svelte';
 	import LoadMoreButton from '../../components/LoadMoreButton.svelte';
 	import ObjectTypeNav from '../../components/ObjectTypeNav.svelte';
-  import SearchBar from '../../components/SearchBar.svelte';
+	import SearchBar from '../../components/SearchBar.svelte';
 
 	export let data;
 
@@ -29,20 +30,15 @@
 </script>
 
 <div class="my-8 sm:px-8 md:px-16 xl:px-24 flex justify-between items-center flex-col md:flex-row">
-  <ObjectTypeNav currentPath='blocks' />
-  <SearchBar currentPath="blocks" />
+	<ObjectTypeNav currentPath="blocks" />
+	<SearchBar currentPath="blocks" />
 </div>
 {#if blocks}
-<section class="sm:px-8 md:px-16 xl:px-24 flex flex-col gap-4">
+	<Grid>
 		{#each blocks as block}
 			<BlockCard {block} />
 		{/each}
-</section>
-	<!-- <Grid>
-		{#each blocks as block}
-			<BlockCard {block} />
-		{/each}
-	</Grid> -->
+	</Grid>
 	{#if blocks.length < count}
 		<LoadMoreButton onClick={() => (page += 1)} />
 	{/if}
