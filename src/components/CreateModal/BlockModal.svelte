@@ -1,5 +1,6 @@
 <script lang="ts">
   import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
 
 	import {
 		previewPanel,
@@ -61,7 +62,13 @@
 			/**
 			 * close modal and redirect user somewhere
 			 */
+      const isMobile = window.innerWidth <= 1100;
 			setTimeout(() => {
+        if (isMobile) {
+				  modalStore.set(false);
+          goto(`/block/${responseData[0].blockId}`);
+          return
+        }
 				successMessage = '';
 				modalStore.set(false);
 				previewPanel.set(true);

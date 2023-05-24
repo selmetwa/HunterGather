@@ -20,6 +20,7 @@
   export let isRow = false;
 
 	const activeSession = $page?.data?.session;
+  const isMobile = window.innerWidth <= 1100;
 	let hovering = false;
 	let requested = false;
 	let author = 'author';
@@ -56,7 +57,6 @@
 	};
 
 	const togglePreview = () => {
-		const isMobile = window.innerWidth <= 1100;
 		if (isMobile) {
 			goto(`/collection/${collectionId}`);
 			return;
@@ -68,10 +68,6 @@
 			object: { id: collectionId }
 		});
 	};
-
-  const animate = (node, args) =>
-		args.cond ? '' : fade(node, args);
-
 </script>
 
 {#if ($objectView === 'row' || isRow)}
@@ -83,7 +79,7 @@
 		on:mouseleave={leave}
     in:fade
 	>
-		{#if hovering}
+		{#if hovering && !isMobile}
 			<div
 				in:scale={{ duration: 150, easing: quintOut, opacity: 0 }}
 				class="absolute border shadow-md top-0 m-auto z-50 bg-white shadow-xl p-6 w-full cursor-default rounded-md"

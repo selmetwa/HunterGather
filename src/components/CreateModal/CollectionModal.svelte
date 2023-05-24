@@ -60,12 +60,19 @@
 			description = '';
 			toggledCollectionIds = [];
 
-      const {collectionId} = responseData[0]
+      const isMobile = window.innerWidth <= 1100;
 
 			setTimeout(() => {
+        const { collectionId } = responseData[0]
+
+        if (isMobile) {
+				  modalStore.set(false);
+          goto(`/collection/${collectionId}`);
+          return
+        }
+
 				successMessage = '';
         previewPanel.set(true)
-        const { collectionId } = responseData[0];
         previewPanelObject.set({type: 'collection', object: { id: collectionId }})
 				modalStore.set(false);
 			}, 2000);
@@ -87,17 +94,6 @@
 
 	const onClick = async () => {
 		inProgress = true;
-
-		// const res = await fetch(`${PUBLIC_API_URL}/api/collections`, {
-		// 	method: 'POST',
-		// 	headers: { accept: 'application/json' },
-		// 	body: JSON.stringify({
-		// 		title,
-		// 		description,
-		// 		collectionIds: toggledCollectionIds
-		// 	})
-		// });
-
     const res = await createCollection(title, description, toggledCollectionIds, $page?.data?.session?.user?.id)
 		// handleResponse(res);
     const responseData = await res.json();

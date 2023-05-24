@@ -16,7 +16,7 @@
 	};
 </script>
 
-<nav class={`border-gray-500 py-4 bg-gray-100 ${previewPanelIsOpen ? 'w-6/12' : 'w-full'}`}>
+<nav class={`py-4 bg-gray-100 ${previewPanelIsOpen ? 'w-6/12' : 'w-full'} border-b-4 border-gray-200 md:border-0`}>
 	<div class="flex flex-col md:flex-row md:flex-wrap items-center justify-between sm:px-8 md:px-16 xl:px-24">
 		<a href="/" class="flex items-center">
 			<span class="text-gray-500 self-center text-xl font-semibold whitespace-nowrap">wwwabbit</span

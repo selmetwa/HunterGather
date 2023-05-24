@@ -18,6 +18,7 @@
 	const { src, title, url, blockId, userId, created_at } = block;
 
 	const activeSession = $page?.data?.session;
+  const isMobile = window.innerWidth <= 1100;
 	let hovering = false;
 	let requested = false;
 
@@ -40,7 +41,6 @@
 	};
 
 	const togglePreview = (e: any) => {
-		const isMobile = window.innerWidth <= 1100;
 		if (isMobile) {
 			goto(`/block/${block.blockId}`);
 			return;
@@ -66,7 +66,7 @@
 			<a href={`/block/${blockId}`} class="relative">
 				<img class="w-full aspect-4/3 border-2 border-gray-300" {src} alt={title} />
 			</a>
-			{#if hovering}
+			{#if hovering && !isMobile}
 				<div
 					in:scale={{ duration: 150, easing: quintOut, opacity: 0 }}
 					class="absolute border shadow-md top-0 m-auto z-50 bg-white shadow-xl p-6 w-full cursor-default rounded-md"
