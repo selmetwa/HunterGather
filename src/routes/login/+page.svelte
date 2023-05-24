@@ -65,10 +65,3 @@
     </main>
   </section>
 </body>
-
-<style>
-  .modal-wrapper {
-    background: linear-gradient(#f3f4f6 50%, #fff 50%);
-    overflow: hidden!important;
-  }
-</style>

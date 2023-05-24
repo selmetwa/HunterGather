@@ -105,13 +105,15 @@ You can preview the production build with `npm run preview`.
 - [x] add pagination to search
 - [x] loadMore buttons not working on search pages
 - [x] add buttons to toggle views everywhere
-- [ ] profile not reacting correctly to profileId change
-- [ ] optimize for mobile
-  - [ ] fix header on mobile
 - [x] clean up collection rows on block detail pages
-- [ ] code cleanup
 - [x] handle background when there arent many items
+- [ ] code cleanup
   - [ ] move supabasequeries into their own place
   - [ ] add a bunch of comments
 - [ ] search filter for profile pages
 - [ ] search filter for collection pages
+- [ ] profile not reacting correctly to profileId change
+- [x] add dates
+- [x] move view toggle buttons into their own component
+- [ ] optimize for mobile
+  - [ ] fix header on mobile

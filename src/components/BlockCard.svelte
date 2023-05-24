@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
-	import { scale } from 'svelte/transition';
+	import { scale, fade } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 	import {
 		collectingModal,
@@ -11,10 +11,11 @@
 		objectView
 	} from '../store/store';
 
+  import { formatDate  } from '../utils/formatDate';
 	import BlockCardRow from './BlockCardRow.svelte';
 	export let block: any;
 
-	const { src, title, url, blockId, userId } = block;
+	const { src, title, url, blockId, userId, created_at } = block;
 
 	const activeSession = $page?.data?.session;
 	let hovering = false;
@@ -58,9 +59,9 @@
 </script>
 
 {#if $objectView === 'row'}
-	<BlockCardRow {title} {blockId} {src} {url} {toggleCollectingModal} {togglePreview} />
+	<BlockCardRow {title} {blockId} {src} {url} {toggleCollectingModal} {togglePreview} date={formatDate(created_at)} />
 {:else}
-	<div>
+	<div in:fade>
 		<div class="relative" on:mouseenter={enter} on:mouseleave={leave}>
 			<a href={`/block/${blockId}`} class="relative">
 				<img class="w-full aspect-4/3 border-2 border-gray-300" {src} alt={title} />
@@ -90,6 +91,7 @@
 			<a href={`/block/${blockId}`} class="flex items-center justify-center h-full w-full">
 				<h2 class="text-gray-500 text-left line-clamp-2">{title}</h2>
 			</a>
+      <p class="text-gray-400 font-light text-left line-clamp-2">{formatDate(created_at)}</p>
 		</div>
 	</div>
 {/if}

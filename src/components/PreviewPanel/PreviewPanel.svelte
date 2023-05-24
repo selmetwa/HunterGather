@@ -3,6 +3,7 @@
 
 	import { onMount } from 'svelte';
 	import { previewPanelObject } from '../../store/store';
+	import { slide } from 'svelte/transition';
 
 	import BlockPreview from './BlockPreview.svelte';
 	import CollectionPreview from './CollectionPreview.svelte';
@@ -25,6 +26,7 @@
 </script>
 
 <section
+  transition:slide
 	class="fixed right-0 bottom-0 w-6/12 h-screen overflow-x-hidden z-20 overflow-hidden opacity-100 flex flex-col bg-gray-100 panel-wrapper"
 >
 	<PreviewHeader {id} {type} {url} />

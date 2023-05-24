@@ -1,11 +1,12 @@
 <script lang="ts">
-	import { scale } from 'svelte/transition';
+	import { scale, fade } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 
 	export let src = '';
 	export let title = '';
 	export let blockId = '';
 	export let url = '';
+	export let date = '';
 	export let toggleCollectingModal: () => void;
 	export let togglePreview: (e: any) => void;
 
@@ -22,13 +23,14 @@
 	const leave = () => (hovering = false);
 </script>
 
-<div class="border border-gray-200 py-4 relative" on:mouseenter={enter} on:mouseleave={leave}>
+<div class="border border-gray-200 bg-white py-4 relative" on:mouseenter={enter} on:mouseleave={leave} in:fade>
   <a href={`/block/${blockId}`} class="relative">
 	<div class="flex items-center gap-4 flex-row">
 		<img class="ml-3 h-16 w-16 rounded-md border border-gray-200" {src} alt="d" />
-		<div class="flex flex-col pr-12">
-			<a href={`/block/${blockId}`} class="flex flex-wrap">{title}</a>
-			<a href={url} class="text-blue-400 underline flex flex-wrap">{url}</a>
+		<div class="flex flex-col pr-12 overflow-hidden">
+			<a href={`/block/${blockId}`} class="flex flex-wrap break-words">{title}</a>
+			<a href={url} class="text-blue-400 underline flex flex-wrap break-words overflow-hidden">{url}</a>
+      <p class="text-gray-400 font-light text-left line-clamp-2">{date}</p>
 		</div>
 	</div>
 </a>

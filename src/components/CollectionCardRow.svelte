@@ -1,11 +1,12 @@
 <script lang="ts">
-	import { scale } from 'svelte/transition';
+	import { scale, fade } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 
 	export let author = '';
 	export let title = '';
 	export let collectionId = '';
 	export let userId = '';
+	export let date = '';
 	export let count = 0;
 	export let toggleCollectingModal: () => void;
 	export let togglePreview: (e: any) => void;
@@ -23,7 +24,7 @@
 	const leave = () => (hovering = false);
 </script>
 
-<div class="border bg-gray-200 border-gray-300 relative" on:mouseenter={enter} on:mouseleave={leave}>
+<div class="border bg-gray-200 border-gray-300 relative" on:mouseenter={enter} on:mouseleave={leave} in:fade>
 	<a href={`/collection/${collectionId}`}>
 		<div class="flex items-center gap-4 flex-row py-4">
 			<div
@@ -31,11 +32,12 @@
 			>
 				{count}
 			</div>
-			<div class="flex flex-col pr-12">
-				<a href={`/collection/${collectionId}`} class="flex flex-wrap">{title}</a>
+			<div class="flex flex-col pr-12 overflow-hidden">
+				<a href={`/collection/${collectionId}`} class="flex flex-wrap break-words">{title}</a>
 				<a href={`/profile/blocks/${userId}`} class="text-blue-400 underline flex flex-wrap"
 					>{author}</a
 				>
+        <p class="font-sans text-gray-400">{date}</p>
 			</div>
 		</div>
 	</a>

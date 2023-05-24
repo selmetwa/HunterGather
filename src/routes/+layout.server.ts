@@ -4,7 +4,16 @@ import type { LayoutServerLoad } from "./$types"
 export const load: LayoutServerLoad = async (event) => {
   const session = await getServerSession(event)
 
-	return {
+  return {
 		session: session,
+    pathname: event.url.pathname,
 	}
 }
+
+// export const load: LayoutServerLoad = async (params) => {
+//   const { pathname } = params.url
+
+//   return {
+//     pathname,
+//   }
+// }

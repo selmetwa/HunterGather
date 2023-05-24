@@ -6,6 +6,7 @@
 	import BlockCard from '../BlockCard.svelte';
 	import CollectionCard from '../CollectionCard.svelte';
 	import LoadMoreButton from '../LoadMoreButton.svelte';
+	import { objectView } from '../../store/store';
 
 	export let collectionId = '';
 	let page = 0;
@@ -40,18 +41,30 @@
 
 <div>
 	<h1 class="font-sans text-left text-2xl font-light tracking-tight text-gray-400 my-4">
-		{title} Preview
+		<span class="text-action-400">{title}</span> preview
 	</h1>
 	{#if !!objects.length}
-		<div class={`grid gap-4 grid-cols-2`}>
-			{#each objects as object}
-				{#if object.objectType === 'block'}
-					<BlockCard block={object} />
-				{:else}
-					<CollectionCard collection={object} />
-				{/if}
-			{/each}
-		</div>
+		{#if $objectView === 'card'}
+			<div class={`grid gap-4 grid-cols-2`}>
+				{#each objects as object}
+					{#if object.objectType === 'block'}
+						<BlockCard block={object} />
+					{:else}
+						<CollectionCard collection={object} />
+					{/if}
+				{/each}
+			</div>
+		{:else}
+			<section class="flex flex-col gap-6 gap-4">
+				{#each objects as object}
+					{#if object.objectType === 'block'}
+						<BlockCard block={object} />
+					{:else}
+						<CollectionCard collection={object} />
+					{/if}
+				{/each}
+			</section>
+		{/if}
 	{:else}
 		<div class="flex items-center border-2 border-gray-300 background-gray-200 text-center p-20">
 			<p class="text-gray-400 m-auto">مـَفيش (māfeesh) / there is nothing</p>

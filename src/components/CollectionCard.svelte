@@ -3,7 +3,7 @@
 	import { page } from '$app/stores';
 	import { supabaseClient } from '$lib/supabase';
 	import { onMount } from 'svelte';
-	import { scale } from 'svelte/transition';
+	import { scale, fade } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 
 	import getCollectionCount from '../queries/collections/getCollectionCount';
@@ -15,7 +15,7 @@
 		previewPanelObject,
     objectView
 	} from '../store/store';
-
+  import { formatDate } from '../utils/formatDate';
 	export let collection: any;
   export let isRow = false;
 
@@ -24,7 +24,9 @@
 	let requested = false;
 	let author = 'author';
 	let count = 0;
+	let date = '';
 
+  console.log({ collection })
 	const enter = () => {
 		hovering = true;
 		if (!requested) {
@@ -66,15 +68,20 @@
 			object: { id: collectionId }
 		});
 	};
+
+  const animate = (node, args) =>
+		args.cond ? '' : fade(node, args);
+
 </script>
 
 {#if ($objectView === 'row' || isRow)}
-	<CollectionCardRow {count} {collectionId} {title} {author} {userId} {toggleCollectingModal} {togglePreview} />
-{:else}
+	<CollectionCardRow {count} {collectionId} {title} {author} {userId} {toggleCollectingModal} {togglePreview} date={formatDate(collection.created_at)} />
+{:else if $objectView === 'card'}
 	<div
 		class="card aspect-4/3 transition-all bg-gray-100 border-2 border-gray-300 hover:bg-gray-200 relative"
 		on:mouseenter={enter}
 		on:mouseleave={leave}
+    in:fade
 	>
 		{#if hovering}
 			<div
@@ -101,13 +108,16 @@
 			>
 				<div>
 					<h1
-						class="font-sans text-gray-500 font-semibold text-xl w-10/12 whitespace-normal m-auto"
+						class="font-sans text-gray-500 font-semibold text-xl w-10/12 whitespace-normal m-auto break-words"
 					>
 						{title}
 					</h1>
 					<p class="font-sans text-gray-500">{author}</p>
 				</div>
-				<p class="font-sans text-gray-600">{count}</p>
+        <div class="absolute top-0 right-0 h-6 w-6 p-4 bg-gray-300 flex items-center justify-center">
+          <p class="font-sans font-medium text-gray-500">{count}</p>
+        </div>
+        <p class="font-sans font-light text-gray-400">{formatDate(collection.created_at)}</p>
 			</div>
 		</a>
 	</div>
