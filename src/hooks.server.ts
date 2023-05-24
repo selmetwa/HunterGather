@@ -4,10 +4,7 @@ import type { Handle } from "@sveltejs/kit"
 
 export const handle: Handle = async ({ event, resolve }) => {
 	const { session, supabaseClient } = await getSupabase(event)
-  console.log('asd')
 
-  const a = event.url.pathname;
-  console.log(a)
 	event.locals.sb = supabaseClient
 	event.locals.session = session
 

@@ -66,7 +66,7 @@
   }
 </script>
 
-<div class="w-full h-full overflow-x-hidden overflow-hidden opacity-100 bg-gray-100">
+<div class="w-full h-full opacity-100 bg-gray-100">
 	<div class={`content px-4 lg:px-8 my-16 gap-10 grid ${gridRules}`}>
 		<div
 			class="col-span-1 lg:col-span-2 2xl:col-span-3 lg:order-1 bg-gray-100 border-4 border-gray-300"
