@@ -1,4 +1,4 @@
-import { AuthApiError } from '@supabase/gotrue-js';
+// import { AuthApiError } from '@supabase/gotrue-js';
 import { fail, redirect } from '@sveltejs/kit';
 import type { Actions } from './$types';
 
@@ -32,13 +32,13 @@ export const actions: Actions = {
 		}
 
 		if (err) {
-			if (err instanceof AuthApiError && err.status === 400) {
+			if (err && err.status === 400) {
 				return fail(400, {
 					error: 'Invalid email or password'
 				});
 			}
 
-			if (err instanceof AuthApiError && err.status === 422) {
+			if (err && err.status === 422) {
 				return fail(400, {
 					error: 'Password must be at least 6 characters'
 				});
