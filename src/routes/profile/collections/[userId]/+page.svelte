@@ -9,7 +9,8 @@
 	import LoadMoreButton from '../../../../components/LoadMoreButton.svelte';
 	import ProfileHeader from '../../ProfileHeader.svelte';
 	import ObjectViewButtons from '../../../../components/ObjectViewButtons.svelte';
-  
+  import FilterBar from '../../../../components/FilterBar.svelte';
+
 	interface Data {
 		collections: Array<any>;
 		userId: string;
@@ -17,17 +18,44 @@
 
 	export let data: Data;
 	let collections = data.collections;
+	let masterCollections = data.collections;
 	let page = 0;
 
 	$: count = 0;
 	$: if (page) loadMore();
 
 	const loadMore = async () => {
-		collections = createUniqueArray(
-			collections,
+		// collections = createUniqueArray(
+		// 	createUniqueArray(masterCollections, collections),
+		// 	await getCollectionsByUserId(data.userId, page, 10)
+		// );
+
+    masterCollections = createUniqueArray(
+			masterCollections,
 			await getCollectionsByUserId(data.userId, page, 10)
 		);
+
+    collections = createUniqueArray(collections, masterCollections)
+    console.log({ masterCollections, collections})
 	};
+
+  const handleFilter = (filterString: string) => {
+    if (filterString.length === 0) {
+      collections = masterCollections
+    }
+
+    const filtered = masterCollections.filter(obj => {
+      if (obj.title && obj.title.toLowerCase().includes(filterString.toLowerCase())) {  
+        return true;
+      }
+      return false;
+    });
+
+    collections = []
+    setTimeout(() => {
+      collections = filtered
+    }, 10)
+  }
 
 	onMount(async () => {
 		count = await getCollectionsCountByUserId(data.userId);
@@ -45,6 +73,7 @@
 				class="text-blue-400 font-sans font-light color-blue">Blocks</a
 			>
 			/ <a href="#top" class="text-blue-400 font-sans font-medium color-blue">Collections</a>
+      <FilterBar {handleFilter} />
 		</div>
 		<ObjectViewButtons />
 	</div>

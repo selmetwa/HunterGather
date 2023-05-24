@@ -17,7 +17,7 @@
 </script>
 
 <nav class={`border-gray-500 py-4 bg-gray-100 ${previewPanelIsOpen ? 'w-6/12' : 'w-full'}`}>
-	<div class="flex flex-wrap items-center justify-between sm:px-8 md:px-16 xl:px-24">
+	<div class="flex flex-col md:flex-row md:flex-wrap items-center justify-between sm:px-8 md:px-16 xl:px-24">
 		<a href="/" class="flex items-center">
 			<span class="text-gray-500 self-center text-xl font-semibold whitespace-nowrap">wwwabbit</span
 			>
@@ -25,7 +25,7 @@
 		<button
 			data-collapse-toggle="navbar-default"
 			type="button"
-			class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden focus:outline-none focus:ring-2"
+			class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden focus:outline-none focus:ring-2 absolute top-0 right-0 mt-2 mr-4"
 			aria-controls="navbar-default"
 			aria-expanded="false"
 			on:click={toggleMenu}
@@ -49,25 +49,25 @@
 				class="flex flex-col mt-4 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 flex-col-reverse gap-y-6"
 			>
 				{#if activeSession}
-					<li class="font-bold">
+					<li class="font-medium">
 						<button
 							on:click={toggleModal}
-							class="font-bold font-sans group relative flex w-full justify-center rounded-md border border-transparent py-2 px-4 font-medium text-white ease-in-out duration-300 cursor-pointer bg-action-400 hover:bg-action-500"
+							class="font-medium font-sans group relative flex w-full justify-center rounded-md border border-transparent py-2 px-4 font-medium text-white ease-in-out duration-300 cursor-pointer bg-action-400 hover:bg-action-500"
 						>
 							Contribute
 						</button>
 					</li>
 					<li
-						class="block py-2 pl-3 text-gray-500 rounded md:border-0 md:hover:text-gray-300 ease-in-out duration-300"
+						class="block py-2 pl-3 text-gray-500 rounded md:border-0 underline"
 					>
 						<form action="/logout" method="POST">
-							<button type="submit" text="logout" class="font-bold font-sans">Logout</button>
+							<button type="submit" text="logout" class="font-medium font-sans underline">Logout</button>
 						</form>
 					</li>
 					<li>
 						<a
 							href={`/profile/blocks/${userId}`}
-							class="block py-2 pl-3 font-bold text-gray-500 rounded md:border-0 md:hover:text-gray-300 ease-in-out duration-300"
+							class="block py-2 pl-3 font-medium text-gray-500 rounded md:border-0 underline"
 						>
 							Profile
 						</a>
@@ -76,14 +76,14 @@
 					<li>
 						<a
 							href="/login"
-							class="block py-2 pl-3 text-gray-500 rounded md:border-0 md:hover:text-gray-300 ease-in-out duration-300"
+							class="block py-2 pl-3 text-gray-500 rounded md:border-0 underline"
 							>Login</a
 						>
 					</li>
 					<li>
 						<a
 							href="/register"
-							class="block py-2 pl-3 text-gray-500 rounded md:border-0 md:hover:text-gray-300 ease-in-out duration-300"
+							class="block py-2 pl-3 text-gray-500 rounded md:border-0 underline"
 							>Register</a
 						>
 					</li>

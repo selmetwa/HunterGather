@@ -110,8 +110,8 @@ You can preview the production build with `npm run preview`.
 - [ ] code cleanup
   - [ ] move supabasequeries into their own place
   - [ ] add a bunch of comments
-- [ ] search filter for profile pages
-- [ ] search filter for collection pages
+- [x] search filter for profile pages
+- [x] search filter for collection pages
 - [ ] profile not reacting correctly to profileId change
 - [x] add dates
 - [x] move view toggle buttons into their own component

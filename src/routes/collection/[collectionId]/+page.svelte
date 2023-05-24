@@ -1,42 +1,74 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-  import { createUniqueArray  } from '../../../utils/createUniqueArray';
+	import { createUniqueArray } from '../../../utils/createUniqueArray';
 	import getPaginatedCollectionItems from '../../../queries/collections/getPaginatedCollectionItems';
 	import getCollectionCount from '../../../queries/collections/getCollectionCount';
 	import BlockCard from '../../../components/BlockCard.svelte';
-  import Grid from '../../../components/Grid.svelte';
+	import Grid from '../../../components/Grid.svelte';
 	import CollectionCard from '../../../components/CollectionCard.svelte';
-  import LoadMoreButton from '../../../components/LoadMoreButton.svelte';
+	import LoadMoreButton from '../../../components/LoadMoreButton.svelte';
 	import CollectionHeader from '../CollectionHeader.svelte';
+	import ObjectViewButtons from '../../../components/ObjectViewButtons.svelte';
+	import FilterBar from '../../../components/FilterBar.svelte';
+
 	export let data: any;
 
 	$: count = 0;
 	$: objects = [];
+	$: masterObjects = [];
 	$: ({ collectionId, collection } = data);
 	let page = 0;
 
-  /**
-   * when user updates clicks load 
-   * more page, load more data
-  */
+	/**
+	 * when user updates clicks load
+	 * more page, load more data
+	 */
 	$: if (page) {
 		loadData();
 	}
 
-  /**
-   * if the user navigates to a new collection reset 
-   * page, count, objects, and load in new data
-  */
+	/**
+	 * if the user navigates to a new collection reset
+	 * page, count, objects, and load in new data
+	 */
 	$: if (collectionId) {
 		page = 0;
 		loadCount();
 		objects = [];
+		masterObjects = [];
 		loadData();
 	}
 
 	const loadData = async () => {
-    objects = createUniqueArray(objects, await getPaginatedCollectionItems(collectionId, page, 5, true))
+		// objects = createUniqueArray(
+		// 	objects,
+		// 	await getPaginatedCollectionItems(collectionId, page, 5, true)
+		// );
+		masterObjects = createUniqueArray(
+			masterObjects,
+			await getPaginatedCollectionItems(collectionId, page, 15, true)
+		);
+
+		objects = createUniqueArray(objects, masterObjects);
+	};
+
+	const handleFilter = (filterString: string) => {
+		if (filterString.length === 0) {
+			objects = masterObjects;
+		}
+
+		const filtered = masterObjects.filter((obj) => {
+			if (obj.title && obj.title.toLowerCase().includes(filterString.toLowerCase())) {
+				return true;
+			}
+			return false;
+		});
+
+		objects = [];
+		setTimeout(() => {
+			objects = filtered;
+		}, 10);
 	};
 
 	const loadCount = async () => {
@@ -50,7 +82,14 @@
 </script>
 
 <CollectionHeader {collection} {count} />
+
 <main class="xl:p-x-24 lg:p-x-16 md:p-x-16 p-8">
+	<div
+		class="my-8 sm:px-8 md:px-16 xl:px-24 flex justify-between items-center flex-col md:flex-row mb-12"
+	>
+		<FilterBar {handleFilter} />
+		<ObjectViewButtons />
+	</div>
 	{#if !!objects.length}
 		<Grid>
 			{#each objects as object}
@@ -67,6 +106,6 @@
 		</div>
 	{/if}
 	{#if objects.length < count}
-		<LoadMoreButton onClick={() => page += 1} />
+		<LoadMoreButton onClick={() => (page += 1)} />
 	{/if}
 </main>

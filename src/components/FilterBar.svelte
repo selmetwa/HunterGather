@@ -3,10 +3,6 @@
 
   $: filterString = '';
 
-  $: if (filterString) {
-    console.log({ filterString})
-  }
-
   const onChange = (event: Event) => {
     const element = event.currentTarget as HTMLInputElement
     const value = element.value;
