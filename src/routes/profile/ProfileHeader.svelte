@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { v4 as uuidv4 } from 'uuid';
-	import { PUBLIC_API_URL } from '$env/static/public';
 	import { supabaseClient } from '$lib/supabase';
 	import { onMount } from 'svelte';
 

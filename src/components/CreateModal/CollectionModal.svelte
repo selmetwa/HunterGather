@@ -3,6 +3,9 @@
 	import { collectionIds } from '../../store/store';
 	import { modalStore, previewPanel, previewPanelObject } from '../../store/store';
   import { goto } from '$app/navigation';
+  import { page } from '$app/stores';
+
+  import { createCollection } from '../../queries/collections/createCollection';
 
 	import Input from '../Input.svelte';
 	import Button from '../Button.svelte';
@@ -85,16 +88,17 @@
 	const onClick = async () => {
 		inProgress = true;
 
-		const res = await fetch(`${PUBLIC_API_URL}/api/collections`, {
-			method: 'POST',
-			headers: { accept: 'application/json' },
-			body: JSON.stringify({
-				title,
-				description,
-				collectionIds: toggledCollectionIds
-			})
-		});
+		// const res = await fetch(`${PUBLIC_API_URL}/api/collections`, {
+		// 	method: 'POST',
+		// 	headers: { accept: 'application/json' },
+		// 	body: JSON.stringify({
+		// 		title,
+		// 		description,
+		// 		collectionIds: toggledCollectionIds
+		// 	})
+		// });
 
+    const res = await createCollection(title, description, toggledCollectionIds, $page?.data?.session?.user?.id)
 		// handleResponse(res);
     const responseData = await res.json();
 		handleResponse(res, responseData);

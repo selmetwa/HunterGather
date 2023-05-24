@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { PUBLIC_API_URL } from '$env/static/public';
+  import { page } from '$app/stores';
 
 	import {
 		previewPanel,
@@ -8,6 +8,8 @@
 		objectToCollect,
 		modalStore
 	} from '../../store/store';
+
+  import { createBlock } from '../../queries/blocks/createBlock';
 	import Input from '../Input.svelte';
 	import Button from '../Button.svelte';
 	import Pill from '../Pill.svelte';
@@ -71,16 +73,7 @@
 
 	const onSubmit = async () => {
 		inProgress = true;
-
-		const res = await fetch(`${PUBLIC_API_URL}/api/blocks`, {
-			method: 'POST',
-			headers: { accept: 'application/json' },
-			body: JSON.stringify({
-				url,
-				collectionIds: toggledCollectionIds
-			})
-		});
-
+    const res = await createBlock(url, toggledCollectionIds, $page?.data?.session?.user?.id)
 		const responseData = await res.json();
 		handleResponse(res, responseData);
 	};
