@@ -2,6 +2,7 @@
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 	import { scale, fade } from 'svelte/transition';
+  import Device from 'svelte-device-info';
 	import { quintOut } from 'svelte/easing';
 	import {
 		collectingModal,
@@ -18,7 +19,7 @@
 	const { src, title, url, blockId, userId, created_at } = block;
 
 	const activeSession = $page?.data?.session;
-  const isMobile = window !== undefined && window.innerWidth <= 1100;
+  const isMobile = Device.isMobile;
 	let hovering = false;
 	let requested = false;
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { PUBLIC_API_URL } from '$env/static/public';
+  import Device from 'svelte-device-info';
 	import { collectionIds } from '../../store/store';
 	import { modalStore, previewPanel, previewPanelObject } from '../../store/store';
   import { goto } from '$app/navigation';
@@ -59,7 +59,7 @@
 			description = '';
 			toggledCollectionIds = [];
 
-      const isMobile = window.innerWidth <= 1100;
+      const isMobile = Device.isMobile;
 
 			setTimeout(() => {
         const { collectionId } = responseData[0]

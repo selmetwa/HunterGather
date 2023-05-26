@@ -5,6 +5,7 @@
 	import { onMount } from 'svelte';
 	import { scale, fade } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
+  import Device from 'svelte-device-info';
 
 	import getCollectionCount from '../queries/collections/getCollectionCount';
 	import CollectionCardRow from './CollectionCardRow.svelte';
@@ -20,7 +21,7 @@
   export let isRow = false;
 
 	const activeSession = $page?.data?.session;
-  const isMobile = window.innerWidth <= 1100;
+  const isMobile = Device.isMobile;
 	let hovering = false;
 	let requested = false;
 	let author = 'author';

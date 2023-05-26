@@ -1,6 +1,7 @@
 <script lang="ts">
   import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
+  import Device from 'svelte-device-info';
 
 	import {
 		previewPanel,
@@ -60,7 +61,7 @@
 			/**
 			 * close modal and redirect user somewhere
 			 */
-      const isMobile = window.innerWidth <= 1100;
+      const isMobile = Device.isMobile;
 			setTimeout(() => {
         if (isMobile) {
 				  modalStore.set(false);

@@ -1,8 +1,10 @@
 import { redirect } from '@sveltejs/kit';
 import { supabaseClient } from '$lib/supabase';
-import type { Actions } from './$types';
 
 import getBlocksByUserId from '../../../../queries/user/getBlocksByUserId';
+import type { Actions } from './$types';
+
+export const ssr = false;
 
 export const load = async ({ fetch, params }: { fetch: any; params: any }) => {
 	const userId = params?.userId;

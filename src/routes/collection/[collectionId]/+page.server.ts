@@ -1,5 +1,7 @@
 import { supabaseClient } from '$lib/supabase';
 
+export const ssr = false;
+
 export const load = async ({ params }: { fetch: any; params: any }) => {
 	const collectionId = params?.collectionId;
 

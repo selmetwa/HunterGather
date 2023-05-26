@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { scale, fade } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
-
+  import Device from 'svelte-device-info';
+  
 	export let author = '';
 	export let title = '';
 	export let collectionId = '';
@@ -13,7 +14,7 @@
 
 	let hovering = false;
 	let requested = false;
-  const isMobile = window.innerWidth <= 1100;
+  const isMobile = Device.isMobile;
 
 	const enter = () => {
 		hovering = true;

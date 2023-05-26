@@ -2,6 +2,8 @@ import { interweave } from '../../../utils/interweave';
 import paginatedBlocksBySearch from '../../../queries/search/paginatedBlocksBySearch';
 import paginatedCollectionsBySearch from '../../../queries/search/paginationCollectionsBySearch';
 
+export const ssr = false;
+
 export const load = async ({ params }: { fetch: any; params: any }) => {
 	const query = params.queryString.split('-')[0];
 	const objectType = params.queryString.split('-')[1];
