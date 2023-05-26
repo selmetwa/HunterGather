@@ -7,20 +7,13 @@
 	import getUserById from '../../queries/user/getUserById';
 	import EditProfileModal from '../../components/EditProfileModal/EditProfileModal.svelte';
 
-	// export let data;
-	// export let user: any;
 	export let userId: string;
 
 	let error: String;
 	let avatar: String | ArrayBuffer | null | undefined;
 	let fileinput: any;
 
-	// let userId = $page?.data?.session?.user?.id;
 	let isModalOpen = false;
-	// const { name, github, twitter } = user;
-	// const avatarId = user.avatar_id;
-	// const personalSite = user.personal_site;
-	// const profileId = user.id;
 
 	$: name = '';
 	$: github = '';
@@ -138,19 +131,19 @@
 			</h1>
 			<div class="flex flex-row text-center whitespace-nowrap gap-2 my-1">
 				{#if github}
-					<a href={github} target="_blank" class="underline font-semibold text-blue-400">Github</a>
+					<a href={github} target="_blank" rel="noreferrer" class="underline font-semibold text-blue-400">Github</a>
 				{/if}
 				{#if twitter}
-					<a href={twitter} target="_blank" class="underline font-semibold text-blue-400">Twitter</a
+					<a href={twitter} target="_blank" rel="noreferrer" class="underline font-semibold text-blue-400">Twitter</a
 					>
 				{/if}
 				{#if personalSite}
-					<a href={personalSite} target="_blank" class="underline font-semibold text-blue-400"
+					<a href={personalSite} target="_blank" rel="noreferrer" class="underline font-semibold text-blue-400"
 						>Personal Site</a
 					>
 				{/if}
 				<!-- svelte-ignore a11y-click-events-have-key-events -->
-				{#if userId === profileId}
+				{#if $page?.data?.session?.user?.id === profileId}
 					<i
 						class="fa-solid fa-pen text-blue-400"
 						id="open-modal-root"

@@ -11,11 +11,3 @@ export const load: LayoutServerLoad = async (event) => {
     pathname: event.url.pathname,
 	}
 }
-
-// export const load: LayoutServerLoad = async (params) => {
-//   const { pathname } = params.url
-
-//   return {
-//     pathname,
-//   }
-// }

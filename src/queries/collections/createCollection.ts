@@ -1,15 +1,10 @@
 import { v4 as uuidv4 } from 'uuid';
 import { error, json } from '@sveltejs/kit';
 
-// import type { RequestHandler } from './$types';
 import { supabaseClient } from '$lib/supabase';
 
 export const createCollection = async (title: string, description: string, collectionIds: string | any[], userId: string | undefined) => {
-	// const data = await request.json();
-	// const userId = locals?.session?.user?.id;
 	const collectionId = uuidv4();
-
-	// const { collectionIds, title, description } = data;
 
 	// check if user has a collection with existing name
 	const { data: existingCollection, error: existingCollectionError } = await supabaseClient

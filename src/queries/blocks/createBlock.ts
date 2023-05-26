@@ -12,11 +12,7 @@ const urlbox = Urlbox(PUBLIC_URLBOX_PUBLISHABLE_KEY, PUBLIC_URLBOX_SECRET_KEY);
 
 // create block
 export const createBlock = async (url: string, collectionIds: string | any[], userId: string | undefined) => {
-	// const data = await request.json();
-	// const userId = locals?.session?.user?.id;
 	const blockId = uuidv4();
-
-	// const { url, collectionIds } = data;
 
   let title = '';
 

@@ -41,10 +41,6 @@
 	}
 
 	const loadData = async () => {
-		// objects = createUniqueArray(
-		// 	objects,
-		// 	await getPaginatedCollectionItems(collectionId, page, 5, true)
-		// );
 		masterObjects = createUniqueArray(
 			masterObjects,
 			await getPaginatedCollectionItems(collectionId, page, 15, true)
@@ -83,7 +79,7 @@
 
 <CollectionHeader {collection} {count} />
 
-<main class="xl:p-x-24 lg:p-x-16 md:p-x-16 p-8">
+<main>
 	<div
 		class="my-8 sm:px-8 md:px-16 xl:px-24 flex justify-between items-center flex-col md:flex-row mb-12"
 	>

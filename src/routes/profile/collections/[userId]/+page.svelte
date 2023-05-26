@@ -25,11 +25,6 @@
 	$: if (page) loadMore();
 
 	const loadMore = async () => {
-		// collections = createUniqueArray(
-		// 	createUniqueArray(masterCollections, collections),
-		// 	await getCollectionsByUserId(data.userId, page, 10)
-		// );
-
     masterCollections = createUniqueArray(
 			masterCollections,
 			await getCollectionsByUserId(data.userId, page, 10)

@@ -29,7 +29,6 @@
 	});
 
 	const loadMore = async () => {
-		// blocks = createUniqueArray(blocks, await getBlocksByUserId(data.userId, page, 15));
     masterBlocks = createUniqueArray(masterBlocks, await getBlocksByUserId(data.userId, page, 15));
 
     blocks = createUniqueArray(blocks, masterBlocks)

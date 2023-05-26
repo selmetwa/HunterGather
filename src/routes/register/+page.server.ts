@@ -1,4 +1,3 @@
-// import { AuthApiError } from '@supabase/gotrue-js';
 import { fail, redirect } from '@sveltejs/kit';
 import type { Actions } from './$types';
 
