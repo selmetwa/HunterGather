@@ -6,7 +6,6 @@
   import Input from '../../components/Input.svelte';
 
   const error = $page?.form?.error;
-	export let data: any;
 </script>
 
 <div>
