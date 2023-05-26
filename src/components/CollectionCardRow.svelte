@@ -13,6 +13,7 @@
 
 	let hovering = false;
 	let requested = false;
+  const isMobile = window.innerWidth <= 1100;
 
 	const enter = () => {
 		hovering = true;
@@ -41,7 +42,7 @@
 			</div>
 		</div>
 	</a>
-	{#if hovering}
+	{#if hovering && !isMobile}
 		<div
 			in:scale={{ duration: 150, easing: quintOut, opacity: 0 }}
 			class="absolute top-0 right-0 m-auto z-50 p-6 cursor-default rounded-md"

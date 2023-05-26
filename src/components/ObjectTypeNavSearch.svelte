@@ -4,12 +4,6 @@
 	export let objectType = '';
 	export let searchTerm = '';
 
-  $: if (objectType) {
-    console.log({ objectType })
-  }
-
-  console.log({ objectType })
-
 	$: checkIfAll = (objectType === undefined) || (objectType === '') ? 'font-medium' : 'font-light';
 	$: checkIfBlocks = objectType === 'blocks' ? 'font-medium' : 'font-light';
 	$: checkIfCollections = objectType === 'collections' ? 'font-medium' : 'font-light';

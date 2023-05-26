@@ -26,7 +26,6 @@
 	const handleSearchByPress = async (q: string) => {
     if (q.length === 0) return
 
-    console.log({ objectType })
     const path = !!objectType ? `-${objectType}` : '';
 		await goto(`/search/${encodeURIComponent(q.trim().toLowerCase())}${path}`);
 	};

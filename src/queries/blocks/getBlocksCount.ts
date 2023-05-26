@@ -9,7 +9,6 @@ async function getBlocksCount() {
     .from('blocks')
     .select('*', { count: 'exact', head: true })
   
-  console.log({ count })
   return count;
 }
 

@@ -37,7 +37,6 @@
 		loadData();
 	}
 
-	// console.log({ user })
 	async function uploadAvatar(avatar: any) {
 		const avatarId = uuidv4();
 		const { data, error } = await supabaseClient.storage.from('avatars').upload(avatarId, avatar);

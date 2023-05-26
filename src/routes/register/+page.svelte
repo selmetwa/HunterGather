@@ -7,8 +7,6 @@
 
   const error = $page?.form?.error;
 	export let data: any;
-
-  console.log({ data });
 </script>
 
 <div>

@@ -49,11 +49,8 @@
       const collection = await getCollection(id)
 			collections.push(collection[0]);
 			collections = collections;
-			console.log({ collection });
 		});
 	};
-
-	console.log({ collections });
 
 	let gridRules = '';
 	previewPanel.subscribe((isPreviewPanelOpen) => {

@@ -16,7 +16,6 @@
 
 	onMount(() => {
 		previewPanelObject.subscribe((value) => {
-			console.log({ value });
 			type = value.type;
 			object = value.object;
 			url = value.type === 'block' ? value.object.url : '';

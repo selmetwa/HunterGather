@@ -20,7 +20,7 @@
 			</div>
 		</div>
 	{:else if $objectView === 'row'}
-		<div class="px-4 md:px-16 xl:px-24 flex flex-col gap-2 mb-12">
+		<div class="px-2 md:px-16 xl:px-24 flex flex-col gap-2 mb-12">
 			<slot />
 		</div>
 	{/if}

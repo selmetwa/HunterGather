@@ -26,7 +26,6 @@
 	let ids: any[] = [];
 
 	collectionIds.subscribe((value) => {
-		console.log({ value });
 		ids = value;
 	});
 
@@ -52,7 +51,6 @@
 
 		errorMessage = '';
 
-		console.log({ responseData });
 		setTimeout(() => {
 			inProgress = false;
 			successMessage = `Block has been created successfully.`;

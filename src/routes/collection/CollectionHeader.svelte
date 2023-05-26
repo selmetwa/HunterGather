@@ -41,7 +41,7 @@
 	};
 </script>
 
-<header class="header bg-gray-100 flex flex-col items-center">
+<header class="header bg-gray-100 flex flex-col items-center py-8">
 	<h1 class="text-gray-500 font-sans text-3xl xl:text-5xl md:text-4xl font-medium">{title}</h1>
 	<h3 class="text-gray-500 font-sans text-1xl xl:text-2xl md:text-2xl font-light my-2">
 		Created by: <a class="text-blue-400 underline" href={`/profile/blocks/${userId}`}>{author}</a>
@@ -49,16 +49,16 @@
 	<h3 class="text-gray-500 font-sans text-1xl xl:text-2xl md:text-2xl font-light my-2">
 		{count} items
 	</h3>
-	<div class="flex lg:flex-row gap-2">
+	<div class="flex lg:flex-row gap-2 my-2">
 		<button
 			type="button"
-			class="font-bold font-sans group relative flex w-full justify-center rounded-md border border-transparent py-2 px-4 font-medium text-white ease-in-out duration-300 cursor-pointer bg-action-400 hover:bg-action-500 w-min my-4"
+			class="font-bold font-sans group relative flex w-full justify-center rounded-md border border-transparent py-2 px-4 font-medium text-white ease-in-out duration-300 cursor-pointer bg-action-400 hover:bg-action-500 w-min"
 			on:click={toggleCollectingModal}>Collect</button
 		>
 		{#if isOwner}
 			<button
 				on:click={openDeleteModal}
-        class="font-bold font-sans group relative flex w-full justify-center rounded-md border border-transparent py-2 px-4 font-medium text-white ease-in-out duration-300 cursor-pointer bg-red-400 hover:bg-red-500 w-min my-4"
+        class="font-bold font-sans group relative flex w-full justify-center rounded-md border border-transparent py-2 px-4 font-medium text-white ease-in-out duration-300 cursor-pointer bg-red-400 hover:bg-red-500 w-min"
 				>Delete</button
 			>
 		{/if}

@@ -7,7 +7,6 @@ import { supabaseClient } from '$lib/supabase';
 async function paginatedBlocksBySearch(query: string, page: number, limit: number) {
 	const start = (page) * limit;
 	const end = start + limit;
-  console.log({ start, end })
 
 	const { data, count} = await supabaseClient
 		.from('blocks')

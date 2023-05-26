@@ -27,7 +27,6 @@
 	let count = 0;
 	let date = '';
 
-  console.log({ collection })
 	const enter = () => {
 		hovering = true;
 		if (!requested) {

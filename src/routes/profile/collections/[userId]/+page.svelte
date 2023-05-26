@@ -36,7 +36,6 @@
 		);
 
     collections = createUniqueArray(collections, masterCollections)
-    console.log({ masterCollections, collections})
 	};
 
   const handleFilter = (filterString: string) => {

@@ -19,7 +19,6 @@
 
 	onMount(() => {
 		deleteModalObject.subscribe((value) => {
-			console.log({ value });
 			type = value.type;
 			object = value.object;
 			url = value.type === 'block' ? value.object.url : '';
@@ -29,7 +28,6 @@
 
 	const onClose = (e: any) => {
 		if (e.target.id === 'close-modal-root') {
-			console.log('close');
 			isDeleteModalOpen.set(false);
 			deleteModalObject.set({ type: '', object: {} });
 		}
@@ -70,7 +68,6 @@
 		let table = type === 'block' ? 'blocks' : 'collections';
 		let column = type === 'block' ? 'blockId' : 'collectionId';
 		const { data, error } = await supabaseClient.from(table).delete().eq(column, id).select();
-		console.log({ data, error });
 
 		handleResponse(error);
 	};

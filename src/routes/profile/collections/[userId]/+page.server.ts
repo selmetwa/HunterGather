@@ -8,7 +8,6 @@ export const load = async ({ fetch, params }: { fetch: any; params: any }) => {
 	const userId = params?.userId;
   const collections = await getCollectionsByUserId(userId, 0, 10);
 
-  console.log({ collections })
 	return {
 		collections,
     userId

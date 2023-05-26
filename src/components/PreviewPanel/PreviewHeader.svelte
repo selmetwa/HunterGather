@@ -12,8 +12,6 @@
 		onClose();
 		goto(`/${type}/${id}`);
 	};
-
-  console.log({ url, id, type })
 </script>
 
 <header class="py-4 px-10 flex justify-between border-b border-gray-200">

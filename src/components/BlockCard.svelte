@@ -18,7 +18,7 @@
 	const { src, title, url, blockId, userId, created_at } = block;
 
 	const activeSession = $page?.data?.session;
-  const isMobile = window.innerWidth <= 1100;
+  const isMobile = window !== undefined && window.innerWidth <= 1100;
 	let hovering = false;
 	let requested = false;
 

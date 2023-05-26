@@ -21,7 +21,6 @@
 
 	export let data;
 
-	console.log({ data });
 	let modalIsOpen = false;
 	let collectingModalIsOpen = false;
 	let userId = $page?.data?.session?.user?.id;

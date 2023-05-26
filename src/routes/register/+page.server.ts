@@ -6,7 +6,6 @@ export const load: any = async ({ locals }: any) => {
 	const sessionExists = locals?.session;
 
 	if (sessionExists) {
-		console.log({ sessionExists });
 		throw redirect(303, '/');
 	}
 };
@@ -24,8 +23,6 @@ export const actions: Actions = {
 				}
 			}
 		});
-
-		console.log({ data, err });
 
 		if (data) {
 			return { data: data };

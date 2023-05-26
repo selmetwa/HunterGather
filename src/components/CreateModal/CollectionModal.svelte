@@ -39,7 +39,6 @@
 	const handleResponse = (res: any, responseData: any) => {
 		const { status } = res;
 
-    console.log({ res, responseData})
 		// handle error
 		if (status === 500) {
 			setTimeout(() => {
