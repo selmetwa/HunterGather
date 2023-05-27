@@ -2,19 +2,15 @@ import { supabaseClient } from '$lib/supabase';
 
 /**
  * This function gets all collections from a specific 
- * user within a defined start and end range.
  */
-async function getCollectionsByUserId(userId: string, page: number, limit: number) {
-  const start = page * limit;
-	const end = start + limit;
-
+async function getCollectionsByUserId(userId: string) {
   const { data: collections } = await supabaseClient
     .from('collections')
     .select()
     .eq('userId', userId)
-    .range(start, end);
+    .order('created_at', { ascending: false });
 
-  return collections
+  return collections || []
 }
 
 export default getCollectionsByUserId;

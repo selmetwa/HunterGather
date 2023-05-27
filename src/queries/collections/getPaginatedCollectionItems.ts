@@ -20,13 +20,15 @@ async function getPaginatedCollectionItems(
 			.from('blocks')
 			.select()
 			.contains('collectionIds', [`${collectionId}`])
-			.range(start, end);
+			.range(start, end)
+      .order('created_at', { ascending: false });
 
 		const { data: collections } = await supabaseClient
 			.from('collections')
 			.select()
 			.contains('collectionIds', [`${collectionId}`])
-			.range(start, end);
+			.range(start, end)
+      .order('created_at', { ascending: false });
 
 		return interweave(blocks, collections);
 	}

@@ -17,7 +17,8 @@ async function paginatedCollectionsBySearch(query: string, page: number, limit: 
       .from('collections')
       .select('*', { count: 'exact' })
       .filter('title', 'ilike', `%${query}%`)
-      .range(start, end);
+      .range(start, end)
+      .order('created_at', { ascending: false });
 
     return {
       collections: data || [],

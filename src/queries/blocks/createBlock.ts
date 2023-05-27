@@ -11,15 +11,17 @@ import { supabaseClient } from '$lib/supabase';
 const urlbox = Urlbox(PUBLIC_URLBOX_PUBLISHABLE_KEY, PUBLIC_URLBOX_SECRET_KEY);
 
 // create block
-export const createBlock = async (url: string, collectionIds: string | any[], userId: string | undefined) => {
+export const createBlock = async (title: string, url: string, collectionIds: string | any[], userId: string | undefined) => {
 	const blockId = uuidv4();
 
-  let title = '';
-
+  let realTitle = '';
   // handle potential invalid url
   try {
-	  const { title: responseTitle } = await getTitleAtUrl(url);
-    title = responseTitle;
+
+    if (!title || title.length === 0) {
+      const { title: responseTitle } = await getTitleAtUrl(url);
+      realTitle = responseTitle;
+    }
   } catch (e) {
     throw error(500, {
       message: "Invalid Url"
@@ -40,7 +42,7 @@ export const createBlock = async (url: string, collectionIds: string | any[], us
 		userId: userId,
 		src: imgUrl,
 		url: url,
-		title: title,
+		title: realTitle || title,
     objectType: 'block',
 		collectionIds: collectionIds
 	};

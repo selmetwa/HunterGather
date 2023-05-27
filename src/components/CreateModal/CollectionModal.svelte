@@ -4,9 +4,9 @@
 	import { modalStore, previewPanel, previewPanelObject } from '../../store/store';
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
-
+  import { onMount } from 'svelte';
   import { createCollection } from '../../queries/collections/createCollection';
-
+  import getCollectionsByUserId from '../../queries/user/getCollectionsByUserId'
 	import Input from '../Input.svelte';
 	import Button from '../Button.svelte';
 	import ErrorMessage from '../ErrorMessage.svelte';
@@ -22,10 +22,14 @@
 	let toggledCollectionIds: string | any[] = [];
 	let ids: any[] = [];
 
-	collectionIds.subscribe((value) => {
-		ids = value;
-	});
+	// collectionIds.subscribe((value) => {
+	// 	ids = value;
+	// });
 
+  onMount(async() => {
+    ids = await getCollectionsByUserId(($page?.data?.session?.user?.id || ''))
+  })
+  
 	const updateTitle = (e: any) => {
 		title = e.target.value;
 		return true;

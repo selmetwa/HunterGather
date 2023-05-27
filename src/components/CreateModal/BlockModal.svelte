@@ -11,26 +11,36 @@
 		modalStore
 	} from '../../store/store';
 
+  import getCollectionsByUserId from '../../queries/user/getCollectionsByUserId';
   import { createBlock } from '../../queries/blocks/createBlock';
 	import Input from '../Input.svelte';
 	import Button from '../Button.svelte';
 	import Pill from '../Pill.svelte';
 	import ErrorMessage from '../ErrorMessage.svelte';
 	import SuccessMessage from '../SuccessMessage.svelte';
+	import { onMount } from 'svelte';
 
 	export let onClose: any;
 	let inProgress = false;
 	let successMessage = '';
 	let errorMessage = '';
 	let url = '';
+	let title = '';
 	let toggledCollectionIds: string | any[] = [];
 	let ids: any[] = [];
 
-	collectionIds.subscribe((value) => {
-		ids = value;
-	});
+  onMount(async() => {
+    ids = await getCollectionsByUserId($page?.data?.session?.user?.id || '')
+  });
 
-	const updateUrl = (e: any) => {
+
+  const updateTitle = (event: Event) => {
+    const element = event.currentTarget as HTMLInputElement
+    const value = element.value
+    title = value;
+  }
+
+  const updateUrl = (e: any) => {
 		url = e.target.value;
 		return true;
 	};
@@ -79,7 +89,7 @@
 
 	const onSubmit = async () => {
 		inProgress = true;
-    const res = await createBlock(url, toggledCollectionIds, $page?.data?.session?.user?.id)
+    const res = await createBlock(title, url, toggledCollectionIds, $page?.data?.session?.user?.id)
 		const responseData = await res.json();
 		handleResponse(res, responseData);
 	};
@@ -123,6 +133,8 @@
 	</div>
 	<div class="flex-grow border-t border-gray-200" />
 	<form class="mt-8 space-y-6" on:submit={onSubmit}>
+    <label class="text-gray-400">Input a custom title, or let us scrape the page title for you.</label>
+		<Input type="text" text="Title" value={title} onChange={updateTitle} placeholder="Title" />
 		<Input type="text" text="URL" value={url} onChange={updateUrl} placeholder="url" />
 		{#if !!ids.length}
 			<div>

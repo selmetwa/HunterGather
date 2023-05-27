@@ -2,13 +2,13 @@ import { supabaseClient } from '$lib/supabase';
 import type { Actions } from './$types';
 import { redirect } from '@sveltejs/kit';
 
-import getCollectionsByUserId from '../../../../queries/user/getCollectionsByUserId';
+import getPaginatedCollectionsByUserId from '../../../../queries/user/getPaginatedCollectionsByUserId';
 
 export const ssr = false;
 
 export const load = async ({ fetch, params }: { fetch: any; params: any }) => {
 	const userId = params?.userId;
-  const collections = await getCollectionsByUserId(userId, 0, 10);
+  const collections = await getPaginatedCollectionsByUserId(userId, 0, 10);
 
 	return {
 		collections,

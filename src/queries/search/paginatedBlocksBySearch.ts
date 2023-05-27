@@ -12,7 +12,8 @@ async function paginatedBlocksBySearch(query: string, page: number, limit: numbe
 		.from('blocks')
 		.select('*', { count: 'exact' })
 		.filter('title', 'ilike', `%${query}%`)
-		.range(start, end);
+		.range(start, end)
+    .order('created_at', { ascending: false });
 
 	return {
 		blocks: data,

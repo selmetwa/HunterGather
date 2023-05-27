@@ -10,7 +10,7 @@
 		isDeleteModalOpen
 	} from '../../store/store';
 
-	$: ({ title, collectionId, userId } = collection && collection[0]);
+	$: ({ title, collectionId, description, userId } = collection && collection[0]);
 	const activeSession = $page?.data?.session;
 
 	let author = 'author';
@@ -41,8 +41,9 @@
 	};
 </script>
 
-<header class="header bg-gray-100 flex flex-col items-center py-8">
+<header class="header bg-gray-100 flex flex-col items-center p-8">
 	<h1 class="text-gray-500 font-sans text-3xl xl:text-5xl md:text-4xl font-medium">{title}</h1>
+  <p class="text-gray-500 font-sans text-1xl xl:text-2xl md:text-2xl font-light my-2">{description}</p>
 	<h3 class="text-gray-500 font-sans text-1xl xl:text-2xl md:text-2xl font-light my-2">
 		Created by: <a class="text-blue-400 underline" href={`/profile/blocks/${userId}`}>{author}</a>
 	</h3>

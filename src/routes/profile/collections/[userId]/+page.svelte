@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 
 	import { createUniqueArray } from '../../../../utils/createUniqueArray';
-	import getCollectionsByUserId from '../../../../queries/user/getCollectionsByUserId';
+	import getPaginatedCollectionsByUserId from '../../../../queries/user/getPaginatedCollectionsByUserId';
 	import getCollectionsCountByUserId from '../../../../queries/user/getCollectionsCountByUserId';
 	import CollectionCard from '../../../../components/CollectionCard.svelte';
 	import Grid from '../../../../components/Grid.svelte';
@@ -27,7 +27,7 @@
 	const loadMore = async () => {
     masterCollections = createUniqueArray(
 			masterCollections,
-			await getCollectionsByUserId(data.userId, page, 10)
+			await getPaginatedCollectionsByUserId(data.userId, page, 10)
 		);
 
     collections = createUniqueArray(collections, masterCollections)

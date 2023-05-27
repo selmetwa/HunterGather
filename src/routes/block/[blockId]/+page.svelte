@@ -8,7 +8,7 @@
   import getUserById from '../../../queries/user/getUserById';
 	import { collectingModal, objectToCollect, previewPanel, deleteModalObject, isDeleteModalOpen } from '../../../store/store';
 	import CollectionCard from '../../../components/CollectionCard.svelte';
-
+  import LoadingSpinner from '../../../components/LoadingSpinner.svelte';
 	export let data;
 	const userId = $page?.data?.session?.user?.id;
 

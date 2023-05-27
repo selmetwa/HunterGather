@@ -107,13 +107,12 @@ You can preview the production build with `npm run preview`.
 - [x] add buttons to toggle views everywhere
 - [x] clean up collection rows on block detail pages
 - [x] handle background when there arent many items
-- [ ] code cleanup
-  - [ ] move supabasequeries into their own place
-  - [ ] add a bunch of comments
 - [x] search filter for profile pages
 - [x] search filter for collection pages
-- [ ] profile not reacting correctly to profileId change
+- [x?] profile not reacting correctly to profileId change
 - [x] add dates
 - [x] move view toggle buttons into their own component
-- [ ] optimize for mobile
-  - [ ] fix header on mobile
+- [x] optimize for mobile
+  - [x] fix header on mobile
+- [ ] let user input own title
+- [ ] tags...
