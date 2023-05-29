@@ -8,15 +8,15 @@ async function paginatedBlocksBySearch(query: string, page: number, limit: numbe
 	const start = (page) * limit;
 	const end = start + limit;
 
-	const { data, count} = await supabaseClient
+	const { data, count } = await supabaseClient
 		.from('blocks')
-		.select('*', { count: 'exact' })
-		.filter('title', 'ilike', `%${query}%`)
-		.range(start, end)
+    .select('*', { count: 'exact' })
+    .filter('title', 'ilike', `%${query}%`)
+    .range(start, end)
     .order('created_at', { ascending: false });
 
 	return {
-		blocks: data,
+		blocks: data || [],
 		blocksCount: count || 0
 	};
 }

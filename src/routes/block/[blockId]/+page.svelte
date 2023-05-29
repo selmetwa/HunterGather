@@ -79,8 +79,7 @@
 					style="width: 100%; display: block;"
 					class="h-[500px] lg:h-[600px] 2xl:h-[800px]"
 				>
-					<!-- <p class="text-gray-500 m-4">Cannot embed this website, heres a picture</p> -->
-					<a href={url} target="_blank">
+					<a href={url} target="_blank" rel="noreferrer">
 						<img alt={title} {src} class="h-auto object-cover" />
 					</a>
 				</object>
@@ -89,7 +88,7 @@
 		<div
 			class="col-span-1 lg:col-span-1 lg:order-2 bg-gray-100 border-4 border-gray-300 p-4 w-full"
 		>
-			<a href={url} class="text-blue-500" target="_blank">{url?.slice(0, 45)}...</a>
+			<a href={url} class="text-blue-500" target="_blank" rel="noreferrer">{url?.slice(0, 45)}...</a>
 			<h1 class="text-2xl font-bold mt-2">{title}</h1>
 			<p class="mt-2">
 				Added by: <a href={`/profile/blocks/${authorId}`} class="text-blue-500">{author}</a>
