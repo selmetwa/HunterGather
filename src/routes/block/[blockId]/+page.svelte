@@ -75,9 +75,9 @@
 					style="width: 100%; display: block;"
 					class="h-[500px] lg:h-[600px] 2xl:h-[800px]"
 				>
-					<p class="text-gray-500 m-4">Cannot embed this website, heres a picture</p>
+					<!-- <p class="text-gray-500 m-4">Cannot embed this website, heres a picture</p> -->
 					<a href={url} target="_blank">
-						<img alt={title} {src} class="lg:w-[800px] 2xl:w-[1000px]" />
+						<img alt={title} {src} class="h-auto object-cover" />
 					</a>
 				</object>
 			{/if}

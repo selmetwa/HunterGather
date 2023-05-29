@@ -1,18 +1,15 @@
 <script lang="ts">
-  import { page } from '$app/stores';
+	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
-  import Device from 'svelte-device-info';
+	import Device from 'svelte-device-info';
 
-	import {
-		previewPanel,
-		previewPanelObject,
-		collectionIds,
-		objectToCollect,
-		modalStore
-	} from '../../store/store';
+	import { previewPanel, previewPanelObject, objectToCollect, modalStore } from '../../store/store';
 
-  import getCollectionsByUserId from '../../queries/user/getCollectionsByUserId';
-  import { createBlock } from '../../queries/blocks/createBlock';
+	import { createUniqueArray } from '../../utils/createUniqueArray';
+	import getPaginatedCollectionsByUserId from '../../queries/user/getPaginatedCollectionsByUserId';
+	import getCollectionsCountByUserId from '../../queries/user/getCollectionsCountByUserId';
+	import getCollectionsByUserId from '../../queries/user/getCollectionsByUserId';
+	import { createBlock } from '../../queries/blocks/createBlock';
 	import Input from '../Input.svelte';
 	import Button from '../Button.svelte';
 	import Pill from '../Pill.svelte';
@@ -21,26 +18,40 @@
 	import { onMount } from 'svelte';
 
 	export let onClose: any;
+	export let collectionIds: any;
+	export let count: number;
+	export let nextPage: any;
 	let inProgress = false;
 	let successMessage = '';
 	let errorMessage = '';
 	let url = '';
 	let title = '';
 	let toggledCollectionIds: string | any[] = [];
-	let ids: any[] = [];
+	// let ids: any[] = [];
+	// let p = 0;
 
-  onMount(async() => {
-    ids = await getCollectionsByUserId($page?.data?.session?.user?.id || '')
-  });
+	// $: count = 0;
+	// $: if (p) loadMore();
 
+	// const loadMore = async () => {
+	// 	ids = createUniqueArray(
+	// 		ids,
+	// 		await getPaginatedCollectionsByUserId($page?.data?.session?.user?.id || '', p, 5)
+	// 	);
+	// };
 
-  const updateTitle = (event: Event) => {
-    const element = event.currentTarget as HTMLInputElement
-    const value = element.value
-    title = value;
-  }
+	// onMount(async () => {
+	// 	ids = await getPaginatedCollectionsByUserId($page?.data?.session?.user?.id || '', 0, 5);
+	// 	count = await getCollectionsCountByUserId($page?.data?.session?.user?.id);
+	// });
 
-  const updateUrl = (e: any) => {
+	const updateTitle = (event: Event) => {
+		const element = event.currentTarget as HTMLInputElement;
+		const value = element.value;
+		title = value;
+	};
+
+	const updateUrl = (e: any) => {
 		url = e.target.value;
 		return true;
 	};
@@ -71,13 +82,13 @@
 			/**
 			 * close modal and redirect user somewhere
 			 */
-      const isMobile = Device.isMobile;
+			const isMobile = Device.isMobile;
 			setTimeout(() => {
-        if (isMobile) {
-				  modalStore.set(false);
-          goto(`/block/${responseData[0].blockId}`);
-          return
-        }
+				if (isMobile) {
+					modalStore.set(false);
+					goto(`/block/${responseData[0].blockId}`);
+					return;
+				}
 				successMessage = '';
 				modalStore.set(false);
 				previewPanel.set(true);
@@ -89,7 +100,7 @@
 
 	const onSubmit = async () => {
 		inProgress = true;
-    const res = await createBlock(title, url, toggledCollectionIds, $page?.data?.session?.user?.id)
+		const res = await createBlock(title, url, toggledCollectionIds, $page?.data?.session?.user?.id);
 		const responseData = await res.json();
 		handleResponse(res, responseData);
 	};
@@ -133,20 +144,32 @@
 	</div>
 	<div class="flex-grow border-t border-gray-200" />
 	<form class="mt-8 space-y-6" on:submit={onSubmit}>
-    <label class="text-gray-400">Input a custom title, or let us scrape the page title for you.</label>
-		<Input type="text" text="Title" value={title} onChange={updateTitle} placeholder="Title" />
+		<Input
+			type="text"
+			text="Add a custom title, or let us scrape the page title for you"
+			value={title}
+			onChange={updateTitle}
+			placeholder="Title"
+		/>
 		<Input type="text" text="URL" value={url} onChange={updateUrl} placeholder="url" />
-		{#if !!ids.length}
+		{#if !!collectionIds.length}
 			<div>
 				<p class="text-gray-400">Add to collection(s)</p>
-				{#each ids as obj}
-					<Pill
-						val={obj.collectionId}
-						text={obj.title}
-						onClick={onPillClick}
-						isIncluded={toggledCollectionIds.includes(obj.collectionId)}
-					/>
-				{/each}
+				<div>
+					{#each collectionIds as obj}
+						<Pill
+							val={obj.collectionId}
+							text={obj.title}
+							onClick={onPillClick}
+							isIncluded={toggledCollectionIds.includes(obj.collectionId)}
+						/>
+					{/each}
+					{#if collectionIds.length < count}
+						<button on:click={nextPage} type="button" class="text-gray-400 font-medium">
+							Load More
+						</button>
+					{/if}
+				</div>
 			</div>
 		{/if}
 		<Button text="Create Block" type="submit" {inProgress} />

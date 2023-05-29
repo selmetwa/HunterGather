@@ -1,12 +1,10 @@
 <script lang="ts">
   import Device from 'svelte-device-info';
-	import { collectionIds } from '../../store/store';
 	import { modalStore, previewPanel, previewPanelObject } from '../../store/store';
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
-  import { onMount } from 'svelte';
+
   import { createCollection } from '../../queries/collections/createCollection';
-  import getCollectionsByUserId from '../../queries/user/getCollectionsByUserId'
 	import Input from '../Input.svelte';
 	import Button from '../Button.svelte';
 	import ErrorMessage from '../ErrorMessage.svelte';
@@ -14,21 +12,33 @@
 	import Pill from '../Pill.svelte';
 
 	export let onClose: any;
+  export let collectionIds: any;
+  export let count: number;
+  export let nextPage: any;
+
 	let inProgress = false;
 	let errorMessage = '';
 	let successMessage = '';
 	let title = '';
 	let description = '';
 	let toggledCollectionIds: string | any[] = [];
-	let ids: any[] = [];
+// 	let ids: any[] = [];
 
-	// collectionIds.subscribe((value) => {
-	// 	ids = value;
-	// });
 
-  onMount(async() => {
-    ids = await getCollectionsByUserId(($page?.data?.session?.user?.id || ''))
-  })
+// const loadMore = async () => {
+//   ids = createUniqueArray(
+//     ids,
+//     await getPaginatedCollectionsByUserId($page?.data?.session?.user?.id || '', p, 5)
+//   );
+// };
+
+// 	// collectionIds.subscribe((value) => {
+// 	// 	ids = value;
+// 	// });
+
+//   onMount(async() => {
+//     ids = await getPaginatedCollectionsByUserId(($page?.data?.session?.user?.id || ''))
+//   })
   
 	const updateTitle = (e: any) => {
 		title = e.target.value;
@@ -131,21 +141,22 @@
 			text="Title"
 			value={title}
 			onChange={updateTitle}
-			placeholder="Cool Portfolio Sites"
+			placeholder="Collection Title"
 			isRequired={true}
 			maxlength={50}
 		/>
 		<Input
 			type="text"
-			text="Description"
+			text="Description (Optional)"
 			value={description}
 			onChange={updateDescription}
-			placeholder="Collection of cool portfolios"
+			placeholder="What is this collection about"
+			maxlength={150}
 		/>
-		{#if !!ids.length}
+		{#if !!collectionIds.length}
 			<div>
 				<p class="text-gray-400">Add to collection(s)</p>
-				{#each ids as obj}
+				{#each collectionIds as obj}
 					<Pill
 						val={obj.collectionId}
 						text={obj.title}
@@ -153,6 +164,11 @@
 						isIncluded={toggledCollectionIds.includes(obj.collectionId)}
 					/>
 				{/each}
+        {#if collectionIds.length < count}
+        <button on:click={nextPage} type="button" class="text-gray-400 font-medium">
+          Load More
+        </button>
+        {/if}
 			</div>
 		{/if}
 

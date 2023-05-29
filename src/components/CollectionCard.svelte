@@ -71,8 +71,8 @@
 </script>
 
 {#if ($objectView === 'row' || isRow)}
-	<CollectionCardRow {count} {collectionId} {title} {author} {userId} {toggleCollectingModal} {togglePreview} date={formatDate(collection.created_at)} />
-{:else if $objectView === 'card'}
+	<CollectionCardRow {count} {collectionId} {title} {author} {userId} {toggleCollectingModal} {togglePreview} date={formatDate(collection?.created_at)} />
+{:else}
 	<div
 		class="card aspect-4/3 transition-all bg-gray-100 border-2 border-gray-300 hover:bg-gray-200 relative"
 		on:mouseenter={enter}
@@ -81,8 +81,8 @@
 	>
 		{#if hovering && !isMobile}
 			<div
-				in:scale={{ duration: 150, easing: quintOut, opacity: 0 }}
-				class="absolute border shadow-md top-0 m-auto z-50 bg-white shadow-xl p-6 w-full cursor-default rounded-md"
+      transition:scale={{ duration: 400, easing: quintOut, opacity: 0 }}
+      class="absolute border shadow-md top-0 m-auto z-50 bg-white shadow-xl p-6 w-full cursor-default rounded-md"
 			>
 				<div class="w-full flex gap-4">
 					<button
@@ -113,7 +113,9 @@
         <div class="absolute top-0 right-0 h-6 w-6 p-4 bg-gray-300 flex items-center justify-center">
           <p class="font-sans font-medium text-gray-500">{count}</p>
         </div>
-        <p class="font-sans font-light text-gray-400">{formatDate(collection.created_at)}</p>
+        {#if collection.created_at}
+          <p class="font-sans font-light text-gray-400">{formatDate(collection.created_at)}</p>
+        {/if}
 			</div>
 		</a>
 	</div>

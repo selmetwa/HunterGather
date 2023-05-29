@@ -55,8 +55,6 @@
 			});
 		}
 	};
-
-	let test = true;
 </script>
 
 {#if $objectView === 'row'}
@@ -69,7 +67,7 @@
 			</a>
 			{#if hovering && !isMobile}
 				<div
-					in:scale={{ duration: 150, easing: quintOut, opacity: 0 }}
+					transition:scale={{ duration: 400, easing: quintOut, opacity: 0 }}
 					class="absolute border shadow-md top-0 m-auto z-50 bg-white shadow-xl p-6 w-full cursor-default rounded-md"
 				>
 					<div class="w-full flex gap-4">

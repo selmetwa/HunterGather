@@ -114,5 +114,7 @@ You can preview the production build with `npm run preview`.
 - [x] move view toggle buttons into their own component
 - [x] optimize for mobile
   - [x] fix header on mobile
-- [ ] let user input own title
-- [ ] tags...
+- [x] let user input own title
+- [x] detecting mobile doesnt work
+- [ ] about page
+- [ ] stripe

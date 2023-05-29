@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { scale, fade } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
-  import Device from 'svelte-device-info';
+	import Device from 'svelte-device-info';
 
 	export let src = '';
 	export let title = '';
@@ -13,7 +13,7 @@
 
 	let hovering = false;
 	let requested = false;
-  const isMobile = Device.isMobile;
+	const isMobile = Device.isMobile;
 
 	const enter = () => {
 		hovering = true;
@@ -25,20 +25,27 @@
 	const leave = () => (hovering = false);
 </script>
 
-<div class="border border-gray-200 bg-white py-4 relative" on:mouseenter={enter} on:mouseleave={leave} in:fade>
-  <a href={`/block/${blockId}`} class="relative">
-	<div class="flex items-center gap-4 flex-row">
-		<img class="ml-3 h-16 w-16 rounded-md border border-gray-200" {src} alt="d" />
-		<div class="flex flex-col pr-12 overflow-hidden">
-			<a href={`/block/${blockId}`} class="flex flex-wrap break-words">{title}</a>
-			<a href={url} class="text-blue-400 underline flex flex-wrap break-words overflow-hidden">{url}</a>
-      <p class="text-gray-400 font-light text-left line-clamp-2">{date}</p>
+<div
+	class="border border-gray-200 bg-white py-4 relative"
+	on:mouseenter={enter}
+	on:mouseleave={leave}
+	in:fade
+>
+	<a href={`/block/${blockId}`} class="relative">
+		<div class="flex items-center gap-4 flex-row">
+			<img class="ml-3 h-16 w-16 rounded-md border border-gray-200" {src} alt="d" />
+			<div class="flex flex-col pr-12 overflow-hidden">
+				<a href={`/block/${blockId}`} class="flex flex-wrap break-words">{title}</a>
+				<a href={url} class="text-blue-400 underline flex flex-wrap break-words overflow-hidden"
+					>{url}</a
+				>
+				<p class="text-gray-400 font-light text-left line-clamp-2">{date}</p>
+			</div>
 		</div>
-	</div>
-</a>
+	</a>
 	{#if hovering && !isMobile}
 		<div
-			in:scale={{ duration: 150, easing: quintOut, opacity: 0 }}
+			transition:scale={{ duration: 400, easing: quintOut, opacity: 0 }}
 			class="absolute top-0 right-0 m-auto z-50 p-6 cursor-default rounded-md"
 		>
 			<div class="w-full flex gap-4">

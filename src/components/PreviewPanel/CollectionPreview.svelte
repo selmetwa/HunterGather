@@ -44,7 +44,7 @@
 		<span class="text-action-400">{title}</span> preview
 	</h1>
 	{#if !!objects.length}
-		{#if $objectView === 'card'}
+		{#if ['card', 'two-up'].includes($objectView)}
 			<div class={`grid gap-4 grid-cols-2`}>
 				{#each objects as object}
 					{#if object.objectType === 'block'}

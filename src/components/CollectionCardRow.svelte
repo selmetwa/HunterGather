@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { scale, fade } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
-  import Device from 'svelte-device-info';
-  
+	import Device from 'svelte-device-info';
+
 	export let author = '';
 	export let title = '';
 	export let collectionId = '';
@@ -14,7 +14,7 @@
 
 	let hovering = false;
 	let requested = false;
-  const isMobile = Device.isMobile;
+	const isMobile = Device.isMobile;
 
 	const enter = () => {
 		hovering = true;
@@ -26,7 +26,12 @@
 	const leave = () => (hovering = false);
 </script>
 
-<div class="border bg-gray-200 border-gray-300 relative" on:mouseenter={enter} on:mouseleave={leave} in:fade>
+<div
+	class="border bg-gray-200 border-gray-300 relative"
+	on:mouseenter={enter}
+	on:mouseleave={leave}
+	in:fade
+>
 	<a href={`/collection/${collectionId}`}>
 		<div class="flex items-center gap-4 flex-row py-4">
 			<div
@@ -39,13 +44,13 @@
 				<a href={`/profile/blocks/${userId}`} class="text-blue-400 underline flex flex-wrap"
 					>{author}</a
 				>
-        <p class="font-sans text-gray-400">{date}</p>
+				<p class="font-sans text-gray-400">{date}</p>
 			</div>
 		</div>
 	</a>
 	{#if hovering && !isMobile}
 		<div
-			in:scale={{ duration: 150, easing: quintOut, opacity: 0 }}
+			transition:scale={{ duration: 400, easing: quintOut, opacity: 0 }}
 			class="absolute top-0 right-0 m-auto z-50 p-6 cursor-default rounded-md"
 		>
 			<div class="w-full flex gap-4">
