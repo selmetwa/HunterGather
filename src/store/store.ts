@@ -17,3 +17,6 @@ export const deleteModalObject = writable({ type: '', object: {} });
 
 // layout style
 export const objectView = writable('card');
+
+// auth modal
+export const authModal = writable(false);

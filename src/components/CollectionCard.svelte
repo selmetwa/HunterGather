@@ -10,6 +10,7 @@
 	import getCollectionCount from '../queries/collections/getCollectionCount';
 	import CollectionCardRow from './CollectionCardRow.svelte';
 	import {
+    authModal,
 		collectingModal,
 		objectToCollect,
 		previewPanel,
@@ -52,7 +53,7 @@
 			collectingModal.set(true);
 			objectToCollect.set(collection);
 		} else {
-			alert('You must have a registered account to do that');
+      authModal.set(true)
 		}
 	};
 

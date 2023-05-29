@@ -5,6 +5,7 @@
   import Device from 'svelte-device-info';
 	import { quintOut } from 'svelte/easing';
 	import {
+    authModal,
 		collectingModal,
 		objectToCollect,
 		previewPanel,
@@ -37,7 +38,7 @@
 			collectingModal.set(true);
 			objectToCollect.set(block);
 		} else {
-			alert('You must have a registered account to do that');
+      authModal.set(true)
 		}
 	};
 

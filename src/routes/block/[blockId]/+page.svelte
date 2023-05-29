@@ -1,14 +1,18 @@
 <script>
 	// @ts-nocheck
 	import { page } from '$app/stores';
-	import { goto } from '$app/navigation';
-	import { supabaseClient } from '$lib/supabase';
 
-  import getCollection from '../../../queries/collections/getCollection';
-  import getUserById from '../../../queries/user/getUserById';
-	import { collectingModal, objectToCollect, previewPanel, deleteModalObject, isDeleteModalOpen } from '../../../store/store';
+	import getCollection from '../../../queries/collections/getCollection';
+	import getUserById from '../../../queries/user/getUserById';
+	import {
+		authModal,
+		collectingModal,
+		objectToCollect,
+		previewPanel,
+		deleteModalObject,
+		isDeleteModalOpen
+	} from '../../../store/store';
 	import CollectionCard from '../../../components/CollectionCard.svelte';
-  import LoadingSpinner from '../../../components/LoadingSpinner.svelte';
 	export let data;
 	const userId = $page?.data?.session?.user?.id;
 
@@ -30,12 +34,12 @@
 			collectingModal.set(true);
 			objectToCollect.set(block);
 		} else {
-			alert('You must have a registered account to do that');
+			authModal.set(true);
 		}
 	};
 
 	const loadData = async () => {
-    const user = await getUserById(block.userId)
+		const user = await getUserById(block.userId);
 
 		title = block.title;
 		author = user && user[0] && user[0].name;
@@ -46,7 +50,7 @@
 		// fetch collections
 		let collectionIds = block.collectionIds;
 		collectionIds.forEach(async (id) => {
-      const collection = await getCollection(id)
+			const collection = await getCollection(id);
 			collections.push(collection[0]);
 			collections = collections;
 		});
@@ -57,10 +61,10 @@
 		gridRules = isPreviewPanelOpen ? 'grid-cols-1' : 'grid-cols-1 lg:grid-cols-3 2xl:grid-cols-4';
 	});
 
-  const openDeleteModal = () => {
-    deleteModalObject.set({type: 'block', object: block});
-    isDeleteModalOpen.set(true)
-  }
+	const openDeleteModal = () => {
+		deleteModalObject.set({ type: 'block', object: block });
+		isDeleteModalOpen.set(true);
+	};
 </script>
 
 <div class="w-full h-full opacity-100 bg-gray-100">
@@ -85,7 +89,7 @@
 		<div
 			class="col-span-1 lg:col-span-1 lg:order-2 bg-gray-100 border-4 border-gray-300 p-4 w-full"
 		>
-			<a href={url} class="text-blue-500" target="_blank">{url?.slice(0,45)}...</a>
+			<a href={url} class="text-blue-500" target="_blank">{url?.slice(0, 45)}...</a>
 			<h1 class="text-2xl font-bold mt-2">{title}</h1>
 			<p class="mt-2">
 				Added by: <a href={`/profile/blocks/${authorId}`} class="text-blue-500">{author}</a>

@@ -21,8 +21,8 @@
 		deleteModalObject.subscribe((value) => {
 			type = value.type;
 			object = value.object;
-			url = value.type === 'block' ? value.object.url : '';
-			id = value.type === 'block' ? value.object.blockId : value.object.id;
+			url = value.type === 'block' ? value.object?.url : '';
+			id = value.type === 'block' ? value.object?.blockId : value.object?.id;
 		});
 	});
 

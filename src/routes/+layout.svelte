@@ -6,6 +6,7 @@
 	import { fade } from 'svelte/transition';
 
 	import {
+    authModal,
 		previewPanel,
 		modalStore,
 		collectionIds,
@@ -17,6 +18,7 @@
 	import CollectingModal from '../components/CollectingModal/CollectingModal.svelte';
 	import PreviewPanel from '../components/PreviewPanel/PreviewPanel.svelte';
 	import DeleteModal from '../components/DeleteModal/DeleteModal.svelte';
+  import AuthModal from '../components/AuthModal/AuthModal.svelte';
 	import '../app.css';
 
 	export let data;
@@ -54,6 +56,9 @@
 <div class="bg-gray-50 flex flex-row overflow-hidden w-screen">
 	<main class="flex flex-col w-full">
 		<Header />
+    {#if $authModal}
+      <AuthModal />
+    {/if}
 		{#if modalIsOpen}
 			<CreateModal />
 		{/if}

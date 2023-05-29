@@ -2,8 +2,9 @@
 	import { page } from '$app/stores';
 	import { supabaseClient } from '$lib/supabase';
 	export let collection: any;
-  export let count: number;
+	export let count: number;
 	import {
+		authModal,
 		collectingModal,
 		objectToCollect,
 		deleteModalObject,
@@ -31,7 +32,7 @@
 			collectingModal.set(true);
 			objectToCollect.set(collection[0]);
 		} else {
-			alert('You must have a registered account to do that');
+			authModal.set(true);
 		}
 	};
 
@@ -43,7 +44,9 @@
 
 <header class="header bg-gray-100 flex flex-col items-center p-8">
 	<h1 class="text-gray-500 font-sans text-3xl xl:text-5xl md:text-4xl font-medium">{title}</h1>
-  <p class="text-gray-500 font-sans text-1xl xl:text-2xl md:text-2xl font-light my-2">{description}</p>
+	<p class="text-gray-500 font-sans text-1xl xl:text-2xl md:text-2xl font-light my-2">
+		{description}
+	</p>
 	<h3 class="text-gray-500 font-sans text-1xl xl:text-2xl md:text-2xl font-light my-2">
 		Created by: <a class="text-blue-400 underline" href={`/profile/blocks/${userId}`}>{author}</a>
 	</h3>
@@ -59,7 +62,7 @@
 		{#if isOwner}
 			<button
 				on:click={openDeleteModal}
-        class="font-bold font-sans group relative flex w-full justify-center rounded-md border border-transparent py-2 px-4 font-medium text-white ease-in-out duration-300 cursor-pointer bg-red-400 hover:bg-red-500 w-min"
+				class="font-bold font-sans group relative flex w-full justify-center rounded-md border border-transparent py-2 px-4 font-medium text-white ease-in-out duration-300 cursor-pointer bg-red-400 hover:bg-red-500 w-min"
 				>Delete</button
 			>
 		{/if}
