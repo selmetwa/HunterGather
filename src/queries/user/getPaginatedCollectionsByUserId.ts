@@ -13,7 +13,7 @@ async function getPaginatedCollectionsByUserId(userId: string, page: number, lim
     .select()
     .eq('userId', userId)
     .range(start, end)
-    .order('created_at', { ascending: false });
+    .order('updated_at', { ascending: false });
 
   return collections
 }

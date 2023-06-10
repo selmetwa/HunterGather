@@ -8,7 +8,7 @@ async function getCollectionsByUserId(userId: string) {
     .from('collections')
     .select()
     .eq('userId', userId)
-    .order('created_at', { ascending: false });
+    .order('updated_at', { ascending: false });
 
   return collections || []
 }

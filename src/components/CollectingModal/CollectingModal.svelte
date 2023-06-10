@@ -114,7 +114,6 @@
 				.from('blocks')
 				.update({ 
           collectionIds: a,
-          updated_at: generateISOString()
         })
 				.eq('blockId', objectWeAreCollecting.blockId)
 				.select();
@@ -128,7 +127,6 @@
 				.from('collections')
 				.update({ 
           collectionIds: a,
-          updated_at: generateISOString()
         })
 				.eq('collectionId', objectWeAreCollecting.collectionId)
 				.select();
