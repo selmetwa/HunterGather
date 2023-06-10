@@ -5,17 +5,12 @@
 
 	import { previewPanel, previewPanelObject, objectToCollect, modalStore } from '../../store/store';
 
-	import { createUniqueArray } from '../../utils/createUniqueArray';
-	import getPaginatedCollectionsByUserId from '../../queries/user/getPaginatedCollectionsByUserId';
-	import getCollectionsCountByUserId from '../../queries/user/getCollectionsCountByUserId';
-	import getCollectionsByUserId from '../../queries/user/getCollectionsByUserId';
 	import { createBlock } from '../../queries/blocks/createBlock';
 	import Input from '../Input.svelte';
 	import Button from '../Button.svelte';
 	import Pill from '../Pill.svelte';
 	import ErrorMessage from '../ErrorMessage.svelte';
 	import SuccessMessage from '../SuccessMessage.svelte';
-	import { onMount } from 'svelte';
 
 	export let onClose: any;
 	export let collectionIds: any;
@@ -27,23 +22,6 @@
 	let url = '';
 	let title = '';
 	let toggledCollectionIds: string | any[] = [];
-	// let ids: any[] = [];
-	// let p = 0;
-
-	// $: count = 0;
-	// $: if (p) loadMore();
-
-	// const loadMore = async () => {
-	// 	ids = createUniqueArray(
-	// 		ids,
-	// 		await getPaginatedCollectionsByUserId($page?.data?.session?.user?.id || '', p, 5)
-	// 	);
-	// };
-
-	// onMount(async () => {
-	// 	ids = await getPaginatedCollectionsByUserId($page?.data?.session?.user?.id || '', 0, 5);
-	// 	count = await getCollectionsCountByUserId($page?.data?.session?.user?.id);
-	// });
 
 	const updateTitle = (event: Event) => {
 		const element = event.currentTarget as HTMLInputElement;

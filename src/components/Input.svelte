@@ -7,7 +7,7 @@
 	export let placeholder = '';
 	export let isRequired = false;
 	export let maxlength = 1000;
-	export let onChange = (e: any) => true;
+	export let onChange = (e: Event) => true;
 
 	const hasIcon = !!(iconType && icon);
 </script>

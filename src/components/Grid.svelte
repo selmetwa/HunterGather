@@ -21,7 +21,7 @@
 		</div>
   {:else if $objectView === 'two-up'}
   <div class="px-8 md:px-16 xl:px-24 mb-12">
-    <div class={`grid gap-12 sm:grid-cols-1 md:grid-cols-2`}>
+    <div class={`grid gap-12 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3`}>
       <slot />
     </div>
   </div>

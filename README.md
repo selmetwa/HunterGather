@@ -116,5 +116,11 @@ You can preview the production build with `npm run preview`.
   - [x] fix header on mobile
 - [x] let user input own title
 - [x] detecting mobile doesnt work
-- [ ] about page
 - [ ] stripe
+  - [x] add isSubscriber column
+  - [ ] add progress bar on profile page
+  - [ ] add link to pay in footer
+  - [ ] paywall modal
+  - [ ] add limit on blocks + collections
+- [ ] about page
+  - [ ] add my personal email

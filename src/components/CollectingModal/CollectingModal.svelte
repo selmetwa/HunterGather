@@ -1,9 +1,11 @@
 <script lang="ts">
 	import { supabaseClient } from '$lib/supabase';
 	import { onMount } from 'svelte';
-
+	import { page } from '$app/stores';
+  import { generateISOString } from '../../utils/generateISOString'
+	import getCollectionsByUserId from '../../queries/user/getCollectionsByUserId';
 	import Modal from '../Modal.svelte';
-	import { collectionIds, collectingModal, objectToCollect } from '../../store/store';
+	import { collectingModal, objectToCollect } from '../../store/store';
 	import Button from '../Button.svelte';
 	import Pill from '../Pill.svelte';
 	import ErrorMessage from '../ErrorMessage.svelte';
@@ -14,15 +16,13 @@
 	let errorMessage = '';
 	let url = '';
 	let toggledCollectionIds: string | any[] = [];
-	let ids: any[] = [];
 	let originalIds: string[] = [];
 	let objectWeAreCollecting: any;
 
+	let ids: any[] = [];
+  
 	objectToCollect.subscribe((value) => {
 		objectWeAreCollecting = value;
-	});
-	collectionIds.subscribe((value) => {
-		ids = value;
 	});
 
 	const handleResponse = (error: any) => {
@@ -48,6 +48,7 @@
 			 */
 			setTimeout(() => {
 				successMessage = '';
+        collectingModal.set(false)
 			}, 2000);
 		}, 1000);
 	};
@@ -55,7 +56,8 @@
 	onMount(async () => {
 		const { objectType } = objectWeAreCollecting;
 
-		let data;
+		ids = await getCollectionsByUserId($page?.data?.session?.user?.id || '');
+
 		let all;
 		if (objectType === 'block') {
 			const { data } = await supabaseClient
@@ -73,9 +75,11 @@
 			all = data && data[0] && data && data[0].collectionIds;
 		}
 
-		const realIds = ids.map((i) => i.collectionId);
+		const realIds = ids.map((i: any) => i.collectionId);
 		const filtered = all.filter((id: string) => realIds.includes(id));
 		toggledCollectionIds = filtered;
+
+    console.log({ realIds, ids, filtered })
 
 		originalIds = all.filter((id: string) => !realIds.includes(id));
 	});
@@ -108,7 +112,10 @@
 		if (objectWeAreCollecting.objectType === 'block') {
 			const { data: d, error: e } = await supabaseClient
 				.from('blocks')
-				.update({ collectionIds: a })
+				.update({ 
+          collectionIds: a,
+          updated_at: generateISOString()
+        })
 				.eq('blockId', objectWeAreCollecting.blockId)
 				.select();
 
@@ -119,7 +126,10 @@
 		if (objectWeAreCollecting.objectType === 'collection') {
 			const { data: d, error: e } = await supabaseClient
 				.from('collections')
-				.update({ collectionIds: a })
+				.update({ 
+          collectionIds: a,
+          updated_at: generateISOString()
+        })
 				.eq('collectionId', objectWeAreCollecting.collectionId)
 				.select();
 
@@ -127,6 +137,17 @@
 			error = e;
 		}
 
+    a.forEach(async (c:any) => {
+      const { data: d, error: e } = await supabaseClient
+				.from('collections')
+				.update({ 
+          updated_at: generateISOString()
+        })
+				.eq('collectionId', c)
+				.select();
+
+      console.log({ d })
+    })
 		handleResponse(error);
 	};
 </script>
@@ -150,7 +171,7 @@
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<i
 				class="fa-solid fa-xmark text-2xl text-gray-400 hover:text-gray-300 hover:transition-all cursor-pointer"
-			  id="close-modal-root"
+				id="close-modal-root"
 				on:click={onClose}
 			/>
 		</div>

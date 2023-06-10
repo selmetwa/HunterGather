@@ -9,10 +9,13 @@
     authModal,
 		previewPanel,
 		modalStore,
-		collectionIds,
+    hasReachedLimit,
 		collectingModal,
 		isDeleteModalOpen
 	} from '../store/store';
+
+  import getCollectionsCountByUserId from '../queries/user/getCollectionsCountByUserId';
+  import getBlocksCountByUserId from '../queries/user/getBlocksCountByUserId';
 	import Header from '../components/Header.svelte';
 	import CreateModal from '../components/CreateModal/CreateModal.svelte';
 	import CollectingModal from '../components/CollectingModal/CollectingModal.svelte';
@@ -37,8 +40,12 @@
 
 	onMount(async () => {
 		if (userId) {
-			const { data } = await supabaseClient.from('collections').select().eq('userId', userId);
-			collectionIds.set(data);
+      const blocksCount = await getBlocksCountByUserId(userId);
+      const collectionsCount = await getCollectionsCountByUserId(userId)
+
+      if ((blocksCount + collectionsCount) > 200) {
+        hasReachedLimit.set(true)
+      }
 		}
 
 		const {

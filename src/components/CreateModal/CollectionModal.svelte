@@ -22,23 +22,6 @@
 	let title = '';
 	let description = '';
 	let toggledCollectionIds: string | any[] = [];
-// 	let ids: any[] = [];
-
-
-// const loadMore = async () => {
-//   ids = createUniqueArray(
-//     ids,
-//     await getPaginatedCollectionsByUserId($page?.data?.session?.user?.id || '', p, 5)
-//   );
-// };
-
-// 	// collectionIds.subscribe((value) => {
-// 	// 	ids = value;
-// 	// });
-
-//   onMount(async() => {
-//     ids = await getPaginatedCollectionsByUserId(($page?.data?.session?.user?.id || ''))
-//   })
   
 	const updateTitle = (e: any) => {
 		title = e.target.value;

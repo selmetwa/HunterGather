@@ -1,7 +1,6 @@
 import { writable } from 'svelte/store';
 
 export const modalStore = writable(false);  
-export const collectionIds = writable([]);
 
 // collecting
 export const collectingModal = writable(false);
@@ -20,3 +19,6 @@ export const objectView = writable('card');
 
 // auth modal
 export const authModal = writable(false);
+
+// has reached limit
+export const hasReachedLimit = writable(false);
