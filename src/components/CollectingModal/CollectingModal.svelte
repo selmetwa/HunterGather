@@ -7,9 +7,9 @@
 	import Modal from '../Modal.svelte';
 	import { collectingModal, objectToCollect } from '../../store/store';
 	import Button from '../Button.svelte';
-	import Pill from '../Pill.svelte';
 	import ErrorMessage from '../ErrorMessage.svelte';
 	import SuccessMessage from '../SuccessMessage.svelte';
+  import CollectionPills from '../CollectionPills.svelte';
 
 	let inProgress = false;
 	let successMessage = '';
@@ -183,16 +183,7 @@
 		{/if}
 
 		<form class="mt-8 space-y-6" on:submit={onSubmit}>
-			<div>
-				{#each ids as obj}
-					<Pill
-						val={obj.collectionId}
-						text={obj.title}
-						onClick={onPillClick}
-						isIncluded={toggledCollectionIds.includes(obj.collectionId)}
-					/>
-				{/each}
-			</div>
+      <CollectionPills collectionIds={ids} {onPillClick} {toggledCollectionIds} />
 			<Button
 				text={`Update collection${toggledCollectionIds.length > 1 ? 's' : ''}`}
 				type="submit"

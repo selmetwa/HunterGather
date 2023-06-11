@@ -8,14 +8,13 @@
 	import { createBlock } from '../../queries/blocks/createBlock';
 	import Input from '../Input.svelte';
 	import Button from '../Button.svelte';
-	import Pill from '../Pill.svelte';
 	import ErrorMessage from '../ErrorMessage.svelte';
 	import SuccessMessage from '../SuccessMessage.svelte';
+  import CollectionPills from '../CollectionPills.svelte';
 
 	export let onClose: any;
 	export let collectionIds: any;
-	export let count: number;
-	export let nextPage: any;
+
 	let inProgress = false;
 	let successMessage = '';
 	let errorMessage = '';
@@ -130,26 +129,7 @@
 			placeholder="Title"
 		/>
 		<Input type="text" text="URL" value={url} onChange={updateUrl} placeholder="url" />
-		{#if !!collectionIds.length}
-			<div>
-				<p class="text-gray-400">Add to collection(s)</p>
-				<div>
-					{#each collectionIds as obj}
-						<Pill
-							val={obj.collectionId}
-							text={obj.title}
-							onClick={onPillClick}
-							isIncluded={toggledCollectionIds.includes(obj.collectionId)}
-						/>
-					{/each}
-					{#if collectionIds.length < count}
-						<button on:click={nextPage} type="button" class="text-gray-400 font-medium">
-							Load More
-						</button>
-					{/if}
-				</div>
-			</div>
-		{/if}
+    <CollectionPills {collectionIds} {onPillClick} {toggledCollectionIds} />
 		<Button text="Create Block" type="submit" {inProgress} />
 	</form>
 </main>

@@ -2,33 +2,17 @@
 	import { page } from '$app/stores';
   import { onMount } from 'svelte';
 	import { modalStore } from '../../store/store';
-  import { createUniqueArray } from '../../utils/createUniqueArray';
 	import Modal from '../Modal.svelte';
 	import Tabs from '../Tabs.svelte';
 	import CollectionModal from './CollectionModal.svelte';
 	import BlockModal from './BlockModal.svelte';
-  import getPaginatedCollectionsByUserId from '../../queries/user/getPaginatedCollectionsByUserId';
-	import getCollectionsCountByUserId from '../../queries/user/getCollectionsCountByUserId';
+  import getCollectionsByUserId from '../../queries/user/getCollectionsByUserId';
 
 	let activeTab = 'block';
-
-
-  let p = 0;
 	$: collectionIds = [];
 
-  $: count = 0;
-  $: if (p) loadMore();
-
-  const loadMore = async () => {
-    collectionIds = createUniqueArray(
-      collectionIds,
-      await getPaginatedCollectionsByUserId($page?.data?.session?.user?.id || '', p, 5)
-    );
-  };
-
   onMount(async() => {
-    collectionIds = await getPaginatedCollectionsByUserId(($page?.data?.session?.user?.id || ''), p, 5)
-    count = await getCollectionsCountByUserId($page?.data?.session?.user?.id);
+    collectionIds = await getCollectionsByUserId(($page?.data?.session?.user?.id || '')) as []
   })
 
 	const toggleTab = (e: any) => {
@@ -43,7 +27,6 @@
 		return true;
 	};
 
-  const nextPage = () => p += 1;
 	const tabs = [
 		{
 			name: 'Block',
@@ -59,8 +42,8 @@
 <Modal {onClose}>
 	<Tabs {tabs} {activeTab} {toggleTab} />
 	{#if activeTab === 'block'}
-		<BlockModal {onClose} {collectionIds} {count} {nextPage} />
+		<BlockModal {onClose} {collectionIds} />
 	{:else}
-		<CollectionModal {onClose} {collectionIds} {count} {nextPage} />
+		<CollectionModal {onClose} {collectionIds} />
 	{/if}
 </Modal>
