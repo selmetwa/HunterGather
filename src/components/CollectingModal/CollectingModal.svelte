@@ -79,8 +79,6 @@
 		const filtered = all.filter((id: string) => realIds.includes(id));
 		toggledCollectionIds = filtered;
 
-		console.log({ realIds, ids, filtered });
-
 		originalIds = all.filter((id: string) => !realIds.includes(id));
 	});
 
@@ -143,8 +141,6 @@
 				})
 				.eq('collectionId', c)
 				.select();
-
-			console.log({ d });
 		});
 		handleResponse(error);
 	};

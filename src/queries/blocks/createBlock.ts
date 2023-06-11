@@ -20,22 +20,11 @@ export const createBlock = async (
 ) => {
 	const blockId = uuidv4();
 
-  console.log({ url })
 	let realTitle = '';
-  let description = '';
 	// handle potential invalid url
 
-  // try {
-  //   const article = await extract(url)
-  //   console.log({ article })
-  // } catch (e) {
-  //   throw error(500, {
-	// 		message: 'Invalid Url'
-	// 	});
-  // }
 	try {
 		if (!title || title.length === 0) {
-      console.log('no title')
 			const { title: responseTitle } = await getTitleAtUrl(url);
 			realTitle = responseTitle;
 		}
@@ -44,8 +33,6 @@ export const createBlock = async (
 			message: 'Invalid Url'
 		});
 	}
-
-  console.log({ realTitle })
 
 	// Set your options
 	const options = {
@@ -66,7 +53,6 @@ export const createBlock = async (
 		collectionIds: collectionIds
 	};
 
-  console.log({ insert })
 	const { data: responseData, error: responseError } = await supabaseClient
 		.from('blocks')
 		.insert(insert)

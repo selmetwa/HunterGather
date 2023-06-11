@@ -14,7 +14,7 @@
 		<div class="w-full max-w-md space-y-4 flex items-center justify-between">
 			<div class="flex-col">
 				<h2 class="font-sans text-left text-2xl font-light tracking-tight text-gray-400">
-					Join wwwabbit
+					Join HunterGather
 				</h2>
 			</div>
 			<!-- svelte-ignore a11y-click-events-have-key-events -->

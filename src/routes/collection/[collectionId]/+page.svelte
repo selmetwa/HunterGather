@@ -22,9 +22,6 @@
 	$: ({ collectionId, collection } = data);
 	let page = 0;
 
-	$: if (collection) {
-		console.log({ collection });
-	}
 	/**
 	 * when user updates clicks load
 	 * more page, load more data

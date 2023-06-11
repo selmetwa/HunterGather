@@ -18,10 +18,11 @@
 	} border-b-4 border-gray-200 md:border-0`}
 >
 	<div
-		class="flex flex-col md:flex-row md:flex-wrap items-center md:justify-between sm:px-8 md:px-16 xl:px-24"
+		class="flex flex-col md:flex-row md:flex-wrap items-center md:justify-between px-8 md:px-16 xl:px-24"
 	>
 		<a href="/" class="flex items-center mt-4 md:mt-0">
-			<span class="text-gray-500 self-center text-xl font-semibold whitespace-nowrap">wwwabbit</span
+			<span class="text-gray-500 self-center text-xl font-semibold whitespace-nowrap">HunterGather
+        </span
 			>
 		</a>
 		<div class={`md:block md:w-auto`} id="navbar-default">

@@ -20,8 +20,8 @@
 </script>
 
 <svelte:head>
-	<title>wwwabbit</title>
-	<meta name="description" content="Wwwabbit" />
+	<title>HunterGather</title>
+	<meta name="description" content="HunterGather" />
 </svelte:head>
 <section>
 	<PageNav currentPath="/" objectType="" />
