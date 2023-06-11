@@ -9,6 +9,7 @@
 	import CollectionCard from '../Collections/CollectionCard.svelte';
 	import LoadMoreButton from '../ui/LoadMoreButton.svelte';
 	import { objectView } from '../../store/store';
+  import Empty from '../ui/Empty.svelte';
 
 	export let collectionId = '';
 	let page = 0;
@@ -68,9 +69,7 @@
 			</section>
 		{/if}
 	{:else}
-		<div class="flex items-center border-2 border-gray-300 background-gray-200 text-center p-20">
-			<p class="text-gray-400 m-auto">مـَفيش (māfeesh) / there is nothing</p>
-		</div>
+		<Empty />
 	{/if}
 	{#if objects.length < count}
 		<LoadMoreButton onClick={() => (page += 1)} />

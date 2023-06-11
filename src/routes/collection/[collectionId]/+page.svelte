@@ -13,7 +13,7 @@
 	import CollectionHeader from '../CollectionHeader.svelte';
 	import ObjectViewButtons from '../../../components/Navigation/ObjectViewButtons.svelte';
 	import FilterBar from '../../../components/ui/FilterBar.svelte';
-
+  import Empty from '../../../components/ui/Empty.svelte';
 	export let data: any;
 
 	$: count = 0;
@@ -102,9 +102,7 @@
 			{/each}
 		</Grid>
 	{:else}
-		<div class="flex items-center border-2 border-gray-300 background-gray-200 text-center p-20">
-			<p class="text-gray-400 m-auto">مـَفيش (māfeesh) / there is nothing</p>
-		</div>
+		<Empty />
 	{/if}
 	{#if objects.length < count}
 		<LoadMoreButton onClick={() => (page += 1)} />
