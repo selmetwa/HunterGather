@@ -7,7 +7,7 @@
 	import { quintOut } from 'svelte/easing';
   import Device from 'svelte-device-info';
 
-	import getCollectionCount from '../queries/collections/getCollectionCount';
+	import getCollectionCount from '../../queries/collections/getCollectionCount';
 	import CollectionCardRow from './CollectionCardRow.svelte';
 	import {
     authModal,
@@ -16,8 +16,8 @@
 		previewPanel,
 		previewPanelObject,
     objectView
-	} from '../store/store';
-  import { formatDate } from '../utils/formatDate';
+	} from '../../store/store';
+  import { formatDate } from '../../utils/formatDate';
 	export let collection: any;
   export let isRow = false;
 
@@ -27,7 +27,6 @@
 	let requested = false;
 	let author = 'author';
 	let count = 0;
-	let date = '';
 
 	const enter = () => {
 		hovering = true;

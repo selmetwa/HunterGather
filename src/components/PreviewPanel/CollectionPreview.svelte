@@ -3,9 +3,9 @@
 	import getCollection from '../../queries/collections/getCollection';
 	import getCollectionCount from '../../queries/collections/getCollectionCount';
 	import getPaginatedCollectionItems from '../../queries/collections/getPaginatedCollectionItems';
-	import BlockCard from '../BlockCard.svelte';
-	import CollectionCard from '../CollectionCard.svelte';
-	import LoadMoreButton from '../LoadMoreButton.svelte';
+	import BlockCard from '../Blocks/BlockCard.svelte';
+	import CollectionCard from '../Collections/CollectionCard.svelte';
+	import LoadMoreButton from '../ui/LoadMoreButton.svelte';
 	import { objectView } from '../../store/store';
 
 	export let collectionId = '';

@@ -4,12 +4,12 @@
 	import { createUniqueArray } from '../../../../utils/createUniqueArray';
 	import getPaginatedCollectionsByUserId from '../../../../queries/user/getPaginatedCollectionsByUserId';
 	import getCollectionsCountByUserId from '../../../../queries/user/getCollectionsCountByUserId';
-	import CollectionCard from '../../../../components/CollectionCard.svelte';
-	import Grid from '../../../../components/Grid.svelte';
-	import LoadMoreButton from '../../../../components/LoadMoreButton.svelte';
+	import CollectionCard from '../../../../components/Collections/CollectionCard.svelte';
+	import Grid from '../../../../components/ui/Grid.svelte';
+	import LoadMoreButton from '../../../../components/ui/LoadMoreButton.svelte';
 	import ProfileHeader from '../../ProfileHeader.svelte';
-	import ObjectViewButtons from '../../../../components/ObjectViewButtons.svelte';
-  import FilterBar from '../../../../components/FilterBar.svelte';
+	import ObjectViewButtons from '../../../../components/Navigation/ObjectViewButtons.svelte';
+  import FilterBar from '../../../../components/ui/FilterBar.svelte';
 
 	interface Data {
 		collections: Array<any>;

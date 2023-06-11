@@ -16,7 +16,7 @@
 
   import getCollectionsCountByUserId from '../queries/user/getCollectionsCountByUserId';
   import getBlocksCountByUserId from '../queries/user/getBlocksCountByUserId';
-	import Header from '../components/Header.svelte';
+	import Header from '../components/Navigation/Header.svelte';
 	import CreateModal from '../components/CreateModal/CreateModal.svelte';
 	import CollectingModal from '../components/CollectingModal/CollectingModal.svelte';
 	import PreviewPanel from '../components/PreviewPanel/PreviewPanel.svelte';

@@ -1,5 +1,5 @@
 <script>
-	import { objectView } from '../store/store';
+	import { objectView } from '../../store/store';
 
 	const toggleCardView = () => {
 		objectView.set('card');

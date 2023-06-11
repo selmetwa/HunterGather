@@ -1,7 +1,7 @@
 <script lang="ts">
-  import Modal from "../Modal.svelte";
-  import Input from "../Input.svelte";
-  import Button from "../Button.svelte";
+  import Modal from "../ui/Modal.svelte";
+  import Input from "../ui/Input.svelte";
+  import Button from "../ui/Button.svelte";
 
   // export let user: any;
   export let name: any;

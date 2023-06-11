@@ -1,6 +1,6 @@
 <script>
 	import { fade, slide } from 'svelte/transition';
-	import { previewPanel, objectView } from '../store/store';
+	import { previewPanel, objectView } from '../../store/store';
 
 	let gridRules = '';
 	previewPanel.subscribe((isPreviewPanelOpen) => {

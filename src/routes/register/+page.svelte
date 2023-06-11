@@ -2,8 +2,8 @@
   import { page } from '$app/stores';
 
   import { previewPanel } from '../../store/store';
-  import Button from '../../components/Button.svelte';
-  import Input from '../../components/Input.svelte';
+  import Button from '../../components/ui/Button.svelte';
+  import Input from '../../components/ui/Input.svelte';
 
   const error = $page?.form?.error;
 </script>

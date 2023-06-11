@@ -4,11 +4,11 @@
 	import { createUniqueArray } from '../../../utils/createUniqueArray';
 	import paginatedBlocksBySearch from '../../../queries/search/paginatedBlocksBySearch';
 	import paginatedCollectionsBySearch from '../../../queries/search/paginationCollectionsBySearch';
-	import LoadMoreButton from '../../../components/LoadMoreButton.svelte';
-	import Grid from '../../../components/Grid.svelte';
-	import BlockCard from '../../../components/BlockCard.svelte';
-	import CollectionCard from '../../../components/CollectionCard.svelte';
-  import PageNav from '../../../components/PageNav.svelte';
+	import LoadMoreButton from '../../../components/ui/LoadMoreButton.svelte';
+	import Grid from '../../../components/ui/Grid.svelte';
+	import BlockCard from '../../../components/Blocks/BlockCard.svelte';
+	import CollectionCard from '../../../components/Collections/CollectionCard.svelte';
+  import PageNav from '../../../components/Navigation/PageNav.svelte';
 
 	let page = 0;
 

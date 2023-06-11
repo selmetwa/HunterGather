@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Pill from './Pill.svelte';
+	import Pill from '../ui/Pill.svelte';
 
 	export let collectionIds: any;
 	export let toggledCollectionIds: any;

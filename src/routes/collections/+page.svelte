@@ -4,10 +4,10 @@
 	import { createUniqueArray } from '../../utils/createUniqueArray';
 	import getPaginatedCollections from '../../queries/collections/getPaginatedCollections';
 	import getCollectionsCount from '../../queries/collections/getCollectionsCount';
-	import Grid from '../../components/Grid.svelte';
-	import LoadMoreButton from '../../components/LoadMoreButton.svelte';
-	import CollectionCard from '../../components/CollectionCard.svelte';
-  import PageNav from '../../components/PageNav.svelte';
+	import Grid from '../../components/ui/Grid.svelte';
+	import LoadMoreButton from '../../components/ui/LoadMoreButton.svelte';
+	import CollectionCard from '../../components/Collections/CollectionCard.svelte';
+  import PageNav from '../../components/Navigation/PageNav.svelte';
   
 	export let data;
 	let { collections } = data;
@@ -25,12 +25,7 @@
 	});
 </script>
 
-<!-- <div class="my-8 sm:px-8 md:px-16 xl:px-24 flex justify-between items-center flex-col md:flex-row">
-	<ObjectTypeNav currentPath="collections" />
-	<SearchBar currentPath="collections" />
-</div> -->
 <PageNav currentPath="collections" objectType="collections" />
-
 {#if collections}
 	<Grid>
 		{#each collections as collection}

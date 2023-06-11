@@ -2,8 +2,8 @@
 	import { page } from '$app/stores';
   import { onMount } from 'svelte';
 	import { modalStore } from '../../store/store';
-	import Modal from '../Modal.svelte';
-	import Tabs from '../Tabs.svelte';
+	import Modal from '../ui/Modal.svelte';
+	import Tabs from '../ui/Tabs.svelte';
 	import CollectionModal from './CollectionModal.svelte';
 	import BlockModal from './BlockModal.svelte';
   import getCollectionsByUserId from '../../queries/user/getCollectionsByUserId';

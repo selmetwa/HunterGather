@@ -1,15 +1,15 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	import BlockCard from '../../../../components/BlockCard.svelte';
+	import BlockCard from '../../../../components/Blocks/BlockCard.svelte';
 	import { createUniqueArray } from '../../../../utils/createUniqueArray';
 	import getBlocksByUserId from '../../../../queries/user/getBlocksByUserId';
 	import getBlocksCountByUserId from '../../../../queries/user/getBlocksCountByUserId';
-	import Grid from '../../../../components/Grid.svelte';
-	import LoadMoreButton from '../../../../components/LoadMoreButton.svelte';
+	import Grid from '../../../../components/ui/Grid.svelte';
+	import LoadMoreButton from '../../../../components/ui/LoadMoreButton.svelte';
 	import ProfileHeader from '../../ProfileHeader.svelte';
-  import ObjectViewButtons from '../../../../components/ObjectViewButtons.svelte';
-  import FilterBar from '../../../../components/FilterBar.svelte';
+  import ObjectViewButtons from '../../../../components/Navigation/ObjectViewButtons.svelte';
+  import FilterBar from '../../../../components/ui/FilterBar.svelte';
 
 	interface Data {
 		blocks: Array<any>;

@@ -4,12 +4,12 @@
 	import { page } from '$app/stores';
   import { generateISOString } from '../../utils/generateISOString'
 	import getCollectionsByUserId from '../../queries/user/getCollectionsByUserId';
-	import Modal from '../Modal.svelte';
+	import Modal from '../ui/Modal.svelte';
 	import { collectingModal, objectToCollect } from '../../store/store';
-	import Button from '../Button.svelte';
-	import ErrorMessage from '../ErrorMessage.svelte';
-	import SuccessMessage from '../SuccessMessage.svelte';
-  import CollectionPills from '../CollectionPills.svelte';
+	import Button from '../ui/Button.svelte';
+	import ErrorMessage from '../ui/ErrorMessage.svelte';
+	import SuccessMessage from '../ui/SuccessMessage.svelte';
+  import CollectionPills from '../Collections/CollectionPills.svelte';
 
 	let inProgress = false;
 	let successMessage = '';

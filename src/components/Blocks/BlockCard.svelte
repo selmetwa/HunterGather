@@ -11,9 +11,9 @@
 		previewPanel,
 		previewPanelObject,
 		objectView
-	} from '../store/store';
+	} from '../../store/store';
 
-  import { formatDate  } from '../utils/formatDate';
+  import { formatDate  } from '../../utils/formatDate';
 	import BlockCardRow from './BlockCardRow.svelte';
 	export let block: any;
 

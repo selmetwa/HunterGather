@@ -5,10 +5,10 @@
 	import getPaginatedBlocks from '../../queries/blocks/getPaginatedBlocks';
 	import getBlocksCount from '../../queries/blocks/getBlocksCount';
 
-	import Grid from '../../components/Grid.svelte';
-	import BlockCard from '../../components/BlockCard.svelte';
-	import LoadMoreButton from '../../components/LoadMoreButton.svelte';
-  import PageNav from '../../components/PageNav.svelte';
+	import Grid from '../../components/ui/Grid.svelte';
+	import BlockCard from '../../components/Blocks/BlockCard.svelte';
+	import LoadMoreButton from '../../components/ui/LoadMoreButton.svelte';
+  import PageNav from '../../components/Navigation/PageNav.svelte';
 
 	export let data;
 

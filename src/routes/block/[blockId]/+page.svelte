@@ -12,7 +12,7 @@
 		deleteModalObject,
 		isDeleteModalOpen
 	} from '../../../store/store';
-	import CollectionCard from '../../../components/CollectionCard.svelte';
+	import CollectionCard from '../../../components/Collections/CollectionCard.svelte';
 	export let data;
 	const userId = $page?.data?.session?.user?.id;
 

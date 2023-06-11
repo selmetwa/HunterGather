@@ -4,13 +4,13 @@
 	import { createUniqueArray } from '../../../utils/createUniqueArray';
 	import getPaginatedCollectionItems from '../../../queries/collections/getPaginatedCollectionItems';
 	import getCollectionCount from '../../../queries/collections/getCollectionCount';
-	import BlockCard from '../../../components/BlockCard.svelte';
-	import Grid from '../../../components/Grid.svelte';
-	import CollectionCard from '../../../components/CollectionCard.svelte';
-	import LoadMoreButton from '../../../components/LoadMoreButton.svelte';
+	import BlockCard from '../../../components/Blocks/BlockCard.svelte';
+	import Grid from '../../../components/ui/Grid.svelte';
+	import CollectionCard from '../../../components/Collections/CollectionCard.svelte';
+	import LoadMoreButton from '../../../components/ui/LoadMoreButton.svelte';
 	import CollectionHeader from '../CollectionHeader.svelte';
-	import ObjectViewButtons from '../../../components/ObjectViewButtons.svelte';
-	import FilterBar from '../../../components/FilterBar.svelte';
+	import ObjectViewButtons from '../../../components/Navigation/ObjectViewButtons.svelte';
+	import FilterBar from '../../../components/ui/FilterBar.svelte';
 
 	export let data: any;
 

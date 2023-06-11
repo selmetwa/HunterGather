@@ -1,11 +1,11 @@
 <script lang="ts">
   import { createUniqueArray } from '../utils/createUniqueArray';
   import getPaginatedCollectionItems from '../queries/collections/getPaginatedCollectionItems';
-	import BlockCard from '../components/BlockCard.svelte';
-	import CollectionCard from '../components/CollectionCard.svelte';
-  import Grid from '../components/Grid.svelte';
-  import LoadMoreButton from '../components/LoadMoreButton.svelte';
-  import PageNav from '../components/PageNav.svelte';
+	import BlockCard from '../components/Blocks/BlockCard.svelte';
+	import CollectionCard from '../components/Collections/CollectionCard.svelte';
+  import Grid from '../components/ui/Grid.svelte';
+  import LoadMoreButton from '../components/ui/LoadMoreButton.svelte';
+  import PageNav from '../components/Navigation/PageNav.svelte';
 
 	export let data: any;
 	const count = data.count;

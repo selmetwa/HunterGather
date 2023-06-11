@@ -3,10 +3,10 @@
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
 	import { supabaseClient } from '$lib/supabase';
-	import ErrorMessage from '../ErrorMessage.svelte';
-	import SuccessMessage from '../SuccessMessage.svelte';
-	import Modal from '../Modal.svelte';
-	import LoadingSpinner from '../LoadingSpinner.svelte';
+	import ErrorMessage from '../ui/ErrorMessage.svelte';
+	import SuccessMessage from '../ui/SuccessMessage.svelte';
+	import Modal from '../ui/Modal.svelte';
+	import LoadingSpinner from '../ui/LoadingSpinner.svelte';
 
 	let inProgress = false;
 	let successMessage = '';

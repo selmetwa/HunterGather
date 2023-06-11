@@ -1,7 +1,7 @@
 <script>
 	// @ts-nocheck
 	import { page } from '$app/stores';
-	import { modalStore, previewPanel } from '../store/store';
+	import { modalStore, previewPanel } from '../../store/store';
 
 	let showMenu = false;
 	const toggleMenu = () => (showMenu = !showMenu);
