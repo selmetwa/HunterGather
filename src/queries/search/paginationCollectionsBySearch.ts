@@ -8,22 +8,22 @@ async function paginatedCollectionsBySearch(query: string, page: number, limit: 
 	const start = page * limit;
 	const end = start + limit;
 
-  /**
-   * Only fetch collections if user is searching 
-   * from All view or the Collections page
-   */
+	/**
+	 * Only fetch collections if user is searching
+	 * from All view or the Collections page
+	 */
 
-    const { data, count } = await supabaseClient
-      .from('collections')
-      .select('*', { count: 'exact' })
-      .filter('title', 'ilike', `%${query}%`)
-      .range(start, end)
-      .order('created_at', { ascending: false });
+	const { data, count } = await supabaseClient
+		.from('collections')
+		.select('*', { count: 'exact' })
+		.filter('title', 'ilike', `%${query}%`)
+		.range(start, end)
+		.order('created_at', { ascending: false });
 
-    return {
-      collections: data || [],
-      collectionsCount: count || 0
-    };
+	return {
+		collections: data || [],
+		collectionsCount: count || 0
+	};
 }
 
 export default paginatedCollectionsBySearch;

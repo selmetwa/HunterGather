@@ -10,23 +10,23 @@
 	export let searchQuery = '';
 	export let objectType = '';
 
-  const update = (event: Event) => {
-    const element = event.currentTarget as HTMLInputElement
-    const value = element.value
-    searchQuery = value;
-  }
+	const update = (event: Event) => {
+		const element = event.currentTarget as HTMLInputElement;
+		const value = element.value;
+		searchQuery = value;
+	};
 
 	const handleSearch = async () => {
-    if (searchQuery.length === 0) return
+		if (searchQuery.length === 0) return;
 
-    const path = !!objectType ? `-${objectType}` : '';
+		const path = !!objectType ? `-${objectType}` : '';
 		await goto(`/search/${encodeURIComponent(searchQuery.trim().toLowerCase())}${path}`);
 	};
 
 	const handleSearchByPress = async (q: string) => {
-    if (q.length === 0) return
+		if (q.length === 0) return;
 
-    const path = !!objectType ? `-${objectType}` : '';
+		const path = !!objectType ? `-${objectType}` : '';
 		await goto(`/search/${encodeURIComponent(q.trim().toLowerCase())}${path}`);
 	};
 </script>

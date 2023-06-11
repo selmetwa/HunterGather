@@ -1,28 +1,28 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-  import { onMount } from 'svelte';
+	import { onMount } from 'svelte';
 	import { modalStore } from '../../store/store';
 	import Modal from '../ui/Modal.svelte';
 	import Tabs from '../ui/Tabs.svelte';
 	import CollectionModal from './CollectionModal.svelte';
 	import BlockModal from './BlockModal.svelte';
-  import getCollectionsByUserId from '../../queries/user/getCollectionsByUserId';
+	import getCollectionsByUserId from '../../queries/user/getCollectionsByUserId';
 
 	let activeTab = 'block';
 	$: collectionIds = [];
 
-  onMount(async() => {
-    collectionIds = await getCollectionsByUserId(($page?.data?.session?.user?.id || '')) as []
-  })
+	onMount(async () => {
+		collectionIds = (await getCollectionsByUserId($page?.data?.session?.user?.id || '')) as [];
+	});
 
 	const toggleTab = (e: any) => {
 		activeTab = e.target.value;
 	};
 
 	const onClose = (e: any) => {
-    if (e.target.id === 'close-modal-root') {
-      modalStore.update(() => false);
-    }
+		if (e.target.id === 'close-modal-root') {
+			modalStore.update(() => false);
+		}
 
 		return true;
 	};

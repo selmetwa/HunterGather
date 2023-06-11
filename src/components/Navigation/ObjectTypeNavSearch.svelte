@@ -4,16 +4,16 @@
 	export let objectType = '';
 	export let searchTerm = '';
 
-	$: checkIfAll = (objectType === undefined) || (objectType === '') ? 'font-medium' : 'font-light';
+	$: checkIfAll = objectType === undefined || objectType === '' ? 'font-medium' : 'font-light';
 	$: checkIfBlocks = objectType === 'blocks' ? 'font-medium' : 'font-light';
 	$: checkIfCollections = objectType === 'collections' ? 'font-medium' : 'font-light';
 
 	const updatePath = async (event: Event) => {
-    const element = event.currentTarget as HTMLInputElement
-    const value = element.value;
+		const element = event.currentTarget as HTMLInputElement;
+		const value = element.value;
 
-    const path = !!value ? `-${value}` : '';
-    await goto(`/search/${encodeURIComponent(searchTerm.trim().toLowerCase())}${path}`)
+		const path = !!value ? `-${value}` : '';
+		await goto(`/search/${encodeURIComponent(searchTerm.trim().toLowerCase())}${path}`);
 	};
 </script>
 

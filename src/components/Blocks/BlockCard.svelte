@@ -2,10 +2,10 @@
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 	import { scale, fade } from 'svelte/transition';
-  import Device from 'svelte-device-info';
+	import Device from 'svelte-device-info';
 	import { quintOut } from 'svelte/easing';
 	import {
-    authModal,
+		authModal,
 		collectingModal,
 		objectToCollect,
 		previewPanel,
@@ -13,14 +13,14 @@
 		objectView
 	} from '../../store/store';
 
-  import { formatDate  } from '../../utils/formatDate';
+	import { formatDate } from '../../utils/formatDate';
 	import BlockCardRow from './BlockCardRow.svelte';
 	export let block: any;
 
 	const { src, title, url, blockId, userId, created_at } = block;
 
 	const activeSession = $page?.data?.session;
-  const isMobile = Device.isMobile;
+	const isMobile = Device.isMobile;
 	let hovering = false;
 	let requested = false;
 
@@ -38,7 +38,7 @@
 			collectingModal.set(true);
 			objectToCollect.set(block);
 		} else {
-      authModal.set(true)
+			authModal.set(true);
 		}
 	};
 
@@ -59,7 +59,15 @@
 </script>
 
 {#if $objectView === 'row'}
-	<BlockCardRow {title} {blockId} {src} {url} {toggleCollectingModal} {togglePreview} date={formatDate(created_at)} />
+	<BlockCardRow
+		{title}
+		{blockId}
+		{src}
+		{url}
+		{toggleCollectingModal}
+		{togglePreview}
+		date={formatDate(created_at)}
+	/>
 {:else}
 	<div in:fade>
 		<div class="relative" on:mouseenter={enter} on:mouseleave={leave}>
@@ -91,7 +99,7 @@
 			<a href={`/block/${blockId}`} class="flex items-center justify-center h-full w-full">
 				<h2 class="text-gray-500 text-left line-clamp-2">{title}</h2>
 			</a>
-      <p class="text-gray-400 font-light text-left line-clamp-2">{formatDate(created_at)}</p>
+			<p class="text-gray-400 font-light text-left line-clamp-2">{formatDate(created_at)}</p>
 		</div>
 	</div>
 {/if}

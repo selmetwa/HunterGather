@@ -11,22 +11,26 @@ import { supabaseClient } from '$lib/supabase';
 const urlbox = Urlbox(PUBLIC_URLBOX_PUBLISHABLE_KEY, PUBLIC_URLBOX_SECRET_KEY);
 
 // create block
-export const createBlock = async (title: string, url: string, collectionIds: string | any[], userId: string | undefined) => {
+export const createBlock = async (
+	title: string,
+	url: string,
+	collectionIds: string | any[],
+	userId: string | undefined
+) => {
 	const blockId = uuidv4();
 
-  let realTitle = '';
-  // handle potential invalid url
-  try {
-
-    if (!title || title.length === 0) {
-      const { title: responseTitle } = await getTitleAtUrl(url);
-      realTitle = responseTitle;
-    }
-  } catch (e) {
-    throw error(500, {
-      message: "Invalid Url"
-    });
-  }
+	let realTitle = '';
+	// handle potential invalid url
+	try {
+		if (!title || title.length === 0) {
+			const { title: responseTitle } = await getTitleAtUrl(url);
+			realTitle = responseTitle;
+		}
+	} catch (e) {
+		throw error(500, {
+			message: 'Invalid Url'
+		});
+	}
 
 	// Set your options
 	const options = {
@@ -43,16 +47,19 @@ export const createBlock = async (title: string, url: string, collectionIds: str
 		src: imgUrl,
 		url: url,
 		title: realTitle || title,
-    objectType: 'block',
+		objectType: 'block',
 		collectionIds: collectionIds
 	};
 
-	const { data: responseData, error: responseError } = await supabaseClient.from('blocks').insert(insert).select();
+	const { data: responseData, error: responseError } = await supabaseClient
+		.from('blocks')
+		.insert(insert)
+		.select();
 
 	if (responseError) {
-    throw error(500, {
-      message: "Something went wrong."
-    });
+		throw error(500, {
+			message: 'Something went wrong.'
+		});
 	}
 
 	return json(responseData);

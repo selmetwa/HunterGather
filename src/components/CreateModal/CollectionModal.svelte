@@ -1,18 +1,18 @@
 <script lang="ts">
-  import Device from 'svelte-device-info';
+	import Device from 'svelte-device-info';
 	import { modalStore, previewPanel, previewPanelObject } from '../../store/store';
-  import { goto } from '$app/navigation';
-  import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
+	import { page } from '$app/stores';
 
-  import { createCollection } from '../../queries/collections/createCollection';
+	import { createCollection } from '../../queries/collections/createCollection';
 	import Input from '../ui/Input.svelte';
 	import Button from '../ui/Button.svelte';
 	import ErrorMessage from '../ui/ErrorMessage.svelte';
 	import SuccessMessage from '../ui/SuccessMessage.svelte';
-  import CollectionPills from '../Collections/CollectionPills.svelte';
+	import CollectionPills from '../Collections/CollectionPills.svelte';
 
 	export let onClose: any;
-  export let collectionIds: any;
+	export let collectionIds: any;
 
 	let inProgress = false;
 	let errorMessage = '';
@@ -20,7 +20,7 @@
 	let title = '';
 	let description = '';
 	let toggledCollectionIds: string | any[] = [];
-  
+
 	const updateTitle = (e: any) => {
 		title = e.target.value;
 		return true;
@@ -54,20 +54,20 @@
 			description = '';
 			toggledCollectionIds = [];
 
-      const isMobile = Device.isMobile;
+			const isMobile = Device.isMobile;
 
 			setTimeout(() => {
-        const { collectionId } = responseData[0]
+				const { collectionId } = responseData[0];
 
-        if (isMobile) {
-				  modalStore.set(false);
-          goto(`/collection/${collectionId}`);
-          return
-        }
+				if (isMobile) {
+					modalStore.set(false);
+					goto(`/collection/${collectionId}`);
+					return;
+				}
 
 				successMessage = '';
-        previewPanel.set(true)
-        previewPanelObject.set({type: 'collection', object: { id: collectionId }})
+				previewPanel.set(true);
+				previewPanelObject.set({ type: 'collection', object: { id: collectionId } });
 				modalStore.set(false);
 			}, 2000);
 		}, 1000);
@@ -88,9 +88,14 @@
 
 	const onClick = async () => {
 		inProgress = true;
-    const res = await createCollection(title, description, toggledCollectionIds, $page?.data?.session?.user?.id)
+		const res = await createCollection(
+			title,
+			description,
+			toggledCollectionIds,
+			$page?.data?.session?.user?.id
+		);
 		// handleResponse(res);
-    const responseData = await res.json();
+		const responseData = await res.json();
 		handleResponse(res, responseData);
 	};
 </script>
@@ -134,7 +139,7 @@
 			placeholder="What is this collection about"
 			maxlength={150}
 		/>
-    <CollectionPills {collectionIds} {onPillClick} {toggledCollectionIds} />
+		<CollectionPills {collectionIds} {onPillClick} {toggledCollectionIds} />
 		<Button text="Create Collection" type="submit" {inProgress} />
 	</form>
 </main>

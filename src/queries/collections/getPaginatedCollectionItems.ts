@@ -21,20 +21,28 @@ async function getPaginatedCollectionItems(
 			.select()
 			.contains('collectionIds', [`${collectionId}`])
 			.range(start, end)
-      .order('updated_at', { ascending: false });
+			.order('updated_at', { ascending: false });
 
 		const { data: collections } = await supabaseClient
 			.from('collections')
 			.select()
 			.contains('collectionIds', [`${collectionId}`])
 			.range(start, end)
-      .order('updated_at', { ascending: false });
+			.order('updated_at', { ascending: false });
 
 		return interweave(blocks, collections);
 	}
 
-	const { data: blocks } = await supabaseClient.from('blocks').select().order('created_at', { ascending: false }).range(start, end);
-	const { data: collections } = await supabaseClient.from('collections').select().order('updated_at', { ascending: false }).range(start, end);
+	const { data: blocks } = await supabaseClient
+		.from('blocks')
+		.select()
+		.order('created_at', { ascending: false })
+		.range(start, end);
+	const { data: collections } = await supabaseClient
+		.from('collections')
+		.select()
+		.order('updated_at', { ascending: false })
+		.range(start, end);
 	return interweave(blocks, collections);
 }
 

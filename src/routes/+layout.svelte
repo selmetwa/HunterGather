@@ -6,22 +6,22 @@
 	import { fade } from 'svelte/transition';
 
 	import {
-    authModal,
+		authModal,
 		previewPanel,
 		modalStore,
-    hasReachedLimit,
+		hasReachedLimit,
 		collectingModal,
 		isDeleteModalOpen
 	} from '../store/store';
 
-  import getCollectionsCountByUserId from '../queries/user/getCollectionsCountByUserId';
-  import getBlocksCountByUserId from '../queries/user/getBlocksCountByUserId';
+	import getCollectionsCountByUserId from '../queries/user/getCollectionsCountByUserId';
+	import getBlocksCountByUserId from '../queries/user/getBlocksCountByUserId';
 	import Header from '../components/Navigation/Header.svelte';
 	import CreateModal from '../components/CreateModal/CreateModal.svelte';
 	import CollectingModal from '../components/CollectingModal/CollectingModal.svelte';
 	import PreviewPanel from '../components/PreviewPanel/PreviewPanel.svelte';
 	import DeleteModal from '../components/DeleteModal/DeleteModal.svelte';
-  import AuthModal from '../components/AuthModal/AuthModal.svelte';
+	import AuthModal from '../components/AuthModal/AuthModal.svelte';
 	import '../app.css';
 
 	export let data;
@@ -40,12 +40,12 @@
 
 	onMount(async () => {
 		if (userId) {
-      const blocksCount = await getBlocksCountByUserId(userId);
-      const collectionsCount = await getCollectionsCountByUserId(userId)
+			const blocksCount = await getBlocksCountByUserId(userId);
+			const collectionsCount = await getCollectionsCountByUserId(userId);
 
-      if ((blocksCount + collectionsCount) > 200) {
-        hasReachedLimit.set(true)
-      }
+			if (blocksCount + collectionsCount > 200) {
+				hasReachedLimit.set(true);
+			}
 		}
 
 		const {
@@ -63,9 +63,9 @@
 <div class="bg-gray-50 flex flex-row overflow-hidden w-screen">
 	<main class="flex flex-col w-full">
 		<Header />
-    {#if $authModal}
-      <AuthModal />
-    {/if}
+		{#if $authModal}
+			<AuthModal />
+		{/if}
 		{#if modalIsOpen}
 			<CreateModal />
 		{/if}

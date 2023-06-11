@@ -15,7 +15,7 @@ export const load = async ({ params }: { fetch: any; params: any }) => {
 			searchTerm: query,
 			objects: blocks,
 			count: blocksCount,
-      objectType,
+			objectType
 		};
 	}
 
@@ -25,7 +25,7 @@ export const load = async ({ params }: { fetch: any; params: any }) => {
 			searchTerm: query,
 			objects: collections,
 			count: collectionsCount,
-      objectType,
+			objectType
 		};
 	}
 
@@ -39,6 +39,6 @@ export const load = async ({ params }: { fetch: any; params: any }) => {
 		searchTerm: query,
 		objects,
 		count,
-    objectType,
+		objectType
 	};
 };

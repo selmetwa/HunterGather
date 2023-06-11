@@ -3,7 +3,12 @@ import { error, json } from '@sveltejs/kit';
 
 import { supabaseClient } from '$lib/supabase';
 
-export const createCollection = async (title: string, description: string, collectionIds: string | any[], userId: string | undefined) => {
+export const createCollection = async (
+	title: string,
+	description: string,
+	collectionIds: string | any[],
+	userId: string | undefined
+) => {
 	const collectionId = uuidv4();
 
 	// check if user has a collection with existing name

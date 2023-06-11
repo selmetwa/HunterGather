@@ -27,7 +27,7 @@
   cursor-pointer"
 		/>
 		{#if url}
-			<a href={url} target="_blank">
+			<a href={url} target="_blank" rel={url}>
 				<i
 					class="fa-solid fa-up-right-from-square text-xl text-gray-400 hover:text-gray-300 hover:transition-all cursor-pointer"
 				/>

@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
+	import type { Block } from '../../../types/block';
+	import type { Collection } from '../../../types/collection';
 	import { createUniqueArray } from '../../../utils/createUniqueArray';
 	import getPaginatedCollectionItems from '../../../queries/collections/getPaginatedCollectionItems';
 	import getCollectionCount from '../../../queries/collections/getCollectionCount';
@@ -15,11 +17,14 @@
 	export let data: any;
 
 	$: count = 0;
-	$: objects = [];
-	$: masterObjects = [];
+	$: objects = [] as (Block | Collection)[];
+	$: masterObjects = [] as (Block | Collection)[];
 	$: ({ collectionId, collection } = data);
 	let page = 0;
 
+	$: if (collection) {
+		console.log({ collection });
+	}
 	/**
 	 * when user updates clicks load
 	 * more page, load more data

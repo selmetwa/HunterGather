@@ -7,8 +7,8 @@
 	import Grid from '../../components/ui/Grid.svelte';
 	import LoadMoreButton from '../../components/ui/LoadMoreButton.svelte';
 	import CollectionCard from '../../components/Collections/CollectionCard.svelte';
-  import PageNav from '../../components/Navigation/PageNav.svelte';
-  
+	import PageNav from '../../components/Navigation/PageNav.svelte';
+
 	export let data;
 	let { collections } = data;
 	$: page = 0;

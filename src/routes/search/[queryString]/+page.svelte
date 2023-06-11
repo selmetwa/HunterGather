@@ -8,7 +8,7 @@
 	import Grid from '../../../components/ui/Grid.svelte';
 	import BlockCard from '../../../components/Blocks/BlockCard.svelte';
 	import CollectionCard from '../../../components/Collections/CollectionCard.svelte';
-  import PageNav from '../../../components/Navigation/PageNav.svelte';
+	import PageNav from '../../../components/Navigation/PageNav.svelte';
 
 	let page = 0;
 
@@ -16,7 +16,7 @@
 
 	$: ({ objects, count, objectType, searchTerm } = data);
 
-	/** 
+	/**
 	 * Weird workaround to reset objects when user changes search query
 	 */
 	$: if (searchTerm) {
@@ -73,4 +73,3 @@
 {#if objects.length < count}
 	<LoadMoreButton onClick={() => (page += 1)} />
 {/if}
-

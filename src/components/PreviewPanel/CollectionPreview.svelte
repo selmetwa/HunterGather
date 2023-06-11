@@ -1,4 +1,6 @@
 <script lang="ts">
+  import type { Block } from '../../types/block';
+  import type { Collection } from '../../types/collection';
 	import { createUniqueArray } from '../../utils/createUniqueArray';
 	import getCollection from '../../queries/collections/getCollection';
 	import getCollectionCount from '../../queries/collections/getCollectionCount';
@@ -11,7 +13,7 @@
 	export let collectionId = '';
 	let page = 0;
 	$: count = 0;
-	$: objects = [];
+	$: objects = [] as (Block | Collection)[];
 	$: title = '';
 
 	$: if (page) {

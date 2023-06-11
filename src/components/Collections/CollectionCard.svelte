@@ -5,24 +5,24 @@
 	import { onMount } from 'svelte';
 	import { scale, fade } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
-  import Device from 'svelte-device-info';
+	import Device from 'svelte-device-info';
 
 	import getCollectionCount from '../../queries/collections/getCollectionCount';
 	import CollectionCardRow from './CollectionCardRow.svelte';
 	import {
-    authModal,
+		authModal,
 		collectingModal,
 		objectToCollect,
 		previewPanel,
 		previewPanelObject,
-    objectView
+		objectView
 	} from '../../store/store';
-  import { formatDate } from '../../utils/formatDate';
+	import { formatDate } from '../../utils/formatDate';
 	export let collection: any;
-  export let isRow = false;
+	export let isRow = false;
 
 	const activeSession = $page?.data?.session;
-  const isMobile = Device.isMobile;
+	const isMobile = Device.isMobile;
 	let hovering = false;
 	let requested = false;
 	let author = 'author';
@@ -52,7 +52,7 @@
 			collectingModal.set(true);
 			objectToCollect.set(collection);
 		} else {
-      authModal.set(true)
+			authModal.set(true);
 		}
 	};
 
@@ -70,19 +70,28 @@
 	};
 </script>
 
-{#if ($objectView === 'row' || isRow)}
-	<CollectionCardRow {count} {collectionId} {title} {author} {userId} {toggleCollectingModal} {togglePreview} date={formatDate(collection?.created_at)} />
+{#if $objectView === 'row' || isRow}
+	<CollectionCardRow
+		{count}
+		{collectionId}
+		{title}
+		{author}
+		{userId}
+		{toggleCollectingModal}
+		{togglePreview}
+		date={formatDate(collection?.created_at)}
+	/>
 {:else}
 	<div
 		class="card aspect-4/3 transition-all bg-gray-100 border-2 border-gray-300 hover:bg-gray-200 relative"
 		on:mouseenter={enter}
 		on:mouseleave={leave}
-    in:fade
+		in:fade
 	>
 		{#if hovering && !isMobile}
 			<div
-      transition:scale={{ duration: 400, easing: quintOut, opacity: 0 }}
-      class="absolute border shadow-md top-0 m-auto z-50 bg-white shadow-xl p-6 w-full cursor-default rounded-md"
+				transition:scale={{ duration: 400, easing: quintOut, opacity: 0 }}
+				class="absolute border shadow-md top-0 m-auto z-50 bg-white shadow-xl p-6 w-full cursor-default rounded-md"
 			>
 				<div class="w-full flex gap-4">
 					<button
@@ -99,9 +108,7 @@
 			</div>
 		{/if}
 		<a href={`/collection/${collectionId}`} class="flex items-center justify-center h-full w-full">
-			<div
-				class="text-center"
-			>
+			<div class="text-center">
 				<div>
 					<h1
 						class="font-sans text-gray-500 font-semibold text-xl w-10/12 whitespace-normal m-auto break-words"
@@ -110,12 +117,14 @@
 					</h1>
 					<p class="font-sans text-gray-500">{author}</p>
 				</div>
-        <div class="absolute top-0 right-0 h-6 w-6 p-4 bg-gray-300 flex items-center justify-center">
-          <p class="font-sans font-medium text-gray-500">{count}</p>
-        </div>
-        {#if collection.created_at}
-          <p class="font-sans font-light text-gray-400">{formatDate(collection.created_at)}</p>
-        {/if}
+				<div
+					class="absolute top-0 right-0 h-6 w-6 p-4 bg-gray-300 flex items-center justify-center"
+				>
+					<p class="font-sans font-medium text-gray-500">{count}</p>
+				</div>
+				{#if collection.created_at}
+					<p class="font-sans font-light text-gray-400">{formatDate(collection.created_at)}</p>
+				{/if}
 			</div>
 		</a>
 	</div>

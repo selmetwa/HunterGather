@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store';
 
-export const modalStore = writable(false);  
+export const modalStore = writable(false);
 
 // collecting
 export const collectingModal = writable(false);

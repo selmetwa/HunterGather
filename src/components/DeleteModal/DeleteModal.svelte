@@ -1,4 +1,6 @@
 <script lang="ts">
+  import type { Block } from '../../types/block';
+  import type { Collection } from '../../types/collection';
 	import { isDeleteModalOpen, deleteModalObject } from '../../store/store';
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
@@ -18,7 +20,7 @@
 	$: url = '';
 
 	onMount(() => {
-		deleteModalObject.subscribe((value) => {
+		deleteModalObject.subscribe((value: any) => {
 			type = value.type;
 			object = value.object;
 			url = value.type === 'block' ? value.object?.url : '';

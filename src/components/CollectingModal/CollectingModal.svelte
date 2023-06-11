@@ -2,14 +2,14 @@
 	import { supabaseClient } from '$lib/supabase';
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
-  import { generateISOString } from '../../utils/generateISOString'
+	import { generateISOString } from '../../utils/generateISOString';
 	import getCollectionsByUserId from '../../queries/user/getCollectionsByUserId';
 	import Modal from '../ui/Modal.svelte';
 	import { collectingModal, objectToCollect } from '../../store/store';
 	import Button from '../ui/Button.svelte';
 	import ErrorMessage from '../ui/ErrorMessage.svelte';
 	import SuccessMessage from '../ui/SuccessMessage.svelte';
-  import CollectionPills from '../Collections/CollectionPills.svelte';
+	import CollectionPills from '../Collections/CollectionPills.svelte';
 
 	let inProgress = false;
 	let successMessage = '';
@@ -20,7 +20,7 @@
 	let objectWeAreCollecting: any;
 
 	let ids: any[] = [];
-  
+
 	objectToCollect.subscribe((value) => {
 		objectWeAreCollecting = value;
 	});
@@ -48,7 +48,7 @@
 			 */
 			setTimeout(() => {
 				successMessage = '';
-        collectingModal.set(false)
+				collectingModal.set(false);
 			}, 2000);
 		}, 1000);
 	};
@@ -79,7 +79,7 @@
 		const filtered = all.filter((id: string) => realIds.includes(id));
 		toggledCollectionIds = filtered;
 
-    console.log({ realIds, ids, filtered })
+		console.log({ realIds, ids, filtered });
 
 		originalIds = all.filter((id: string) => !realIds.includes(id));
 	});
@@ -112,9 +112,9 @@
 		if (objectWeAreCollecting.objectType === 'block') {
 			const { data: d, error: e } = await supabaseClient
 				.from('blocks')
-				.update({ 
-          collectionIds: a,
-        })
+				.update({
+					collectionIds: a
+				})
 				.eq('blockId', objectWeAreCollecting.blockId)
 				.select();
 
@@ -125,9 +125,9 @@
 		if (objectWeAreCollecting.objectType === 'collection') {
 			const { data: d, error: e } = await supabaseClient
 				.from('collections')
-				.update({ 
-          collectionIds: a,
-        })
+				.update({
+					collectionIds: a
+				})
 				.eq('collectionId', objectWeAreCollecting.collectionId)
 				.select();
 
@@ -135,17 +135,17 @@
 			error = e;
 		}
 
-    a.forEach(async (c:any) => {
-      const { data: d, error: e } = await supabaseClient
+		a.forEach(async (c: any) => {
+			const { data: d, error: e } = await supabaseClient
 				.from('collections')
-				.update({ 
-          updated_at: generateISOString()
-        })
+				.update({
+					updated_at: generateISOString()
+				})
 				.eq('collectionId', c)
 				.select();
 
-      console.log({ d })
-    })
+			console.log({ d });
+		});
 		handleResponse(error);
 	};
 </script>
@@ -183,7 +183,7 @@
 		{/if}
 
 		<form class="mt-8 space-y-6" on:submit={onSubmit}>
-      <CollectionPills collectionIds={ids} {onPillClick} {toggledCollectionIds} />
+			<CollectionPills collectionIds={ids} {onPillClick} {toggledCollectionIds} />
 			<Button
 				text={`Update collection${toggledCollectionIds.length > 1 ? 's' : ''}`}
 				type="submit"

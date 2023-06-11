@@ -38,6 +38,7 @@ You can preview the production build with `npm run preview`.
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
 
 ## Todo
+
 - [x] create collection
 - [x] create profile page
 - [x] create block
@@ -55,7 +56,7 @@ You can preview the production build with `npm run preview`.
 - [x] consolidate panels and then cleanup break
 - [x] make collection header
 - [x] pay for url service...
-- [x] send user somewhere after they create a block 
+- [x] send user somewhere after they create a block
 - [x] send user somewhere after they create a collection
 - [x] only let signed in users collect
 - [x] block detail page
@@ -64,7 +65,7 @@ You can preview the production build with `npm run preview`.
   - [x] fall back to image if we cant embed
 - [x] link out from cards
 - [x] collection previews
-- [x] pagination 
+- [x] pagination
   - [x] main page
   - [x] collection detail
   - [x] collection preview

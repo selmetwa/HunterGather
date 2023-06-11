@@ -8,11 +8,11 @@ export const ssr = false;
 
 export const load = async ({ fetch, params }: { fetch: any; params: any }) => {
 	const userId = params?.userId;
-  const collections = await getPaginatedCollectionsByUserId(userId, 0, 10);
+	const collections = await getPaginatedCollectionsByUserId(userId, 0, 10);
 
 	return {
 		collections,
-    userId
+		userId
 	};
 };
 

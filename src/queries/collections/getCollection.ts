@@ -5,12 +5,12 @@ import { supabaseClient } from '$lib/supabase';
  */
 
 async function getCollection(collectionId: string) {
-  const { data: collection } = await supabaseClient
-    .from('collections')
-    .select()
-    .eq('collectionId', collectionId);
-  
-  return collection
+	const { data: collection } = await supabaseClient
+		.from('collections')
+		.select()
+		.eq('collectionId', collectionId);
+
+	return collection;
 }
 
 export default getCollection;

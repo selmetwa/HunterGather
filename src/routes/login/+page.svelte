@@ -1,5 +1,4 @@
 <script>
-	// @ts-nocheck
 	import { page } from '$app/stores';
 
 	import { previewPanel } from '../../store/store';

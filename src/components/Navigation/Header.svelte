@@ -1,13 +1,9 @@
 <script>
-	// @ts-nocheck
 	import { page } from '$app/stores';
 	import { modalStore, previewPanel } from '../../store/store';
 
-	let showMenu = false;
-	const toggleMenu = () => (showMenu = !showMenu);
 	const activeSession = $page?.data?.session;
 	let userId = $page?.data?.session?.user?.id;
-
 	let previewPanelIsOpen = false;
 
 	previewPanel.subscribe((v) => (previewPanelIsOpen = v));
@@ -16,33 +12,18 @@
 	};
 </script>
 
-<nav class={`py-4 bg-gray-100 ${previewPanelIsOpen ? 'w-6/12' : 'w-full'} border-b-4 border-gray-200 md:border-0`}>
-	<div class="flex flex-col md:flex-row md:flex-wrap items-center md:justify-between sm:px-8 md:px-16 xl:px-24">
+<nav
+	class={`py-4 bg-gray-100 ${
+		previewPanelIsOpen ? 'w-6/12' : 'w-full'
+	} border-b-4 border-gray-200 md:border-0`}
+>
+	<div
+		class="flex flex-col md:flex-row md:flex-wrap items-center md:justify-between sm:px-8 md:px-16 xl:px-24"
+	>
 		<a href="/" class="flex items-center mt-4 md:mt-0">
-			<span class="text-gray-500 self-center text-xl font-semibold whitespace-nowrap">wwwabbit</span>
-		</a>
-		<!-- <button
-			data-collapse-toggle="navbar-default"
-			type="button"
-			class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden focus:outline-none focus:ring-2 absolute top-0 right-0 mt-2 mr-4"
-			aria-controls="navbar-default"
-			aria-expanded="false"
-			on:click={toggleMenu}
-		>
-			<span class="sr-only">Open main menu</span>
-			<svg
-				class="w-6 h-6"
-				aria-hidden="true"
-				fill="currentColor"
-				viewBox="0 0 20 20"
-				xmlns="http://www.w3.org/2000/svg"
-				><path
-					fill-rule="evenodd"
-					d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-					clip-rule="evenodd"
-				/></svg
+			<span class="text-gray-500 self-center text-xl font-semibold whitespace-nowrap">wwwabbit</span
 			>
-		</button> -->
+		</a>
 		<div class={`md:block md:w-auto`} id="navbar-default">
 			<ul
 				class="flex flex-row-reverse md:flex-row mt-4 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 gap-x-3"
@@ -56,11 +37,11 @@
 							Contribute
 						</button>
 					</li>
-					<li
-						class="block py-2 text-gray-500 rounded md:border-0 underline"
-					>
+					<li class="block py-2 text-gray-500 rounded md:border-0 underline">
 						<form action="/logout" method="POST">
-							<button type="submit" text="logout" class="font-medium font-sans underline">Logout</button>
+							<button type="submit" class="font-medium font-sans underline"
+								>Logout</button
+							>
 						</form>
 					</li>
 					<li>
@@ -73,16 +54,11 @@
 					</li>
 				{:else}
 					<li>
-						<a
-							href="/login"
-							class="block py-2 text-gray-500 rounded md:border-0 underline"
-							>Login</a
+						<a href="/login" class="block py-2 text-gray-500 rounded md:border-0 underline">Login</a
 						>
 					</li>
 					<li>
-						<a
-							href="/register"
-							class="block py-2 text-gray-500 rounded md:border-0 underline"
+						<a href="/register" class="block py-2 text-gray-500 rounded md:border-0 underline"
 							>Register</a
 						>
 					</li>

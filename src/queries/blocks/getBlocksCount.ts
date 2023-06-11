@@ -5,11 +5,9 @@ import { supabaseClient } from '$lib/supabase';
  */
 
 async function getBlocksCount() {
-  const { count } = await supabaseClient
-    .from('blocks')
-    .select('*', { count: 'exact', head: true })
-  
-  return count;
+	const { count } = await supabaseClient.from('blocks').select('*', { count: 'exact', head: true });
+
+	return count;
 }
 
 export default getBlocksCount;

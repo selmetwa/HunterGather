@@ -10,7 +10,7 @@
 	import Button from '../ui/Button.svelte';
 	import ErrorMessage from '../ui/ErrorMessage.svelte';
 	import SuccessMessage from '../ui/SuccessMessage.svelte';
-  import CollectionPills from '../Collections/CollectionPills.svelte';
+	import CollectionPills from '../Collections/CollectionPills.svelte';
 
 	export let onClose: any;
 	export let collectionIds: any;
@@ -26,6 +26,7 @@
 		const element = event.currentTarget as HTMLInputElement;
 		const value = element.value;
 		title = value;
+    return true
 	};
 
 	const updateUrl = (e: any) => {
@@ -129,7 +130,7 @@
 			placeholder="Title"
 		/>
 		<Input type="text" text="URL" value={url} onChange={updateUrl} placeholder="url" />
-    <CollectionPills {collectionIds} {onPillClick} {toggledCollectionIds} />
+		<CollectionPills {collectionIds} {onPillClick} {toggledCollectionIds} />
 		<Button text="Create Block" type="submit" {inProgress} />
 	</form>
 </main>

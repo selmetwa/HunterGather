@@ -5,15 +5,15 @@ import { supabaseClient } from '$lib/supabase';
  * Search blocks by title
  */
 async function paginatedBlocksBySearch(query: string, page: number, limit: number) {
-	const start = (page) * limit;
+	const start = page * limit;
 	const end = start + limit;
 
 	const { data, count } = await supabaseClient
 		.from('blocks')
-    .select('*', { count: 'exact' })
-    .filter('title', 'ilike', `%${query}%`)
-    .range(start, end)
-    .order('created_at', { ascending: false });
+		.select('*', { count: 'exact' })
+		.filter('title', 'ilike', `%${query}%`)
+		.range(start, end)
+		.order('created_at', { ascending: false });
 
 	return {
 		blocks: data || [],

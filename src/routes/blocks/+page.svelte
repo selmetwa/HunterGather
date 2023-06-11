@@ -1,18 +1,18 @@
-<script>
+<script lang="ts">
 	import { onMount } from 'svelte';
-	// @ts-nocheck
+
+	import type { Block } from '../../types/block';
 	import { createUniqueArray } from '../../utils/createUniqueArray.js';
 	import getPaginatedBlocks from '../../queries/blocks/getPaginatedBlocks';
 	import getBlocksCount from '../../queries/blocks/getBlocksCount';
-
 	import Grid from '../../components/ui/Grid.svelte';
 	import BlockCard from '../../components/Blocks/BlockCard.svelte';
 	import LoadMoreButton from '../../components/ui/LoadMoreButton.svelte';
-  import PageNav from '../../components/Navigation/PageNav.svelte';
+	import PageNav from '../../components/Navigation/PageNav.svelte';
 
 	export let data;
 
-	let blocks = data.blocks;
+	let blocks = data.blocks as Block[];
 	let page = 0;
 	$: count = 0;
 

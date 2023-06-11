@@ -86,7 +86,6 @@
 			isModalOpen = !isModalOpen;
 		}
 	};
-
 </script>
 
 <section class="bg-gray-100 py-12 flex justify-center items-center">
@@ -131,15 +130,27 @@
 			</h1>
 			<div class="flex flex-row text-center whitespace-nowrap gap-2 my-1">
 				{#if github}
-					<a href={github} target="_blank" rel="noreferrer" class="underline font-semibold text-blue-400">Github</a>
+					<a
+						href={github}
+						target="_blank"
+						rel="noreferrer"
+						class="underline font-semibold text-blue-400">Github</a
+					>
 				{/if}
 				{#if twitter}
-					<a href={twitter} target="_blank" rel="noreferrer" class="underline font-semibold text-blue-400">Twitter</a
+					<a
+						href={twitter}
+						target="_blank"
+						rel="noreferrer"
+						class="underline font-semibold text-blue-400">Twitter</a
 					>
 				{/if}
 				{#if personalSite}
-					<a href={personalSite} target="_blank" rel="noreferrer" class="underline font-semibold text-blue-400"
-						>Personal Site</a
+					<a
+						href={personalSite}
+						target="_blank"
+						rel="noreferrer"
+						class="underline font-semibold text-blue-400">Personal Site</a
 					>
 				{/if}
 				<!-- svelte-ignore a11y-click-events-have-key-events -->

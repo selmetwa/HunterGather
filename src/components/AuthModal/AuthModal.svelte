@@ -1,9 +1,9 @@
 <script>
-  import { authModal } from '../../store/store';
+	import { authModal } from '../../store/store';
 	import Modal from '../ui/Modal.svelte';
 
 	const onClose = () => {
-    authModal.set(false);
+		authModal.set(false);
 	};
 </script>
 

@@ -18,17 +18,17 @@ export const POST: RequestHandler = async ({ locals, request }) => {
 
 	const { url, collectionIds } = data;
 
-  let title = '';
+	let title = '';
 
-  // handle potential invalid url
-  try {
-	  const { title: responseTitle } = await getTitleAtUrl(url);
-    title = responseTitle;
-  } catch (e) {
-    throw error(500, {
-      message: "Invalid Url"
-    });
-  }
+	// handle potential invalid url
+	try {
+		const { title: responseTitle } = await getTitleAtUrl(url);
+		title = responseTitle;
+	} catch (e) {
+		throw error(500, {
+			message: 'Invalid Url'
+		});
+	}
 
 	// Set your options
 	const options = {
@@ -45,16 +45,19 @@ export const POST: RequestHandler = async ({ locals, request }) => {
 		src: imgUrl,
 		url: url,
 		title: title,
-    objectType: 'block',
+		objectType: 'block',
 		collectionIds: collectionIds
 	};
 
-	const { data: responseData, error: responseError } = await supabaseClient.from('blocks').insert(insert).select();
+	const { data: responseData, error: responseError } = await supabaseClient
+		.from('blocks')
+		.insert(insert)
+		.select();
 
 	if (responseError) {
-    throw error(500, {
-      message: "Something went wrong."
-    });
+		throw error(500, {
+			message: 'Something went wrong.'
+		});
 	}
 
 	return json(responseData);

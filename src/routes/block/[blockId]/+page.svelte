@@ -14,9 +14,11 @@
 	} from '../../../store/store';
 	import CollectionCard from '../../../components/Collections/CollectionCard.svelte';
 	export let data;
-	const userId = $page?.data?.session?.user?.id;
 
+	const userId = $page?.data?.session?.user?.id;
 	const block = data && data.block && data.block[0];
+
+	console.log({ block });
 	const activeSession = $page?.data?.session;
 	const isOwner = userId === block.userId;
 
@@ -88,7 +90,8 @@
 		<div
 			class="col-span-1 lg:col-span-1 lg:order-2 bg-gray-100 border-4 border-gray-300 p-4 w-full"
 		>
-			<a href={url} class="text-blue-500" target="_blank" rel="noreferrer">{url?.slice(0, 45)}...</a>
+			<a href={url} class="text-blue-500" target="_blank" rel="noreferrer">{url?.slice(0, 45)}...</a
+			>
 			<h1 class="text-2xl font-bold mt-2">{title}</h1>
 			<p class="mt-2">
 				Added by: <a href={`/profile/blocks/${authorId}`} class="text-blue-500">{author}</a>
