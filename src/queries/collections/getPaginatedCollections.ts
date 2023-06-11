@@ -1,11 +1,13 @@
 import { supabaseClient } from '$lib/supabase';
+import { LIMIT } from '../../constants/constants';
 
 /**
  * Fetch and return a list of collections within a certain range
  */
-async function getPaginatedCollections(page: number, limit: number) {
-	const start = page * limit;
-	const end = start + limit;
+async function getPaginatedCollections(page: number) {
+	const start = page * LIMIT;
+	const end = start + LIMIT;
+
 	const { data: blocks } = await supabaseClient
 		.from('collections')
 		.select()

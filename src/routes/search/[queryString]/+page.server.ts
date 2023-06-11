@@ -1,6 +1,7 @@
 import { interweave } from '../../../utils/interweave';
 import paginatedBlocksBySearch from '../../../queries/search/paginatedBlocksBySearch';
 import paginatedCollectionsBySearch from '../../../queries/search/paginationCollectionsBySearch';
+import { LIMIT } from '../../../constants/constants'
 
 export const ssr = false;
 
@@ -9,7 +10,7 @@ export const load = async ({ params }: { fetch: any; params: any }) => {
 	const objectType = params.queryString.split('-')[1];
 
 	if (objectType === 'blocks') {
-		const { blocks, blocksCount } = await paginatedBlocksBySearch(query, 0, 10);
+		const { blocks, blocksCount } = await paginatedBlocksBySearch(query, 0);
 
 		return {
 			searchTerm: query,
@@ -20,7 +21,7 @@ export const load = async ({ params }: { fetch: any; params: any }) => {
 	}
 
 	if (objectType === 'collections') {
-		const { collections, collectionsCount } = await paginatedCollectionsBySearch(query, 0, 10);
+		const { collections, collectionsCount } = await paginatedCollectionsBySearch(query, 0);
 		return {
 			searchTerm: query,
 			objects: collections,
@@ -29,8 +30,8 @@ export const load = async ({ params }: { fetch: any; params: any }) => {
 		};
 	}
 
-	const { blocks, blocksCount } = await paginatedBlocksBySearch(query, 0, 10);
-	const { collections, collectionsCount } = await paginatedCollectionsBySearch(query, 0, 10);
+	const { blocks, blocksCount } = await paginatedBlocksBySearch(query, 0);
+	const { collections, collectionsCount } = await paginatedCollectionsBySearch(query, 0);
 
 	const objects = interweave(blocks, collections);
 	const count = blocksCount + collectionsCount;

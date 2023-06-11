@@ -17,7 +17,7 @@
 	$: if (page) loadMore();
 
 	const loadMore = async () => {
-		collections = createUniqueArray(collections, await getPaginatedCollections(page, 5));
+		collections = createUniqueArray(collections, await getPaginatedCollections(page));
 	};
 
 	onMount(async () => {

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
+  import { LIMIT } from '../../../../constants/constants'
 	import { createUniqueArray } from '../../../../utils/createUniqueArray';
 	import getPaginatedCollectionsByUserId from '../../../../queries/user/getPaginatedCollectionsByUserId';
 	import getCollectionsCountByUserId from '../../../../queries/user/getCollectionsCountByUserId';
@@ -27,7 +28,7 @@
 	const loadMore = async () => {
 		masterCollections = createUniqueArray(
 			masterCollections,
-			await getPaginatedCollectionsByUserId(data.userId, page, 10)
+			await getPaginatedCollectionsByUserId(data.userId, page)
 		);
 
 		collections = createUniqueArray(collections, masterCollections);

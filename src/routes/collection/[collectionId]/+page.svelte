@@ -48,7 +48,7 @@
 	const loadData = async () => {
 		masterObjects = createUniqueArray(
 			masterObjects,
-			await getPaginatedCollectionItems(collectionId, page, 15, true)
+			await getPaginatedCollectionItems(collectionId, page, true)
 		);
 
 		objects = createUniqueArray(objects, masterObjects);

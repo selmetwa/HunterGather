@@ -1,6 +1,7 @@
 <script>
 	export let data;
 
+  import { LIMIT } from '../../../constants/constants'
 	import { createUniqueArray } from '../../../utils/createUniqueArray';
 	import paginatedBlocksBySearch from '../../../queries/search/paginatedBlocksBySearch';
 	import paginatedCollectionsBySearch from '../../../queries/search/paginationCollectionsBySearch';
@@ -33,21 +34,21 @@
 
 	const loadMore = async () => {
 		if (objectType === 'blocks') {
-			const blocks = await paginatedBlocksBySearch(data.searchTerm, page, 10);
+			const blocks = await paginatedBlocksBySearch(data.searchTerm, page);
 			objects = createUniqueArray(objects, [...blocks.blocks]);
 
 			return;
 		}
 
 		if (objectType === 'collections') {
-			const collections = await paginatedCollectionsBySearch(data.searchTerm, page, 10);
+			const collections = await paginatedCollectionsBySearch(data.searchTerm, page);
 			objects = createUniqueArray(objects, [...collections.collections]);
 
 			return;
 		}
 
-		const blocks = await paginatedBlocksBySearch(data.searchTerm, page, 10);
-		const collections = await paginatedCollectionsBySearch(data.searchTerm, page, 10);
+		const blocks = await paginatedBlocksBySearch(data.searchTerm, page);
+		const collections = await paginatedCollectionsBySearch(data.searchTerm, page);
 		objects = createUniqueArray(objects, [...blocks.blocks, ...collections.collections]);
 	};
 </script>

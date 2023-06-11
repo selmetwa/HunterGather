@@ -1,12 +1,13 @@
 import { supabaseClient } from '$lib/supabase';
+import { LIMIT } from '../../constants/constants';
 
 /**
  * Get collections by search query
  * also return count
  */
-async function paginatedCollectionsBySearch(query: string, page: number, limit: number) {
-	const start = page * limit;
-	const end = start + limit;
+async function paginatedCollectionsBySearch(query: string, page: number) {
+	const start = page * LIMIT;
+	const end = start + LIMIT;
 
 	/**
 	 * Only fetch collections if user is searching

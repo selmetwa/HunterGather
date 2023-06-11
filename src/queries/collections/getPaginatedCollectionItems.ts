@@ -1,6 +1,7 @@
 import { supabaseClient } from '$lib/supabase';
 
 import { interweave } from '../../utils/interweave';
+import { LIMIT } from '../../constants/constants';
 
 /**
  * This function fetches blocks and collections
@@ -9,11 +10,10 @@ import { interweave } from '../../utils/interweave';
 async function getPaginatedCollectionItems(
 	collectionId: string,
 	page: number,
-	limit: number,
 	filterByCollectionId: boolean
 ) {
-	const start = page * limit;
-	const end = start + limit;
+	const start = page * LIMIT;
+	const end = start + LIMIT;
 
 	if (filterByCollectionId) {
 		const { data: blocks } = await supabaseClient

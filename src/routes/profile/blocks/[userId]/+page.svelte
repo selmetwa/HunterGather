@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
+  import { LIMIT } from '../../../../constants/constants'
 	import BlockCard from '../../../../components/Blocks/BlockCard.svelte';
 	import { createUniqueArray } from '../../../../utils/createUniqueArray';
 	import getBlocksByUserId from '../../../../queries/user/getBlocksByUserId';
@@ -29,7 +30,7 @@
 	});
 
 	const loadMore = async () => {
-		masterBlocks = createUniqueArray(masterBlocks, await getBlocksByUserId(data.userId, page, 15));
+		masterBlocks = createUniqueArray(masterBlocks, await getBlocksByUserId(data.userId, page));
 
 		blocks = createUniqueArray(blocks, masterBlocks);
 	};
