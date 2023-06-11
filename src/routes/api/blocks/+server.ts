@@ -23,7 +23,6 @@ export const POST: RequestHandler = async ({ locals, request }) => {
 
   try {
 		if (!title || title.length === 0) {
-      console.log('no title')
 			const { title: responseTitle } = await getTitleAtUrl(url);
 			t = responseTitle;
 		}

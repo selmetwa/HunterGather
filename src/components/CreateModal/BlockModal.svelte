@@ -77,7 +77,7 @@
 
 	const onSubmit = async () => {
 		inProgress = true;
-    const res = await fetch(`${PUBLIC_API_URL}/api/blocks`, {
+    const res = await fetch(`${window.location.origin}/api/blocks`, {
 			method: 'POST',
 			headers: { accept: 'application/json' },
 			body: JSON.stringify({
