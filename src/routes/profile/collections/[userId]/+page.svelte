@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-  import { LIMIT } from '../../../../constants/constants'
 	import { createUniqueArray } from '../../../../utils/createUniqueArray';
 	import getPaginatedCollectionsByUserId from '../../../../queries/user/getPaginatedCollectionsByUserId';
 	import getCollectionsCountByUserId from '../../../../queries/user/getCollectionsCountByUserId';

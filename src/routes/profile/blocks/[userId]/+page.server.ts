@@ -1,7 +1,6 @@
 import { redirect } from '@sveltejs/kit';
 import { supabaseClient } from '$lib/supabase';
 
-import { LIMIT } from '../../../../constants/constants';
 import type { Block } from '../../../../types/block';
 import getBlocksByUserId from '../../../../queries/user/getBlocksByUserId';
 import type { Actions } from './$types';

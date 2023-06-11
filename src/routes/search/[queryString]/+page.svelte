@@ -1,7 +1,6 @@
 <script>
 	export let data;
 
-  import { LIMIT } from '../../../constants/constants'
 	import { createUniqueArray } from '../../../utils/createUniqueArray';
 	import paginatedBlocksBySearch from '../../../queries/search/paginatedBlocksBySearch';
 	import paginatedCollectionsBySearch from '../../../queries/search/paginationCollectionsBySearch';

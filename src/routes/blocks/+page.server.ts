@@ -1,4 +1,3 @@
-import { LIMIT } from '../../constants/constants';
 import getPaginatedBlocks from '../../queries/blocks/getPaginatedBlocks';
 
 export const ssr = false;

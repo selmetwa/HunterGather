@@ -5,6 +5,7 @@
 
 <div>
 	<div class="content mt-10 mx-auto">
+    <h1>{title}</h1>
 		<a href={url} class="text-blue-500 line-clamp-1" target="_blank" rel="noreferrer">{url}</a>
 		{#if url && src}
 			<object

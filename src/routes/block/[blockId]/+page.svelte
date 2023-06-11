@@ -18,7 +18,6 @@
 	const userId = $page?.data?.session?.user?.id;
 	const block = data && data.block && data.block[0];
 
-	console.log({ block });
 	const activeSession = $page?.data?.session;
 	const isOwner = userId === block.userId;
 
@@ -69,17 +68,17 @@
 	};
 </script>
 
-<div class="w-full h-full opacity-100 bg-gray-100">
-	<div class={`content px-4 lg:px-8 my-16 gap-10 grid ${gridRules}`}>
+<div class="px-8 md:px-16 xl:px-24 mb-24">
+	<div class={`content my-16 gap-8 grid ${gridRules} w-full`}>
 		<div
-			class="col-span-1 lg:col-span-2 2xl:col-span-3 lg:order-1 bg-gray-100 border-4 border-gray-300"
+			class="col-span-1 lg:col-span-2 2xl:col-span-3 lg:order-1"
 		>
 			{#if url && src}
 				<object
 					{title}
 					data={url}
 					style="width: 100%; display: block;"
-					class="h-[500px] lg:h-[600px] 2xl:h-[800px]"
+					class="h-[500px] lg:h-[600px] 2xl:h-[700px]"
 				>
 					<a href={url} target="_blank" rel="noreferrer">
 						<img alt={title} {src} class="h-auto object-cover" />
@@ -88,7 +87,7 @@
 			{/if}
 		</div>
 		<div
-			class="col-span-1 lg:col-span-1 lg:order-2 bg-gray-100 border-4 border-gray-300 p-4 w-full"
+			class="col-span-1 lg:col-span-1 lg:order-2 bg-gray-100 border-4 border-gray-300 p-4 w-full minHeight"
 		>
 			<a href={url} class="text-blue-500" target="_blank" rel="noreferrer">{url?.slice(0, 45)}...</a
 			>
@@ -122,3 +121,9 @@
 		</div>
 	</div>
 </div>
+
+<style>
+  .minHeight {
+    height: min-content;
+  }
+</style>

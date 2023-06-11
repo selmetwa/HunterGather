@@ -1,4 +1,3 @@
-import { LIMIT } from '../../constants/constants';
 import getPaginatedCollections from '../../queries/collections/getPaginatedCollections';
 
 export const ssr = false;

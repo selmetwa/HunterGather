@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-  import { LIMIT } from '../../../../constants/constants'
 	import BlockCard from '../../../../components/Blocks/BlockCard.svelte';
 	import { createUniqueArray } from '../../../../utils/createUniqueArray';
 	import getBlocksByUserId from '../../../../queries/user/getBlocksByUserId';

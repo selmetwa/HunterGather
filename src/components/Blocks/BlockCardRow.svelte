@@ -7,7 +7,6 @@
 	export let title = '';
 	export let blockId = '';
 	export let url = '';
-	export let date = '';
 	export let toggleCollectingModal: () => void;
 	export let togglePreview: (e: any) => void;
 
@@ -39,7 +38,6 @@
 				<a href={url} class="text-blue-400 underline flex flex-wrap break-words overflow-hidden"
 					>{url}</a
 				>
-				<p class="text-gray-400 font-light text-left line-clamp-2">{date}</p>
 			</div>
 		</div>
 	</a>

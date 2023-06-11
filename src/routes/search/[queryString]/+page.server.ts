@@ -1,7 +1,6 @@
 import { interweave } from '../../../utils/interweave';
 import paginatedBlocksBySearch from '../../../queries/search/paginatedBlocksBySearch';
 import paginatedCollectionsBySearch from '../../../queries/search/paginationCollectionsBySearch';
-import { LIMIT } from '../../../constants/constants'
 
 export const ssr = false;
 

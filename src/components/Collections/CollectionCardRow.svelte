@@ -44,7 +44,7 @@
 				<a href={`/profile/blocks/${userId}`} class="text-blue-400 underline flex flex-wrap"
 					>{author}</a
 				>
-				<p class="font-sans text-gray-400">{date}</p>
+				<p class="font-sans text-gray-400 text-sm">Updated: {date}</p>
 			</div>
 		</div>
 	</a>

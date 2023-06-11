@@ -1,4 +1,5 @@
 <script lang="ts">
+  import type { Block } from '../../types/block'
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 	import { scale, fade } from 'svelte/transition';
@@ -13,11 +14,10 @@
 		objectView
 	} from '../../store/store';
 
-	import { formatDate } from '../../utils/formatDate';
 	import BlockCardRow from './BlockCardRow.svelte';
-	export let block: any;
+	export let block: Block;
 
-	const { src, title, url, blockId, userId, updated_at } = block;
+	const { src, title, url, blockId } = block;
 
 	const activeSession = $page?.data?.session;
 	const isMobile = Device.isMobile;
@@ -66,7 +66,6 @@
 		{url}
 		{toggleCollectingModal}
 		{togglePreview}
-		date={formatDate(updated_at)}
 	/>
 {:else}
 	<div in:fade>
@@ -99,7 +98,6 @@
 			<a href={`/block/${blockId}`} class="flex items-center justify-center h-full w-full">
 				<h2 class="text-gray-500 text-left line-clamp-2">{title}</h2>
 			</a>
-			<p class="text-gray-400 font-light text-left line-clamp-2 text-sm">Updated: {formatDate(updated_at)}</p>
 		</div>
 	</div>
 {/if}

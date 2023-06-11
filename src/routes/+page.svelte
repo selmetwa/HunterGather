@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { LIMIT } from '../constants/constants'
 	import { createUniqueArray } from '../utils/createUniqueArray';
 	import getPaginatedCollectionItems from '../queries/collections/getPaginatedCollectionItems';
 	import BlockCard from '../components/Blocks/BlockCard.svelte';
