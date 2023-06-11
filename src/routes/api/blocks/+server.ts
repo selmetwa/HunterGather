@@ -19,7 +19,6 @@ export const POST: RequestHandler = async ({ locals, request }) => {
 	const { title, url, collectionIds } = data;
 
 	let t = '';
-  console.log({ data })
 
   try {
 		if (!title || title.length === 0) {
