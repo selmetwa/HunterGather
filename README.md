@@ -118,6 +118,9 @@ You can preview the production build with `npm run preview`.
 - [x] let user input own title
 - [x] detecting mobile doesnt work
 - [x] update mobile header
+- [x] move create block functionality back to server
+- [ ] add more detail for block detail pages and previews
+- [ ] make generic empty message
 - [ ] stripe
   - [x] add isSubscriber column
   - [ ] add progress bar on profile page

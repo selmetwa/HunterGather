@@ -1,6 +1,6 @@
-<script lang="ts">
-  import type { Block } from '../../types/block';
-  import type { Collection } from '../../types/collection'
+<script>
+	// @ts-nocheck
+
 	import { onMount } from 'svelte';
 	import { previewPanelObject } from '../../store/store';
 	import { slide } from 'svelte/transition';
@@ -10,15 +10,12 @@
 	import PreviewHeader from './PreviewHeader.svelte';
 
 	$: type = '';
-	$: object = {} as Block | Collection;
+	$: object = {};
 	$: id = '';
 	$: url = '';
 
-  const collection = object.objectType === 'collection' && object as Collection;
-  const block = object.objectType === 'block' && object as Block;
-
 	onMount(() => {
-		previewPanelObject.subscribe((value: any) => {
+		previewPanelObject.subscribe((value) => {
 			type = value.type;
 			object = value.object;
 			url = value.type === 'block' ? value.object.url : '';
@@ -28,16 +25,16 @@
 </script>
 
 <section
-	transition:slide
+  transition:slide
 	class="fixed right-0 bottom-0 w-6/12 h-screen overflow-x-hidden z-20 overflow-hidden opacity-100 flex flex-col bg-gray-100 panel-wrapper"
 >
 	<PreviewHeader {id} {type} {url} />
 	<div class="overflow-scroll pb-20 px-14">
-		{#if block}
+		{#if type === 'block'}
 			<BlockPreview {object} />
 		{/if}
-		{#if collection}
-			<CollectionPreview collectionId={collection?.collectionId} />
+		{#if type === 'collection'}
+			<CollectionPreview collectionId={object.id} />
 		{/if}
 	</div>
 </section>

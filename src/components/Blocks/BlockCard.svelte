@@ -17,7 +17,7 @@
 	import BlockCardRow from './BlockCardRow.svelte';
 	export let block: any;
 
-	const { src, title, url, blockId, userId, created_at } = block;
+	const { src, title, url, blockId, userId, updated_at } = block;
 
 	const activeSession = $page?.data?.session;
 	const isMobile = Device.isMobile;
@@ -66,7 +66,7 @@
 		{url}
 		{toggleCollectingModal}
 		{togglePreview}
-		date={formatDate(created_at)}
+		date={formatDate(updated_at)}
 	/>
 {:else}
 	<div in:fade>
@@ -99,7 +99,7 @@
 			<a href={`/block/${blockId}`} class="flex items-center justify-center h-full w-full">
 				<h2 class="text-gray-500 text-left line-clamp-2">{title}</h2>
 			</a>
-			<p class="text-gray-400 font-light text-left line-clamp-2">{formatDate(created_at)}</p>
+			<p class="text-gray-400 font-light text-left line-clamp-2 text-sm">Updated: {formatDate(updated_at)}</p>
 		</div>
 	</div>
 {/if}

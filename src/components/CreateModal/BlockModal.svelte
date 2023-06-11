@@ -2,10 +2,9 @@
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
 	import Device from 'svelte-device-info';
-
+  import { PUBLIC_API_URL } from '$env/static/public';
 	import { previewPanel, previewPanelObject, objectToCollect, modalStore } from '../../store/store';
 
-	import { createBlock } from '../../queries/blocks/createBlock';
 	import Input from '../ui/Input.svelte';
 	import Button from '../ui/Button.svelte';
 	import ErrorMessage from '../ui/ErrorMessage.svelte';
@@ -78,7 +77,16 @@
 
 	const onSubmit = async () => {
 		inProgress = true;
-		const res = await createBlock(title, url, toggledCollectionIds, $page?.data?.session?.user?.id);
+    const res = await fetch(`${PUBLIC_API_URL}/api/blocks`, {
+			method: 'POST',
+			headers: { accept: 'application/json' },
+			body: JSON.stringify({
+        title,
+				url,
+				collectionIds: toggledCollectionIds
+			})
+		});
+		// const res = await createBlock(title, url, toggledCollectionIds, $page?.data?.session?.user?.id);
 		const responseData = await res.json();
 		handleResponse(res, responseData);
 	};

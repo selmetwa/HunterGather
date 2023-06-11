@@ -12,7 +12,7 @@ async function getBlocksByUserId(userId: string, page: number, limit: number) {
 		.select()
 		.eq('userId', userId)
 		.range(start, end)
-		.order('created_at', { ascending: false });
+		.order('updated_at', { ascending: false });
 
 	return blocks;
 }

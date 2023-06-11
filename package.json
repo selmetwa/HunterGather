@@ -38,6 +38,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@extractus/article-extractor": "^7.2.16",
 		"@tailwindcss/container-queries": "^0.1.1",
 		"get-title-at-url": "^2.0.0",
 		"redis": "^4.6.5",

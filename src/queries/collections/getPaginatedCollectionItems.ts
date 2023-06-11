@@ -36,7 +36,7 @@ async function getPaginatedCollectionItems(
 	const { data: blocks } = await supabaseClient
 		.from('blocks')
 		.select()
-		.order('created_at', { ascending: false })
+		.order('updated_at', { ascending: false })
 		.range(start, end);
 	const { data: collections } = await supabaseClient
 		.from('collections')

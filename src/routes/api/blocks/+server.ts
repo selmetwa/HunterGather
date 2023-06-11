@@ -2,10 +2,10 @@ import { v4 as uuidv4 } from 'uuid';
 import { error, json } from '@sveltejs/kit';
 import Urlbox from 'urlbox';
 import { PUBLIC_URLBOX_PUBLISHABLE_KEY, PUBLIC_URLBOX_SECRET_KEY } from '$env/static/public';
-import getTitleAtUrl from 'get-title-at-url';
 
 import type { RequestHandler } from './$types';
 import { supabaseClient } from '$lib/supabase';
+import getTitleAtUrl from 'get-title-at-url';
 
 // Plugin your API key and secret
 const urlbox = Urlbox(PUBLIC_URLBOX_PUBLISHABLE_KEY, PUBLIC_URLBOX_SECRET_KEY);
@@ -16,14 +16,17 @@ export const POST: RequestHandler = async ({ locals, request }) => {
 	const userId = locals?.session?.user?.id;
 	const blockId = uuidv4();
 
-	const { url, collectionIds } = data;
+	const { title, url, collectionIds } = data;
 
-	let title = '';
+	let t = '';
+  console.log({ data })
 
-	// handle potential invalid url
-	try {
-		const { title: responseTitle } = await getTitleAtUrl(url);
-		title = responseTitle;
+  try {
+		if (!title || title.length === 0) {
+      console.log('no title')
+			const { title: responseTitle } = await getTitleAtUrl(url);
+			t = responseTitle;
+		}
 	} catch (e) {
 		throw error(500, {
 			message: 'Invalid Url'
@@ -44,7 +47,7 @@ export const POST: RequestHandler = async ({ locals, request }) => {
 		userId: userId,
 		src: imgUrl,
 		url: url,
-		title: title,
+		title: t || title,
 		objectType: 'block',
 		collectionIds: collectionIds
 	};

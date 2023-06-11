@@ -3,6 +3,7 @@ import { error, json } from '@sveltejs/kit';
 import Urlbox from 'urlbox';
 import { PUBLIC_URLBOX_PUBLISHABLE_KEY, PUBLIC_URLBOX_SECRET_KEY } from '$env/static/public';
 import getTitleAtUrl from 'get-title-at-url';
+import { extract } from '@extractus/article-extractor'
 
 // import type { RequestHandler } from './$types';
 import { supabaseClient } from '$lib/supabase';
@@ -19,10 +20,22 @@ export const createBlock = async (
 ) => {
 	const blockId = uuidv4();
 
+  console.log({ url })
 	let realTitle = '';
+  let description = '';
 	// handle potential invalid url
+
+  // try {
+  //   const article = await extract(url)
+  //   console.log({ article })
+  // } catch (e) {
+  //   throw error(500, {
+	// 		message: 'Invalid Url'
+	// 	});
+  // }
 	try {
 		if (!title || title.length === 0) {
+      console.log('no title')
 			const { title: responseTitle } = await getTitleAtUrl(url);
 			realTitle = responseTitle;
 		}
@@ -31,6 +44,8 @@ export const createBlock = async (
 			message: 'Invalid Url'
 		});
 	}
+
+  console.log({ realTitle })
 
 	// Set your options
 	const options = {
@@ -51,6 +66,7 @@ export const createBlock = async (
 		collectionIds: collectionIds
 	};
 
+  console.log({ insert })
 	const { data: responseData, error: responseError } = await supabaseClient
 		.from('blocks')
 		.insert(insert)

@@ -9,7 +9,7 @@ async function getPaginatedBlocks(page: number, limit: number) {
 	const { data: blocks } = await supabaseClient
 		.from('blocks')
 		.select()
-		.order('created_at', { ascending: false })
+		.order('updated_at', { ascending: false })
 		.range(start, end);
 
 	return blocks;

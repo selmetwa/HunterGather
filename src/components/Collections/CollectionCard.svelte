@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { page } from '$app/stores';
+	import { page, updated } from '$app/stores';
 	import { supabaseClient } from '$lib/supabase';
 	import { onMount } from 'svelte';
 	import { scale, fade } from 'svelte/transition';
@@ -79,7 +79,7 @@
 		{userId}
 		{toggleCollectingModal}
 		{togglePreview}
-		date={formatDate(collection?.created_at)}
+		date={formatDate(collection?.updated_at)}
 	/>
 {:else}
 	<div
@@ -122,8 +122,8 @@
 				>
 					<p class="font-sans font-medium text-gray-500">{count}</p>
 				</div>
-				{#if collection.created_at}
-					<p class="font-sans font-light text-gray-400">{formatDate(collection.created_at)}</p>
+				{#if collection.updated_at}
+					<p class="font-sans font-light text-gray-400 text-sm">Updated: {formatDate(collection.updated_at)}</p>
 				{/if}
 			</div>
 		</a>
