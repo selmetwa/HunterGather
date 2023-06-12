@@ -6,6 +6,7 @@
 	import Grid from '../components/ui/Grid.svelte';
 	import LoadMoreButton from '../components/ui/LoadMoreButton.svelte';
 	import PageNav from '../components/Navigation/PageNav.svelte';
+  import Checkout from './stripe/checkout.svelte';
 
 	export let data: any;
 	const count = data.count;
@@ -23,6 +24,7 @@
 	<title>HunterGather</title>
 	<meta name="description" content="HunterGather" />
 </svelte:head>
+
 <section>
 	<PageNav currentPath="/" objectType="" />
 	<Grid>
