@@ -8,10 +8,10 @@ import stripe from '../../../lib/_stripe'
 // const stripe = new Stripe(PUBLIC_STRIPE_SECRET_KEY_TEST, {})
 
 // endpoint to handle incoming webhooks
-export async function POST({ request }) {
+export async function POST({ request, params }) {
   // extract body
   const body = await request.text()
-
+  console.log({ request })
   // get the signature from the header
   const signature = request.headers.get('stripe-signature')
 

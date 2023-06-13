@@ -11,7 +11,7 @@
 		modalStore,
 		hasReachedLimit,
 		collectingModal,
-		isDeleteModalOpen
+		isDeleteModalOpen,
 	} from '../store/store';
 
 	import getCollectionsCountByUserId from '../queries/user/getCollectionsCountByUserId';

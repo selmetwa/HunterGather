@@ -29,7 +29,7 @@ export const POST: RequestHandler = async (event: RequestEvent) => {
 					quantity: 1
 				}
 			],
-			success_url: `http://${event.url.host}/counter?sessionId={CHECKOUT_SESSION_ID}`,
+			success_url: `http://${event.url.host}/success?sessionId={CHECKOUT_SESSION_ID}`,
 			cancel_url: `http://${event.url.host}/`
 		});
 		return {

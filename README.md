@@ -119,9 +119,9 @@ You can preview the production build with `npm run preview`.
 - [x] detecting mobile doesnt work
 - [x] update mobile header
 - [x] move create block functionality back to server
-- [ ] add more detail for block detail pages and previews
-- [ ] make generic empty message
-- [ ] stripe
+- [x] add more detail for block detail pages and previews
+- [x] make generic empty message
+- [x] stripe
   - [x] add isSubscriber column
   - [ ] add progress bar on profile page
   - [ ] add link to pay in footer
