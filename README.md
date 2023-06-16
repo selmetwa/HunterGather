@@ -16,6 +16,7 @@ npm create svelte@latest my-app
 
 ## Developing
 
+
 Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
 
 ```bash
@@ -123,10 +124,12 @@ You can preview the production build with `npm run preview`.
 - [x] make generic empty message
 - [x] stripe
   - [x] add isSubscriber column
-  - [ ] add progress bar on profile page
+  - [x] add progress bar on profile page
   - [ ] add link to pay in footer
   - [ ] paywall modal
   - [ ] add limit on blocks + collections
 - [ ] create footer
+- [ ] make success page
+- [ ] make better pricing page
 - [ ] about page
   - [ ] add my personal email
