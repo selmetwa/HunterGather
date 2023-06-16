@@ -2,21 +2,24 @@
 	import { goto } from '$app/navigation';
 	import { getContext } from 'svelte';
 	import { product } from '../../constants/plans';
+	import { previewPanel } from '../../store/store';
+	import { page } from '$app/stores';
 
 	const { getStripe } = getContext('stripe') as any;
+	const activeSession = $page?.data?.session;
 
 	const stripe = getStripe();
 
 	async function choosePlan() {
 		if (product.id) {
-			console.log(JSON.stringify({ priceId: "price_1NDCMJEgb1PPyyWRPBFWSEsE" }));
+			console.log(JSON.stringify({ priceId: 'price_1NDCMJEgb1PPyyWRPBFWSEsE' }));
 
-      const url = `${window.location.origin}/stripe/checkout-session`
-      console.log({ url })
+			const url = `${window.location.origin}/stripe/checkout-session`;
+			console.log({ url });
 			const res = await fetch(`${window.location.origin}/api/checkout-session`, {
 				method: 'POST',
-        headers: { accept: 'application/json' },
-				body: JSON.stringify({ priceId: "price_1NDCMJEgb1PPyyWRPBFWSEsE" })
+				headers: { accept: 'application/json' },
+				body: JSON.stringify({ priceId: 'price_1NDCMJEgb1PPyyWRPBFWSEsE' })
 			});
 
 			const { sessionId } = await res.json();
@@ -30,111 +33,40 @@
 	}
 </script>
 
-<!-- <svelte:head>
-  <script src="https://js.stripe.com/v3/"></script>
-</svelte:head> -->
-<!-- <StripeProvider> -->
-<section class="plans">
-	<div class="plan">
-		<div class="top">
-			<div class="about">
-				<h2 class="title">HunterGather</h2>
-				<div class="description">stuff</div>
-			</div>
-			<div class="price">
-				<span class="dollars">$4.00</span>
-			</div>
-			<button on:click={() => choosePlan()}>Choose</button>
-			<!-- <button>Choose</button> -->
+<section class="modal-wrapper">
+	<main
+		class={`${
+			$previewPanel ? 'xl:w-6/12 sm:w-8/12' : '2xl:w-3/12 xl:w-4/12 lg:w-6/12 md:w-8/12 sm:w-8/12'
+		} bg-white mb-20 p-8 m-auto rounded drop-shadow-md mt-20 overflow-hidden`}
+	>
+		<div class="w-full max-w-md space-y-4">
+			<h2 class="font-sans text-left text-2xl font-light tracking-tight text-gray-400">
+				HunterGather Premium
+			</h2>
+
+			<div class="flex-grow border-t border-gray-200" />
+			<div class="text-blue-400 font-semibold text-xl">$4.00 a Month</div>
+			<p class="text-gray-400 font-light text-lg">
+				Subscribe for the ability to contribute unlimited blocks & collections
+			</p>
+
+			{#if activeSession}
+				<button
+					on:click={() => choosePlan()}
+					class="font-bold font-sans group relative flex w-full justify-center rounded-md border border-transparent bg-action-400 hover:bg-action-500 py-2 px-4 text-lg font-medium text-white focus:outline-none focus:ring-2 focus:gray-300 focus:ring-offset-2 drop-shadow-sm ease-in-out duration-300"
+				>
+					Subscribe
+				</button>
+				<p class="text-gray-400 font-light text-lg">
+					Or if you want to continue contributing to the site but don't want to pay $4/mo just email me at <span
+						class="text-blue-400">selmetwa@gmail.com</span
+					>
+				</p>
+			{:else}
+				<p class="text-gray-400 font-light text-lg">
+					You need an account to subscribe <a href="login" class="text-blue-400">Login here</a>
+				</p>
+			{/if}
 		</div>
-		<div class="divider" />
-		<div class="bottom">unlimited stuff</div>
-	</div>
+	</main>
 </section>
-
-<!-- </StripeProvider> -->
-
-<style>
-	.plans {
-		display: flex;
-		flex-direction: column;
-		color: rgb(23, 31, 31);
-	}
-
-	.plan {
-		border: 1px solid black;
-		border-radius: 0.5rem;
-		margin: 1rem;
-		width: 16rem;
-		background: rgba(255, 255, 255, 0.2);
-	}
-
-	.plan .top {
-		padding: 1rem 1.5rem;
-	}
-
-	.plan .bottom {
-		padding: 1rem 1.5rem;
-	}
-
-	.about {
-		height: 110px;
-	}
-
-	.title {
-		font-size: 1.25rem;
-	}
-
-	.description {
-		color: rgb(71, 97, 97);
-		margin-bottom: 0.5rem;
-	}
-
-	.price {
-		margin-bottom: 0.75rem;
-	}
-
-	.dollars {
-		font-size: 1.5rem;
-	}
-
-	button {
-		cursor: pointer;
-		background: rgb(23, 31, 31);
-		color: white;
-		font-weight: bold;
-		padding: 0.5rem 0.75rem;
-		border-radius: 0.5rem;
-		border: none;
-		width: 100%;
-		transition: background 0.2s ease-in-out;
-	}
-
-	button:hover {
-		background: var(--accent-color);
-	}
-
-	button:focus {
-		outline: 2px solid var(--accent-color);
-		outline-offset: 2px;
-	}
-
-	.divider {
-		border-top: 1px solid var(--text-color);
-	}
-
-	ul {
-		color: rgb(71, 97, 97);
-		padding-left: 1rem;
-	}
-
-	li {
-		margin-bottom: 0.5rem;
-	}
-
-	@media (min-width: 640px) {
-		.plans {
-			flex-direction: row;
-		}
-	}
-</style>
