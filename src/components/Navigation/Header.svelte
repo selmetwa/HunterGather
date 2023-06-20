@@ -1,6 +1,6 @@
 <script>
 	import { page } from '$app/stores';
-	import { modalStore, previewPanel } from '../../store/store';
+	import { modalStore, previewPanel, paywallModal, hasReachedLimit } from '../../store/store';
 
 	const activeSession = $page?.data?.session;
 	let userId = $page?.data?.session?.user?.id;
@@ -8,6 +8,12 @@
 
 	previewPanel.subscribe((v) => (previewPanelIsOpen = v));
 	const toggleModal = () => {
+
+    if ($hasReachedLimit) {
+      paywallModal.set(true)
+      return
+    }
+
 		modalStore.update(() => true);
 	};
 </script>
@@ -27,7 +33,7 @@
 		</a>
 		<div id="navbar-default">
 			<ul
-				class="flex flex-row-reverse md:flex-row mt-4 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 border border-blue-500"
+				class="flex flex-row-reverse gap-2 lg:gap-0 md:flex-row mt-4 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 border border-blue-500"
 			>
 				{#if activeSession}
 					<li class="font-medium">

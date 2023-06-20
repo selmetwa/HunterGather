@@ -11,7 +11,9 @@
 		objectToCollect,
 		previewPanel,
 		previewPanelObject,
-		objectView
+		objectView,
+    paywallModal,
+    hasReachedLimit
 	} from '../../store/store';
 
 	import BlockCardRow from './BlockCardRow.svelte';
@@ -34,6 +36,11 @@
 	const leave = () => (hovering = false);
 
 	const toggleCollectingModal = () => {
+    if ($hasReachedLimit) {
+      paywallModal.set(true)
+      return 
+    }
+
 		if (activeSession) {
 			collectingModal.set(true);
 			objectToCollect.set(block);

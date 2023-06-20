@@ -1,9 +1,11 @@
+import { PUBLIC_PRICE_ID, PUBLIC_PRODUCT_ID } from '$env/static/public';
+
 export const product = {
-  id: "prod_NzAhnpdIesiDN4",
+  id: PUBLIC_PRODUCT_ID,
   object: "product",
   active: true,
   created: 1685390883,
-  default_price: "price_1NDCMJEgb1PPyyWRPBFWSEsE",
+  default_price: PUBLIC_PRICE_ID,
   description: null,
   images: [],
   livemode: false,

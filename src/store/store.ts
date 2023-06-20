@@ -22,3 +22,5 @@ export const authModal = writable(false);
 
 // has reached limit
 export const hasReachedLimit = writable(false);
+
+export const paywallModal = writable(false);

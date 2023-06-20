@@ -1,19 +1,20 @@
 import type { RequestEvent, RequestHandler } from '@sveltejs/kit';
 import stripe from '../../lib/_stripe';
+import { PUBLIC_PRODUCT_ID } from '$env/static/public';
 
 export const POST: RequestHandler = async (event: RequestEvent) => {
 	const req = event.request;
 
 	const formData = await req.json();
-	const priceId = "prod_NzAhnpdIesiDN4";
+	const productId = PUBLIC_PRODUCT_ID;
 
-	if (typeof priceId !== 'string') {
+	if (typeof productId !== 'string') {
 		return {
 			status: 400,
 			headers: {},
 			body: JSON.stringify({
 				error: {
-					message: 'priceId is required'
+					message: 'productId is required'
 				}
 			})
 		};
@@ -25,7 +26,7 @@ export const POST: RequestHandler = async (event: RequestEvent) => {
 			payment_method_types: ['card'],
 			line_items: [
 				{
-					price: priceId,
+					price: productId,
 					quantity: 1
 				}
 			],

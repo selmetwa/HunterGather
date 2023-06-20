@@ -4,6 +4,7 @@
 	import { product } from '../../constants/plans';
 	import { previewPanel } from '../../store/store';
 	import { page } from '$app/stores';
+  import { PUBLIC_PRICE_ID } from '$env/static/public';
 
 	const { getStripe } = getContext('stripe') as any;
 	const activeSession = $page?.data?.session;
@@ -12,14 +13,14 @@
 
 	async function choosePlan() {
 		if (product.id) {
-			console.log(JSON.stringify({ priceId: 'price_1NDCMJEgb1PPyyWRPBFWSEsE' }));
+			console.log(JSON.stringify({ priceId: PUBLIC_PRICE_ID }));
 
 			const url = `${window.location.origin}/stripe/checkout-session`;
 			console.log({ url });
 			const res = await fetch(`${window.location.origin}/api/checkout-session`, {
 				method: 'POST',
 				headers: { accept: 'application/json' },
-				body: JSON.stringify({ priceId: 'price_1NDCMJEgb1PPyyWRPBFWSEsE' })
+				body: JSON.stringify({ priceId: PUBLIC_PRICE_ID })
 			});
 
 			const { sessionId } = await res.json();

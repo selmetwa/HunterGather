@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { page, updated } from '$app/stores';
+	import { page } from '$app/stores';
 	import { supabaseClient } from '$lib/supabase';
 	import { onMount } from 'svelte';
 	import { scale, fade } from 'svelte/transition';
@@ -15,7 +15,9 @@
 		objectToCollect,
 		previewPanel,
 		previewPanelObject,
-		objectView
+		objectView,
+    paywallModal,
+    hasReachedLimit
 	} from '../../store/store';
 	import { formatDate } from '../../utils/formatDate';
 	export let collection: any;
@@ -48,6 +50,11 @@
 	});
 
 	const toggleCollectingModal = () => {
+
+    if ($hasReachedLimit) {
+      paywallModal.set(true)
+      return
+    }
 		if (activeSession) {
 			collectingModal.set(true);
 			objectToCollect.set(collection);

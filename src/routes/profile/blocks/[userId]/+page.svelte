@@ -10,6 +10,7 @@
 	import ProfileHeader from '../../ProfileHeader.svelte';
 	import ObjectViewButtons from '../../../../components/Navigation/ObjectViewButtons.svelte';
 	import FilterBar from '../../../../components/ui/FilterBar.svelte';
+	import Empty from '../../../../components/ui/Empty.svelte';
 
 	interface Data {
 		blocks: Array<any>;
@@ -65,11 +66,15 @@
 	</div>
 	<ObjectViewButtons />
 </div>
-<Grid>
-	{#each blocks as block}
-		<BlockCard {block} />
-	{/each}
-</Grid>
-{#if blocks.length < count}
-	<LoadMoreButton onClick={() => (page += 1)} />
+{#if blocks && blocks.length > 0}
+	<Grid>
+		{#each blocks as block}
+			<BlockCard {block} />
+		{/each}
+	</Grid>
+	{#if blocks.length < count}
+		<LoadMoreButton onClick={() => (page += 1)} />
+	{/if}
+{:else}
+	<Empty />
 {/if}

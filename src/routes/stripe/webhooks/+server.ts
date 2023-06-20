@@ -1,11 +1,11 @@
 import Stripe from 'stripe'
 import { error, json } from '@sveltejs/kit'
 import { env } from '$env/dynamic/private'
-import { PUBLIC_STRIPE_SECRET_KEY_TEST } from '$env/static/public';
+import { PUBLIC_STRIPE_SECRET_KEY } from '$env/static/public';
 
 import stripe from '../../../lib/_stripe'
 // init api client
-// const stripe = new Stripe(PUBLIC_STRIPE_SECRET_KEY_TEST, {})
+// const stripe = new Stripe(PUBLIC_STRIPE_SECRET_KEY, {})
 
 // endpoint to handle incoming webhooks
 export async function POST({ request, params }) {

@@ -12,6 +12,7 @@
 		hasReachedLimit,
 		collectingModal,
 		isDeleteModalOpen,
+		paywallModal
 	} from '../store/store';
 
 	import getCollectionsCountByUserId from '../queries/user/getCollectionsCountByUserId';
@@ -22,6 +23,7 @@
 	import PreviewPanel from '../components/PreviewPanel/PreviewPanel.svelte';
 	import DeleteModal from '../components/DeleteModal/DeleteModal.svelte';
 	import AuthModal from '../components/AuthModal/AuthModal.svelte';
+	import PaywallModal from '../components/PaywallModal/PaywallModal.svelte';
 	import '../app.css';
 
 	export let data;
@@ -60,9 +62,10 @@
 	});
 </script>
 
-<div class="bg-gray-50 flex flex-row overflow-hidden w-screen">
-	<main class="flex flex-col w-full">
-		<Header />
+	<main class="flex flex-col w-screen">
+		{#if $paywallModal}
+			<PaywallModal />
+		{/if}
 		{#if $authModal}
 			<AuthModal />
 		{/if}
@@ -74,10 +77,11 @@
 		{/if}
 		{#key data.pathname}
 			<div
-				class={`${$previewPanel ? 'w-6/12' : 'w-full'} h-[calc(100vh-70px)] overflow-auto`}
+				class={`${$previewPanel ? 'w-6/12' : 'w-full'} overflow-auto`}
 				in:fade={{ duration: 300, delay: 400 }}
 				out:fade={{ duration: 300 }}
 			>
+		  <Header />
 				<slot />
 			</div>
 		{/key}
@@ -88,4 +92,3 @@
 			<DeleteModal />
 		{/if}
 	</main>
-</div>

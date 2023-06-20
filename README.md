@@ -125,11 +125,16 @@ You can preview the production build with `npm run preview`.
 - [x] stripe
   - [x] add isSubscriber column
   - [x] add progress bar on profile page
-  - [ ] paywall modal
-  - [ ] add limit on blocks + collections
+  - [x] paywall modal
+  - [x] add limit on blocks + collections
+  - [ ] stripe in production
 - [ ] create footer
   - [ ] add link to pay in footer
 - [ ] make success page
 - [x] make better pricing page
-- [ ] about page
-  - [ ] add my personal email
+- [ ] fix header on mobile
+- make chrome extension
+- make marketing site
+post launch
+- [ ] public and private collections
+- [ ] collection row preview

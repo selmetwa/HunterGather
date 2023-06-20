@@ -1,12 +1,13 @@
 import type { RequestEvent, RequestHandler } from '@sveltejs/kit';
 import { error, json } from '@sveltejs/kit';
 import stripe from '../../../lib/_stripe';
+import { PUBLIC_PRICE_ID } from '$env/static/public';
 
 export const POST: RequestHandler = async (event: RequestEvent) => {
 	const req = event.request;
   console.log({ req })
 	const formData = await req.json();
-	const priceId = "price_1NDCMJEgb1PPyyWRPBFWSEsE";
+	const priceId = PUBLIC_PRICE_ID;
 
 	// if (typeof priceId !== 'string') {
 	// 	return {
