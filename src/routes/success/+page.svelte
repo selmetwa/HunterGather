@@ -26,4 +26,4 @@
 
 </script>
 
-<h1>hey</h1>
+<h1>Thank you for subscriber to HunterGather premium</h1>
