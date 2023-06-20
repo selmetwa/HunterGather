@@ -127,12 +127,11 @@ You can preview the production build with `npm run preview`.
   - [x] add progress bar on profile page
   - [x] paywall modal
   - [x] add limit on blocks + collections
-  - [ ] stripe in production
-- [ ] create footer
-  - [ ] add link to pay in footer
-- [ ] make success page
+  - [x] stripe in production
+- [x] make success page
+- [x] better about page
 - [x] make better pricing page
-- [ ] fix header on mobile
+- [x] fix header on mobile
 - make chrome extension
 - make marketing site
 post launch

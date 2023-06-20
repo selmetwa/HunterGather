@@ -26,4 +26,9 @@
 
 </script>
 
-<h1>Thank you for subscriber to HunterGather premium</h1>
+{#if beta && userId}
+<div class="h-[500px] w-screen border border-red-100 flex items-center justify-center flex-col">
+  <h1 class="mt-12 font-sans text-left text-3xl font-light tracking-tight text-gray-400">Thank you for subscribing to HunterGather premium!</h1>
+  <a href="/" class="text-blue-400 underline text-xl mt-6">Take me to the homepage</a>
+</div>
+{/if}
