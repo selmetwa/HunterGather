@@ -134,6 +134,8 @@ You can preview the production build with `npm run preview`.
 - [x] fix header on mobile
 - make chrome extension
 - make marketing site
+
+
 post launch
 - [ ] public and private collections
 - [ ] collection row preview

@@ -19,10 +19,9 @@
 </script>
 
 <nav
-	class={`py-4 bg-gray-100 ${
-		previewPanelIsOpen ? 'w-6/12' : 'w-full'
-	} border-b-4 border-gray-200 md:border-0`}
+  class="py-4 bg-gray-100 border-b-4 border-gray-200 md:border-0 w-full"
 >
+
 	<div
 		class="flex flex-col md:flex-row items-center md:justify-between px-8 md:px-16 xl:px-24"
 	>
