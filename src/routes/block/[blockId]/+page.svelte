@@ -1,6 +1,7 @@
 <script>
 	// @ts-nocheck
 	import { page } from '$app/stores';
+	import { createLoadObserver } from '../../../utils/watchImage';
 
 	import getCollection from '../../../queries/collections/getCollection';
 	import getUserById from '../../../queries/user/getUserById';
@@ -13,6 +14,7 @@
 		isDeleteModalOpen
 	} from '../../../store/store';
 	import CollectionCard from '../../../components/Collections/CollectionCard.svelte';
+	import LoadingSpinner from '../../../components/ui/LoadingSpinner.svelte';
 	export let data;
 
 	const userId = $page?.data?.session?.user?.id;
@@ -25,8 +27,8 @@
 	let author;
 	let authorId;
 	let title;
-	let src;
-	let url;
+	$: src = '';
+	$: url = '';
 
 	$: if (block) loadData();
 
@@ -66,22 +68,43 @@
 		deleteModalObject.set({ type: 'block', object: block });
 		isDeleteModalOpen.set(true);
 	};
+
+	$: didImageLoad = false;
+
+	const onload = createLoadObserver(() => {
+		setTimeout(() => {
+			didImageLoad = true;
+		}, 300);
+	});
 </script>
 
 <div class="px-8 md:px-16 xl:px-24 mb-24">
 	<div class={`content my-16 gap-8 grid ${gridRules} w-full`}>
-		<div
-			class="col-span-1 lg:col-span-2 2xl:col-span-3 lg:order-1"
-		>
+		<div class="col-span-1 lg:col-span-2 2xl:col-span-3 lg:order-1">
 			{#if url && src}
 				<object
 					{title}
 					data={url}
 					style="width: 100%; display: block;"
-					class="h-[500px] lg:h-[600px] 2xl:h-[700px]"
+					class="h-[500px] lg:h-[600px] 2xl:h-[700px] border-4 border-gray-300 relative"
 				>
 					<a href={url} target="_blank" rel="noreferrer">
-						<img alt={title} {src} class="h-auto object-cover" />
+						{#if !didImageLoad}
+							<div class="h-full w-full flex items-center justify-center">
+								<div class="flex items-center">
+									<LoadingSpinner />
+									<p class="text-gray-400 text-xl">Loading image</p>
+								</div>
+							</div>
+						{/if}
+						<img
+							alt={title}
+							{src}
+							class={`h-auto m-auto min-h-[500px] max-h-[700px] object-fit border-l-4 border-r-4 border-gray-300  ${
+								!didImageLoad ? 'hidden' : ''
+							}`}
+							use:onload
+						/>
 					</a>
 				</object>
 			{/if}
@@ -123,7 +146,7 @@
 </div>
 
 <style>
-  .minHeight {
-    height: min-content;
-  }
+	.minHeight {
+		height: min-content;
+	}
 </style>

@@ -3,6 +3,9 @@
 	import { quintOut } from 'svelte/easing';
 	import Device from 'svelte-device-info';
 
+  import LoadingSpinner from '../ui/LoadingSpinner.svelte';
+	import { createLoadObserver } from '../../utils/watchImage';
+
 	export let src = '';
 	export let title = '';
 	export let blockId = '';
@@ -22,6 +25,13 @@
 	};
 
 	const leave = () => (hovering = false);
+
+  $: didImageLoad = false
+  const onload = createLoadObserver(() => {
+		setTimeout(() => {
+			didImageLoad = true;
+		}, 500);
+	});
 </script>
 
 <div
@@ -32,7 +42,12 @@
 >
 	<a href={`/block/${blockId}`} class="relative">
 		<div class="flex items-center gap-4 flex-row">
-			<img class="ml-3 h-16 w-16 rounded-md border border-gray-200" {src} alt="d" />
+      {#if !didImageLoad}
+      <div class="ml-3 h-16 w-16 rounded-md border border-gray-200 flex items-center justify-center">
+        <LoadingSpinner c="mr-auto ml-auto" />
+      </div>
+    {/if}
+			<img class={`ml-3 h-16 w-16 rounded-md border border-gray-200 ${!didImageLoad ? 'hidden' : ''}`} {src} alt={title} use:onload />
 			<div class="flex flex-col pr-12 overflow-hidden">
 				<a href={`/block/${blockId}`} class="flex flex-wrap break-words">{title}</a>
 				<a href={url} class="text-blue-400 underline flex flex-wrap break-words overflow-hidden"

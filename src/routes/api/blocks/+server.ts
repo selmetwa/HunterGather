@@ -13,10 +13,10 @@ const urlbox = Urlbox(PUBLIC_URLBOX_PUBLISHABLE_KEY, PUBLIC_URLBOX_SECRET_KEY);
 // create block
 export const POST: RequestHandler = async ({ locals, request }) => {
 	const data = await request.json();
-	const userId = locals?.session?.user?.id;
+	// const userId = locals?.session?.user?.id;
 	const blockId = uuidv4();
 
-	const { title, url, collectionIds } = data;
+	const { title, url, collectionIds, userId } = data;
 
 	let t = '';
 

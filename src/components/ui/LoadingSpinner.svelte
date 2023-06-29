@@ -1,7 +1,11 @@
+<script>
+  export let c = ''
+</script>
+
 <svg
 	aria-hidden="true"
 	role="status"
-	class="inline w-7 h-7 mr-3 text-white animate-spin"
+	class={`inline w-7 h-7 mr-3 text-white animate-spin ${c}`}
 	viewBox="0 0 100 101"
 	fill="none"
 	xmlns="http://www.w3.org/2000/svg"

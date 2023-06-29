@@ -132,6 +132,7 @@ You can preview the production build with `npm run preview`.
 - [x] better about page
 - [x] make better pricing page
 - [x] fix header on mobile
+- [ ] host 
 - make chrome extension
 - make marketing site
 
@@ -139,3 +140,4 @@ You can preview the production build with `npm run preview`.
 post launch
 - [ ] public and private collections
 - [ ] collection row preview
+- [ ] handle loading frames and empty frames better

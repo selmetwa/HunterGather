@@ -83,7 +83,8 @@
 			body: JSON.stringify({
         title,
 				url,
-				collectionIds: toggledCollectionIds
+				collectionIds: toggledCollectionIds,
+        userId: $page?.data?.session?.user?.id
 			})
 		});
 		// const res = await createBlock(title, url, toggledCollectionIds, $page?.data?.session?.user?.id);

@@ -32,7 +32,7 @@
 		</a>
 		<div id="navbar-default">
 			<ul
-				class="flex flex-row-reverse gap-2 lg:gap-0 md:flex-row mt-4 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 border border-blue-500"
+				class="flex flex-row-reverse gap-4 lg:gap-0 md:flex-row mt-4 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0"
 			>
 				{#if activeSession}
 					<li class="font-medium">

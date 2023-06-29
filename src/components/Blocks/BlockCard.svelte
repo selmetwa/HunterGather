@@ -1,7 +1,8 @@
 <script lang="ts">
-  import type { Block } from '../../types/block'
+	import type { Block } from '../../types/block';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
+	import { createLoadObserver } from '../../utils/watchImage';
 	import { scale, fade } from 'svelte/transition';
 	import Device from 'svelte-device-info';
 	import { quintOut } from 'svelte/easing';
@@ -12,11 +13,12 @@
 		previewPanel,
 		previewPanelObject,
 		objectView,
-    paywallModal,
-    hasReachedLimit
+		paywallModal,
+		hasReachedLimit
 	} from '../../store/store';
 
 	import BlockCardRow from './BlockCardRow.svelte';
+	import LoadingSpinner from '../ui/LoadingSpinner.svelte';
 	export let block: Block;
 
 	const { src, title, url, blockId } = block;
@@ -36,10 +38,10 @@
 	const leave = () => (hovering = false);
 
 	const toggleCollectingModal = () => {
-    if ($hasReachedLimit) {
-      paywallModal.set(true)
-      return 
-    }
+		if ($hasReachedLimit) {
+			paywallModal.set(true);
+			return;
+		}
 
 		if (activeSession) {
 			collectingModal.set(true);
@@ -63,22 +65,35 @@
 			});
 		}
 	};
+
+	$: didImageLoad = false;
+
+	const onload = createLoadObserver(() => {
+		setTimeout(() => {
+			didImageLoad = true;
+		}, 300);
+	});
 </script>
 
 {#if $objectView === 'row'}
-	<BlockCardRow
-		{title}
-		{blockId}
-		{src}
-		{url}
-		{toggleCollectingModal}
-		{togglePreview}
-	/>
+	<BlockCardRow {title} {blockId} {src} {url} {toggleCollectingModal} {togglePreview} />
 {:else}
 	<div in:fade>
 		<div class="relative" on:mouseenter={enter} on:mouseleave={leave}>
 			<a href={`/block/${blockId}`} class="relative">
-				<img class="w-full aspect-4/3 border-2 border-gray-300" {src} alt={title} />
+				{#if !didImageLoad}
+					<div class="w-full flex items-center justify-center border-2 border-gray-300">
+						<div class="aspect-4/3 w-full flex items-center justify-center">
+							<LoadingSpinner />
+						</div>
+					</div>
+				{/if}
+				<img
+					class={`w-full aspect-4/3 border-2 border-gray-300 ${!didImageLoad ? 'hidden' : ''}`}
+					{src}
+					alt={title}
+					use:onload
+				/>
 			</a>
 			{#if hovering && !isMobile}
 				<div
