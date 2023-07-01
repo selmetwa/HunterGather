@@ -5,7 +5,6 @@ import { PUBLIC_PRICE_ID } from '$env/static/public';
 
 export const POST: RequestHandler = async (event: RequestEvent) => {
 	const req = event.request;
-  console.log({ req })
 	const formData = await req.json();
 	const priceId = PUBLIC_PRICE_ID;
 
@@ -23,7 +22,6 @@ export const POST: RequestHandler = async (event: RequestEvent) => {
 
 	try {
     const url = event.url.host
-    console.log({ url })
 		const session = await stripe.checkout.sessions.create({
 			mode: 'subscription',
 			payment_method_types: ['card'],
@@ -37,7 +35,6 @@ export const POST: RequestHandler = async (event: RequestEvent) => {
 			cancel_url: `http://${event.url.host}/pricing`
 		});
 
-    console.log({ session })
 	  return json(
       {
         status: 200,
@@ -54,7 +51,6 @@ export const POST: RequestHandler = async (event: RequestEvent) => {
 			})
 		};
 	} catch (err) {
-    console.log({ err })
 		return {
 			status: 500,
 			headers: {},

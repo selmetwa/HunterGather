@@ -11,7 +11,6 @@ import stripe from '../../../lib/_stripe'
 export async function POST({ request, params }) {
   // extract body
   const body = await request.text()
-  console.log({ request })
   // get the signature from the header
   const signature = request.headers.get('stripe-signature')
 
@@ -34,9 +33,7 @@ export async function POST({ request, params }) {
   if (event.type == 'checkout.session.completed') {
     // get data object
     const charge = event.data.object
-    console.log({ charge })
     // TODO: fulfill the order here
-    console.log(`✅ Charge succeeded ${charge.id}`)
   }
 
   // return a 200 with an empty JSON response

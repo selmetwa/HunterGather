@@ -12,10 +12,7 @@
 
 	async function choosePlan() {
 		if (product.id) {
-			console.log(JSON.stringify({ priceId: PUBLIC_PRICE_ID }));
-
 			const url = `${window.location.origin}/stripe/checkout-session`;
-			console.log({ url });
 			const res = await fetch(`${window.location.origin}/api/checkout-session`, {
 				method: 'POST',
 				headers: { accept: 'application/json' },
@@ -27,7 +24,6 @@
 				sessionId
 			});
 		} else {
-			console.log('error');
 			goto('/');
 		}
 	}

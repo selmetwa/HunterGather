@@ -75,7 +75,6 @@
 		const blocksCount = await getBlocksCountByUserId(userId);
 		const collectionsCount = await getCollectionsCountByUserId(userId);
 		objectsCount = blocksCount + collectionsCount;
-		console.log({ blocksCount, collectionsCount });
 		name = user && user[0].name;
 		github = user && user[0].github;
 		twitter = user && user[0].twitter;

@@ -10,19 +10,12 @@
 
 	let stripe: any
 
-  $: if (stripe) {
-    console.log({ stripe })
-  }
-
 	setContext('stripe', {
 		getStripe: () => stripe
 	});
 
 	onMount(async () => {
-		console.log('StripeProvider onload');
 		stripe = await loadStripe(PUBLIC_STRIPE_PUBLISHABLE_KEY);
-
-    console.log({ stripe })
 	});
 </script>
 

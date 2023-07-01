@@ -34,8 +34,6 @@ export const post: RequestHandler = async (event: RequestEvent) => {
 		try {
 			const event = stripe.webhooks.constructEvent(payload, signature, WEBHOOK_SECRET);
 			const data = event.data;
-
-      console.log({ event })
 			eventType = event.type;
 		} catch (err) {
 			return {
