@@ -24,6 +24,7 @@
 	$: personalSite = '';
 	$: profileId = '';
 	$: objectsCount = 0;
+  $: isSubscriber = false;
 
 	$: if (avatarId) {
 		loadAvatar();
@@ -75,6 +76,7 @@
 		const blocksCount = await getBlocksCountByUserId(userId);
 		const collectionsCount = await getCollectionsCountByUserId(userId);
 		objectsCount = blocksCount + collectionsCount;
+    isSubscriber = user && user[0].is_subscriber
 		name = user && user[0].name;
 		github = user && user[0].github;
 		twitter = user && user[0].twitter;
@@ -171,7 +173,7 @@
 				</div>
 			</div>
 		</div>
-    {#if $page?.data?.session?.user?.id === profileId}
+    {#if ($page?.data?.session?.user?.id === profileId) && !isSubscriber}
     <div>
       <p class="mt-4 text-light text-gray-400">{objectsCount} / 200 Objects used</p>
       <progress id="file" max="200" value={objectsCount} class="mt-1" />
