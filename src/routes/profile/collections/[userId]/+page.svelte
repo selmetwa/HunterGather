@@ -76,7 +76,7 @@
 			<CollectionCard {collection} />
 		{/each}
 	</Grid>
-	{#if collections.length < count}
+	{#if collections.length < count - 1}
 		<LoadMoreButton onClick={() => (page += 1)} />
 	{/if}
 </section>

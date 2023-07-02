@@ -71,7 +71,7 @@
 	{:else}
 		<Empty />
 	{/if}
-	{#if objects.length < count}
+	{#if objects.length < count - 1}
 		<LoadMoreButton onClick={() => (page += 1)} />
 	{/if}
 </div>

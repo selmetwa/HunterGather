@@ -13,15 +13,19 @@
 	let { collections } = data;
 	$: page = 0;
 	$: count = 0;
+  $: showLoadMore = false;
 
 	$: if (page) loadMore();
 
 	const loadMore = async () => {
-		collections = createUniqueArray(collections, await getPaginatedCollections(page));
+    const newCollections = await getPaginatedCollections(page) || []
+    if (newCollections.length <= 15 ) showLoadMore = false
+		collections = createUniqueArray(collections, newCollections);
 	};
 
 	onMount(async () => {
 		count = (await getCollectionsCount()) || 0;
+    showLoadMore = count > collections.length
 	});
 </script>
 
@@ -32,7 +36,7 @@
 			<CollectionCard {collection} />
 		{/each}
 	</Grid>
-	{#if collections.length < count}
+	{#if showLoadMore}
 		<LoadMoreButton onClick={() => (page += 1)} />
 	{/if}
 {/if}

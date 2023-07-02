@@ -11,6 +11,7 @@
 	import ObjectViewButtons from '../../../../components/Navigation/ObjectViewButtons.svelte';
 	import FilterBar from '../../../../components/ui/FilterBar.svelte';
 	import Empty from '../../../../components/ui/Empty.svelte';
+  import { LIMIT } from '../../../../constants/constants';
 
 	interface Data {
 		blocks: Array<any>;
@@ -23,15 +24,23 @@
 	let page = 0;
 
 	$: count = 0;
+  $: showLoadMore = false;
 	$: if (page) loadMore();
 
 	onMount(async () => {
 		count = await getBlocksCountByUserId(data.userId);
+    showLoadMore = count > blocks.length;
 	});
 
 	const loadMore = async () => {
-		masterBlocks = createUniqueArray(masterBlocks, await getBlocksByUserId(data.userId, page));
-
+    const newBlocks = await getBlocksByUserId(data.userId, page)
+    console.log("hey: ", newBlocks?.length)
+    if (newBlocks?.length < LIMIT) {
+      showLoadMore = false;
+    }
+  
+		masterBlocks = createUniqueArray(masterBlocks, newBlocks);
+    console.log({ masterBlocks, newBlocks })
 		blocks = createUniqueArray(blocks, masterBlocks);
 	};
 
@@ -52,6 +61,10 @@
 			blocks = filtered;
 		}, 10);
 	};
+
+  $: if (count || blocks) {
+    console.log({ count, blocks })
+  }
 </script>
 
 <ProfileHeader userId={data.userId} />
@@ -72,7 +85,7 @@
 			<BlockCard {block} />
 		{/each}
 	</Grid>
-	{#if blocks.length < count}
+	{#if showLoadMore}
 		<LoadMoreButton onClick={() => (page += 1)} />
 	{/if}
 {:else}

@@ -6,6 +6,6 @@ export const load = async ({ fetch, params }: { fetch: any; params: any }) => {
 	const collections = await getPaginatedCollections(0);
 
 	return {
-		collections
+		collections: collections || []
 	};
 };

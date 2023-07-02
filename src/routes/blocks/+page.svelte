@@ -15,15 +15,20 @@
 	let blocks = data.blocks as Block[];
 	let page = 0;
 	$: count = 0;
-
+  $: showLoadMore = false;
 	$: if (page) loadMore();
 
 	onMount(async () => {
 		count = (await getBlocksCount()) || 0;
+    showLoadMore = count > blocks.length;
 	});
 
 	const loadMore = async () => {
-		blocks = createUniqueArray(blocks, await getPaginatedBlocks(page, 15));
+    const newBlocks = await getPaginatedBlocks(page) || [];
+    if (newBlocks?.length <= 15) {
+      showLoadMore = false
+    }
+		blocks = createUniqueArray(blocks, newBlocks);
 	};
 </script>
 
@@ -34,7 +39,7 @@
 			<BlockCard {block} />
 		{/each}
 	</Grid>
-	{#if blocks.length < count}
+	{#if showLoadMore}
 		<LoadMoreButton onClick={() => (page += 1)} />
 	{/if}
 {/if}

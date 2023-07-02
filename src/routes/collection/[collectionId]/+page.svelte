@@ -20,6 +20,8 @@
 	$: objects = [] as (Block | Collection)[];
 	$: masterObjects = [] as (Block | Collection)[];
 	$: ({ collectionId, collection } = data);
+  $: showLoadMore = false;
+
 	let page = 0;
 
 	/**
@@ -43,9 +45,12 @@
 	}
 
 	const loadData = async () => {
+    const newObjects = await getPaginatedCollectionItems(collectionId, page, true) || []
+
+    if (newObjects.length <= 15) showLoadMore = false
 		masterObjects = createUniqueArray(
 			masterObjects,
-			await getPaginatedCollectionItems(collectionId, page, true)
+			newObjects,
 		);
 
 		objects = createUniqueArray(objects, masterObjects);
@@ -74,8 +79,15 @@
 	};
 
 	onMount(async () => {
-		loadData();
-		loadCount();
+		count = await getCollectionCount(collectionId);
+    masterObjects = createUniqueArray(
+			masterObjects,
+			await getPaginatedCollectionItems(collectionId, page, true)
+		);
+
+		objects = createUniqueArray(objects, masterObjects);
+
+    showLoadMore = count > objects.length
 	});
 </script>
 
@@ -101,7 +113,7 @@
 	{:else}
 		<Empty />
 	{/if}
-	{#if objects.length < count}
+	{#if showLoadMore}
 		<LoadMoreButton onClick={() => (page += 1)} />
 	{/if}
 </main>
