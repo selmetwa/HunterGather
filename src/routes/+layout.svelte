@@ -4,7 +4,7 @@
 	import { supabaseClient } from '$lib/supabase';
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
-
+  
 	import {
 		authModal,
 		previewPanel,
@@ -17,6 +17,7 @@
 
 	import getCollectionsCountByUserId from '../queries/user/getCollectionsCountByUserId';
 	import getBlocksCountByUserId from '../queries/user/getBlocksCountByUserId';
+  import getUserById from '../queries/user/getUserById';
 	import Header from '../components/Navigation/Header.svelte';
 	import CreateModal from '../components/CreateModal/CreateModal.svelte';
 	import CollectingModal from '../components/CollectingModal/CollectingModal.svelte';
@@ -44,8 +45,10 @@
 		if (userId) {
 			const blocksCount = await getBlocksCountByUserId(userId);
 			const collectionsCount = await getCollectionsCountByUserId(userId);
+      const user = await getUserById(userId);
+      const isSubscriber = user?.[0].is_subscriber;
 
-			if (blocksCount + collectionsCount > 200) {
+			if ((blocksCount + collectionsCount > 200) && !isSubscriber) {
 				hasReachedLimit.set(true);
 			}
 		}
