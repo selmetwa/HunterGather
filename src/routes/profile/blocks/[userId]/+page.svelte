@@ -33,8 +33,7 @@
 	});
 
 	const loadMore = async () => {
-    const newBlocks = await getBlocksByUserId(data.userId, page)
-    console.log("hey: ", newBlocks?.length)
+    const newBlocks = await getBlocksByUserId(data.userId, page) || []
     if (newBlocks?.length < LIMIT) {
       showLoadMore = false;
     }
@@ -61,10 +60,6 @@
 			blocks = filtered;
 		}, 10);
 	};
-
-  $: if (count || blocks) {
-    console.log({ count, blocks })
-  }
 </script>
 
 <ProfileHeader userId={data.userId} />

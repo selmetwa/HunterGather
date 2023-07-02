@@ -22,12 +22,16 @@
 	let page = 0;
 
 	$: count = 0;
+  $: showLoadMore = false;
 	$: if (page) loadMore();
 
 	const loadMore = async () => {
+    const newCollections = await getPaginatedCollectionsByUserId(data.userId, page) || []
+
+    showLoadMore = newCollections?.length > 15
 		masterCollections = createUniqueArray(
 			masterCollections,
-			await getPaginatedCollectionsByUserId(data.userId, page)
+			newCollections
 		);
 
 		collections = createUniqueArray(collections, masterCollections);
@@ -53,6 +57,7 @@
 
 	onMount(async () => {
 		count = await getCollectionsCountByUserId(data.userId);
+    showLoadMore = count > collections.length
 	});
 </script>
 
