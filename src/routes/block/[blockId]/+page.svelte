@@ -1,5 +1,6 @@
 <script>
 	// @ts-nocheck
+	import Device from 'svelte-device-info';
 	import { page } from '$app/stores';
 	import { createLoadObserver } from '../../../utils/watchImage';
 
@@ -22,6 +23,7 @@
 
 	const activeSession = $page?.data?.session;
 	const isOwner = userId === block.userId;
+	const isMobile = Device.isMobile;
 
 	$: collections = [];
 	let author;
@@ -79,9 +81,28 @@
 </script>
 
 <div class="px-8 md:px-16 xl:px-24 mb-24">
-	<div class={`content my-16 gap-8 grid ${gridRules} w-full`}>
+	<div class={`content my-16 gap-8 flex flex-col flex-col-reverse lg:grid ${gridRules} w-full`}>
 		<div class="col-span-1 lg:col-span-2 2xl:col-span-3 lg:order-1">
-			{#if url && src}
+			{#if isMobile}
+				<a href={url} target="_blank" rel="noreferrer">
+					{#if !didImageLoad}
+						<div class="h-full w-full flex items-center justify-center">
+							<div class="flex items-center">
+								<LoadingSpinner />
+								<p class="text-gray-400 text-xl">Loading image</p>
+							</div>
+						</div>
+					{/if}
+					<img
+						alt={title}
+						{src}
+						class={`h-auto w-[350px] object-fit border border-gray-50 ${
+							!didImageLoad ? 'hidden' : ''
+						}`}
+						use:onload
+					/>
+				</a>
+			{:else if url && src}
 				<object
 					{title}
 					data={url}
