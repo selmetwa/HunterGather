@@ -61,7 +61,7 @@
 				</p>
 			{:else}
 				<p class="text-gray-400 font-light text-lg">
-					You need an account to subscribe <a href="login" class="text-blue-400">Login here</a>
+					You need an account to subscribe <a href="login" class="text-blue-400">Login</a> or <a href="register" class="text-blue-400">Register</a>
 				</p>
 			{/if}
 		</div>
