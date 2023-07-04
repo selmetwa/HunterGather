@@ -56,7 +56,9 @@
 		let collectionIds = block.collectionIds;
 		collectionIds.forEach(async (id) => {
 			const collection = await getCollection(id);
-			collections.push(collection[0]);
+      if (collection[0] !== undefined) {
+        collections.push(collection[0]);
+      }
 			collections = collections;
 		});
 	};
@@ -78,6 +80,10 @@
 			didImageLoad = true;
 		}, 300);
 	});
+
+  $: if (collections) {
+    console.log({ collections })
+  }
 </script>
 
 <div class="px-8 md:px-16 xl:px-24 mb-24">

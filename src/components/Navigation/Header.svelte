@@ -8,27 +8,21 @@
 
 	previewPanel.subscribe((v) => (previewPanelIsOpen = v));
 	const toggleModal = () => {
-
-    if ($hasReachedLimit) {
-      paywallModal.set(true)
-      return
-    }
+		if ($hasReachedLimit) {
+			paywallModal.set(true);
+			return;
+		}
 
 		modalStore.update(() => true);
 	};
 </script>
 
-<nav
-  class="py-4 bg-gray-100 border-b-4 border-gray-200 md:border-0 w-full"
->
-
-	<div
-		class="flex flex-col md:flex-row items-center md:justify-between px-8 md:px-16 xl:px-24"
-	>
+<nav class="py-4 bg-gray-100 border-b-4 border-gray-200 md:border-0 w-full">
+	<div class="flex flex-col md:flex-row items-center md:justify-between px-8 md:px-16 xl:px-24">
 		<a href="/" class="flex items-center mt-4 md:mt-0">
-			<span class="text-gray-500 self-center text-xl font-semibold whitespace-nowrap">HunterGather
-        </span
-			>
+			<span class="text-gray-500 self-center text-xl font-semibold whitespace-nowrap"
+				>HunterGather
+			</span>
 		</a>
 		<div id="navbar-default">
 			<ul
@@ -45,10 +39,14 @@
 					</li>
 					<li class="block py-2 text-gray-500 rounded md:border-0 underline">
 						<form action="/logout" method="POST">
-							<button type="submit" class="font-medium font-sans underline"
-								>Logout</button
-							>
+							<button type="submit" class="font-medium font-sans underline">Logout</button>
 						</form>
+					</li>
+					<li>
+						<a
+							href="/about"
+							class="block py-2 text-gray-500 rounded md:border-0 underline font-sans">About</a
+						>
 					</li>
 					<li>
 						<a
@@ -59,6 +57,12 @@
 						</a>
 					</li>
 				{:else}
+					<li>
+						<a
+							href="/about"
+							class="block py-2 text-gray-500 rounded md:border-0 underline font-sans">About</a
+						>
+					</li>
 					<li>
 						<a href="/login" class="block py-2 text-gray-500 rounded md:border-0 underline">Login</a
 						>

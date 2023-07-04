@@ -68,7 +68,7 @@
 						Up to 200 blocks and collections
 					</li>
 				</ul>
-				<a href="register" class="text-gray-500 text-lg text-underline mt-4">Register for Free</a>
+				<a href="register" class="text-gray-500 text-lg underline mt-4">Register for Free</a>
 			</div>
 			<div
 				class="bg-gray-200 flex flex-col text-center items-center p-4 border-t-4 border-l-4 bt-gray-200 bl-gray-200 border-b-4 bb-gray-200"
@@ -81,7 +81,7 @@
 						Unlimited blocks and collections
 					</li>
 				</ul>
-				<a href="pricing" class="text-action-400 text-lg text-underline mt-4"
+				<a href="pricing" class="text-action-400 text-lg underline mt-4"
 					>Register for Premium</a
 				>
 			</div>
@@ -98,7 +98,7 @@
 			<a class="text-blue-400" href="https://github.com/selmetwa/HunterGather" target="_blank"
 				>source code</a
 			>. If you have any questions or need help with anything just shoot me an email at
-			selmetwa@gmail.com
+			selmetwa@gmail.com.
 		</p>
 	</div>
 </section>
