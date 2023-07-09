@@ -32,7 +32,7 @@
 					<li class="font-medium">
 						<button
 							on:click={toggleModal}
-							class="font-medium font-sans group relative flex w-full justify-center rounded-md underline md:no-underline my-2 md:my-0 md:py-2 md:px-4 font-medium text-action-400 md:text-white ease-in-out duration-300 cursor-pointer md:bg-action-400 md:hover:bg-action-500"
+							class="font-medium font-sans group relative flex w-full justify-center rounded-sm underline md:no-underline my-2 md:my-0 md:py-2 md:px-4 font-medium text-action-400 md:border md:border-gray-500 md:text-gray-800 ease-in-out duration-300 cursor-pointer md:bg-action-400 md:hover:bg-action-500"
 						>
 							Contribute
 						</button>

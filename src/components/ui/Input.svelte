@@ -15,9 +15,9 @@
 <div>
 	<label for="" class="text-gray-400">{text}</label>
 	<div class="input-wrapper">
-		{#if iconType && icon}
+		<!-- {#if iconType && icon}
 			<i class={`fa-${iconType} fa-${icon} fa-md color-action-400`} />
-		{/if}
+		{/if} -->
 		<input
 			on:change={onChange}
 			{value}
@@ -47,6 +47,6 @@
 	}
 
 	input.hasIcon {
-		padding-left: calc((calc(1em * 1.5) - 0.125em) * 1.5 + 0.25 * 0.25em);
+		/* padding-left: calc((calc(1em * 1.5) - 0.125em) * 1.5 + 0.25 * 0.25em); */
 	}
 </style>

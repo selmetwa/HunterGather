@@ -21,7 +21,7 @@
 			id="close-modal-root"
 		>
 			<div
-				class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg"
+				class="relative transform overflow-hidden rounded-sm bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg"
 			>
 				<slot />
 			</div>

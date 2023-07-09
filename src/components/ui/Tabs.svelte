@@ -17,9 +17,9 @@
 			transition:fade
 			class={`${
 				activeTab === tab.val
-					? 'border-2 text-action-400 border-action-400 font-bold'
-					: 'text-gray-400 border-2 border-gray-100'
-			} bg-gray-100 rounded-md my-2 mx-2 m font-sans group relative flex w-full justify-center py-2 px-4 font-medium ease-in-out duration-300 cursor-pointer`}
+					? 'border text-gray-800 border-gray-500 font-bold'
+					: 'text-gray-300 border border-gray-300'
+			} text-sm bg-gray-100 rounded-sm my-2 mx-2 m font-sans group relative flex w-full justify-center py-2 px-4 font-medium ease-in-out duration-300 cursor-pointer`}
 			on:click={(e) => toggleTab(e)}
 		>
 			{tab.name}

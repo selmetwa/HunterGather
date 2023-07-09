@@ -148,13 +148,13 @@
 			<div class="flex lg:flex-row gap-2">
 				<button
 					on:click={openCollectingModal}
-					class="font-bold font-sans group relative flex w-full justify-center rounded-md border border-transparent bg-action py-2 px-4 text-lg font-medium text-white bg-action-400 hover:bg-action-500 focus:outline-none focus:ring-2 focus:gray-300 focus:ring-offset-2 drop-shadow-sm ease-in-out duration-300 mt-6"
+					class="font-medium font-sans group relative flex w-full justify-center rounded-sm border border-gray-500 py-2 px-4 text-md text-gray-800 bg-action-400 hover:bg-action-500 focus:outline-none focus:ring-2 focus:gray-300 focus:ring-offset-2 drop-shadow-sm ease-in-out duration-300 mt-6"
 					>Collect</button
 				>
 				{#if isOwner}
 					<button
 						on:click={openDeleteModal}
-						class="font-bold font-sans group relative flex w-full justify-center rounded-md border border-transparent bg-action py-2 px-4 text-lg font-medium text-white bg-red-400 hover:bg-red-500 focus:outline-none focus:ring-2 focus:gray-300 focus:ring-offset-2 drop-shadow-sm ease-in-out duration-300 mt-6"
+						class="font-bold font-sans group relative flex w-full justify-center rounded-sm border border-gray-500 py-2 px-4 text-md font-medium text-gray-800 bg-[#F49690] hover:bg-[#F2857D] focus:outline-none focus:ring-2 focus:gray-300 focus:ring-offset-2 drop-shadow-sm ease-in-out duration-300 mt-6"
 						>Delete</button
 					>
 				{/if}

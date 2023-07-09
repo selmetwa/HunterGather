@@ -6,22 +6,22 @@
 			<h1
 				class="mt-4 lg:mt-12 font-sans text-left text-[40px] lg:text-[45px] font-bold tracking-tight text-gray-400 leading-[45px]"
 			>
-				<span class="text-action-400">HunterGather</span> is a social bookmarking site.
+				<span class="text-action-600">HunterGather</span> is a social bookmarking site.
 			</h1>
 			<p class="font-sans font-light tracking-tight text-gray-400 text-[24px] lg:text-2xl mt-6">
-				<span class="text-action-400">See what other people are saving on the web.</span> HunterGather
+				<span class="text-action-600">See what other people are saving on the web.</span> HunterGather
 				makes it quick and easy to collect and discover websites you find interesting, useful or inspiring.
 			</p>
 			<a href="/register">
 				<button
-					class="font-bold font-sans group relative flex w-min rounded-md border border-transparent bg-action-400 hover:bg-action-500 py-2 px-4 text-lg font-medium text-white focus:outline-none focus:ring-2 focus:gray-300 focus:ring-offset-2 drop-shadow-sm ease-in-out duration-300 whitespace-nowrap my-4"
+        class="group relative flex w-min justify-center rounded-sm border border-gray-500 bg-action-400 hover:bg-action-500 py-2 px-4 text-md font-medium text-gray-800 focus:outline-none focus:ring-2 focus:gray-300 focus:ring-offset-2 drop-shadow-sm ease-in-out duration-300 whitespace-nowrap mt-4"
 					>Sign Up for HunterGather</button
 				>
 			</a>
 		</div>
 		<img src="../../../pics.png" />
 	</div>
-	<div class="w-full md:w-8/12 mx-auto grid md:grid-cols-3 gap-6 mt-24">
+	<div class="w-full md:w-8/12 mx-auto grid md:grid-cols-3 gap-6 mt-[100px] 2xl:mt-[200px]">
 		<div class="h-full rounded p-4">
 			<h3 class="font-sans text-center font-medium tracking-tight text-gray-500 text-[22px] mt-2">
 				Visual Bookmarking
@@ -52,7 +52,7 @@
 			</p>
 		</div>
 	</div>
-	<div class="w-full md:w-6/12 lg:w-4/12 mx-auto gap-6 mt-24">
+	<div class="w-full md:w-6/12 lg:w-4/12 mx-auto gap-6 mt-[100px] 2xl:mt-[200px]">
 		<h3 class="font-sans text-center font-medium tracking-tight text-gray-500 text-[22px] mt-2">
 			Pricing
 		</h3>
@@ -68,7 +68,7 @@
 						Up to 200 blocks and collections
 					</li>
 				</ul>
-				<a href="register" class="text-gray-500 text-lg underline mt-4">Register for Free</a>
+				<a href="register"class="group relative flex w-min justify-center rounded-sm border border-gray-600 bg-gray-300 hover:bg-gray-300 py-2 px-4 text-md font-medium text-gray-800 focus:outline-none focus:ring-2 focus:gray-300 focus:ring-offset-2 drop-shadow-sm ease-in-out duration-300 whitespace-nowrap mt-4">Register for Free</a>
 			</div>
 			<div
 				class="bg-gray-200 flex flex-col text-center items-center p-4 border-t-4 border-l-4 bt-gray-200 bl-gray-200 border-b-4 bb-gray-200"
@@ -81,13 +81,13 @@
 						Unlimited blocks and collections
 					</li>
 				</ul>
-				<a href="pricing" class="text-action-400 text-lg underline mt-4"
+				<a href="pricing" class="group relative flex w-min justify-center rounded-sm border border-gray-500 bg-action-400 hover:bg-action-500 py-2 px-4 text-md font-medium text-gray-800 focus:outline-none focus:ring-2 focus:gray-300 focus:ring-offset-2 drop-shadow-sm ease-in-out duration-300 whitespace-nowrap mt-4"
 					>Register for Premium</a
 				>
 			</div>
 		</div>
 	</div>
-	<div class="w-full md:w-6/12 lg:w-4/12 mx-auto gap-6 mt-24">
+	<div class="w-full md:w-6/12 lg:w-4/12 mx-auto gap-6 mt-[100px] 2xl:mt-[200px]">
 		<h3 class="font-sans text-center font-medium tracking-tight text-gray-500 text-[22px] mt-2">
 			Support
 		</h3>
