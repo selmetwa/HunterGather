@@ -102,7 +102,7 @@
 					<img
 						alt={title}
 						{src}
-						class={`h-auto w-[350px] object-fit border border-gray-50 ${
+						class={`h-auto w-[350px] object-fit border-2 border-gray-200 ${
 							!didImageLoad ? 'hidden' : ''
 						}`}
 						use:onload
