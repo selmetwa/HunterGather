@@ -19,7 +19,7 @@
 				>
 			</a>
 		</div>
-		<img src="../../../pics.png" />
+		<img src="../../../pics.png" alt="pic" />
 	</div>
 	<div class="w-full md:w-8/12 mx-auto grid md:grid-cols-3 gap-6 mt-[100px] 2xl:mt-[200px]">
 		<div class="h-full rounded p-4">
@@ -37,7 +37,7 @@
 			</h3>
 			<p class="tracking-tight font-light text-center text-gray-500 mt-2 text-lg">
 				Gather websites you find interesting, useful or inspiring with the <a
-					href="https://chrome.google.com/webstore/detail/hunter-gather-chrome-exte/gpilnibmpgcobddippgjemohogpihdgi"
+					href="https://chrome.google.com/webstore/detail/huntergather/lengfeddnpliaoaglooakhimjkefeiej"
 					target="_blank" rel="noreferrer"
 					class="text-blue-400 underline">Browser Extension</a
 				>
@@ -56,7 +56,7 @@
 		<h3 class="font-sans text-center font-medium tracking-tight text-gray-500 text-[22px] mt-2">
 			Pricing
 		</h3>
-		<div class="grid grid-cols-2 mt-4">
+		<div class="grid grid-cols-1 md:grid-cols-2 mt-4">
 			<div
 				class="bg-gray-100 flex flex-col text-center items-center p-4 border-t-4 border-l-4 bt-gray-200 bl-gray-200 border-b-4 bb-gray-200"
 			>

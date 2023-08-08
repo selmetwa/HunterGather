@@ -41,7 +41,7 @@
 					</h3>
 					<p class="tracking-tight font-light text-left text-gray-400 text-md">
 						Gather websites quickly with the <a
-							href="https://chrome.google.com/webstore/detail/hunter-gather-chrome-exte/gpilnibmpgcobddippgjemohogpihdgi"
+							href="https://chrome.google.com/webstore/detail/huntergather/lengfeddnpliaoaglooakhimjkefeiej"
 							target="_blank"
 							rel="noreferrer"
 							class="text-blue-400 underline">Chrome Extension</a
