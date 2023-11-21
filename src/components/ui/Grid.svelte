@@ -1,5 +1,4 @@
 <script>
-	import { fade, slide } from 'svelte/transition';
 	import { previewPanel, objectView } from '../../store/store';
 
 	let gridRules = '';
@@ -12,13 +11,13 @@
 
 <section>
 	{#if $objectView === 'card'}
-		<div class="px-8 md:px-16 xl:px-24 mb-12">
+		<div class="px-2 xss:px-8 md:px-16 xl:px-24 mb-12">
 			<div class={`grid gap-12 md:gap-4 ${gridRules}`}>
 				<slot />
 			</div>
 		</div>
 	{:else if $objectView === 'two-up'}
-		<div class="px-8 md:px-16 xl:px-24 mb-12">
+		<div class="px-2 xss:px-8 md:px-16 xl:px-24 mb-12">
 			<div class={`grid gap-12 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3`}>
 				<slot />
 			</div>

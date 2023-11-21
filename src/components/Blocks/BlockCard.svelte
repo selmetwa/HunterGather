@@ -116,9 +116,13 @@
 				</div>
 			{/if}
 		</div>
-		<div class="py-2 inline-block">
-			<a href={`/block/${blockId}`} class="flex items-center justify-center h-full w-full">
-				<h2 class="text-gray-500 text-left line-clamp-2">{title}</h2>
+		<div class="py-2 inline-block w-full ml-0 overflow-hidden text-elipsis">
+			<a href={`/block/${blockId}`} class="flex items-center h-full w-full overflow-hidden text-elipsis">
+        {#if title.length > 75}
+          <p class="text-gray-500 text-left line-clamp-2 overflow-hidden text-elipsis">{title.substring(0, 75)}...</p>
+        {:else}
+				<p class="text-gray-500 text-left line-clamp-2 overflow-hidden text-elipsis">{title}</p>
+        {/if}
 			</a>
 		</div>
 	</div>

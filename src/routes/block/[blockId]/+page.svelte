@@ -56,9 +56,9 @@
 		let collectionIds = block.collectionIds;
 		collectionIds.forEach(async (id) => {
 			const collection = await getCollection(id);
-      if (collection[0] !== undefined) {
-        collections.push(collection[0]);
-      }
+			if (collection[0] !== undefined) {
+				collections.push(collection[0]);
+			}
 			collections = collections;
 		});
 	};
@@ -80,10 +80,6 @@
 			didImageLoad = true;
 		}, 300);
 	});
-
-  $: if (collections) {
-    console.log({ collections })
-  }
 </script>
 
 <div class="px-8 md:px-16 xl:px-24 mb-24">
@@ -141,7 +137,11 @@
 		>
 			<a href={url} class="text-blue-500" target="_blank" rel="noreferrer">{url?.slice(0, 45)}...</a
 			>
-			<h1 class="text-2xl font-bold mt-2">{title}</h1>
+			{#if title?.length > 60}
+				<h1 class="text-2xl font-bold mt-2">{title?.slice(0, 60)}...</h1>
+			{:else}
+				<h1 class="text-2xl font-bold mt-2">{title}</h1>
+			{/if}
 			<p class="mt-2">
 				Added by: <a href={`/profile/blocks/${authorId}`} class="text-blue-500">{author}</a>
 			</p>
