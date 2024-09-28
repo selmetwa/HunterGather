@@ -44,6 +44,7 @@
     "@tailwindcss/container-queries": "^0.1.1",
     "get-title-at-url": "^2.0.0",
     "js-sha1": "^0.7.0",
+    "node-fetch": "^3.3.2",
     "playwright": "^1.47.2",
     "pnpm": "^8.6.1",
     "stripe": "^12.9.0",
