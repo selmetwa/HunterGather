@@ -23,13 +23,6 @@
 		/>
 	</button>
 
-	<button on:click={toggleTwoUpGrid}>
-		<i
-			class={`fa-solid fa-table-cells-large fa-xl ${
-				$objectView === 'two-up' ? 'text-blue-400' : 'text-gray-400'
-			}`}
-		/>
-	</button>
 	<button on:click={toggleRowView}>
 		<i
 			class={`fa-solid fa-list fa-xl ${$objectView === 'row' ? 'text-blue-400' : 'text-gray-400'}`}

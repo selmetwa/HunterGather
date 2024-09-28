@@ -20,8 +20,27 @@
 	import BlockCardRow from './BlockCardRow.svelte';
 	import LoadingSpinner from '../ui/LoadingSpinner.svelte';
 	export let block: Block;
+  import { getScreenshot } from '../../utils/getScreenshot';
+	import { onMount } from 'svelte';
 
 	const { src, title, url, blockId } = block;
+
+  $: screenshot = '';
+
+  async function fetchScreenshot(url: string) {
+    try {
+    const screenshot = await getScreenshot(url);
+    return screenshot;
+    } catch (error) {
+      console.error('Error getting screenshot:', error);
+    }
+  }
+
+  onMount(async () => {
+    if (src) {
+	    screenshot = (await fetchScreenshot(src)) || '';
+    }
+  });
 
 	const activeSession = $page?.data?.session;
 	const isMobile = Device.isMobile;
@@ -76,7 +95,7 @@
 </script>
 
 {#if $objectView === 'row'}
-	<BlockCardRow {title} {blockId} {src} {url} {toggleCollectingModal} {togglePreview} />
+	<BlockCardRow {title} {blockId} src={screenshot} {url} {toggleCollectingModal} {togglePreview} />
 {:else}
 	<div in:fade>
 		<div class="relative" on:mouseenter={enter} on:mouseleave={leave}>
@@ -90,7 +109,7 @@
 				{/if}
 				<img
 					class={`w-full aspect-4/3 border-2 border-gray-300 ${!didImageLoad ? 'hidden' : ''}`}
-					{src}
+					src={screenshot}
 					alt={title}
 					use:onload
 				/>

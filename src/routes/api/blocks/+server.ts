@@ -6,6 +6,7 @@ import { PUBLIC_URLBOX_PUBLISHABLE_KEY, PUBLIC_URLBOX_SECRET_KEY } from '$env/st
 import type { RequestHandler } from './$types';
 import { supabaseClient } from '$lib/supabase';
 import getTitleAtUrl from 'get-title-at-url';
+import { saveScreenshot } from '../../../utils/saveScreenshot';
 
 // Plugin your API key and secret
 const urlbox = Urlbox(PUBLIC_URLBOX_PUBLISHABLE_KEY, PUBLIC_URLBOX_SECRET_KEY);
@@ -39,11 +40,14 @@ export const POST: RequestHandler = async ({ locals, request }) => {
 	};
 
 	const imgUrl = urlbox.buildUrl(options);
-
+  
+  // Save screenshot
+  const src = await saveScreenshot(url);
+  
 	const insert = {
 		blockId: blockId,
 		userId: userId,
-		src: imgUrl,
+		src: src,
 		url: url,
 		title: t || title,
 		objectType: 'block',

@@ -27,6 +27,4 @@ export const handle: Handle = async ({ event, resolve }) => {
 		response.headers.append('Access-Control-Allow-Origin', `*`);
 	}
 	return response;
-
-	// return resolve(evenxt);
 };

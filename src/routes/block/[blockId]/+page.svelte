@@ -16,6 +16,10 @@
 	} from '../../../store/store';
 	import CollectionCard from '../../../components/Collections/CollectionCard.svelte';
 	import LoadingSpinner from '../../../components/ui/LoadingSpinner.svelte';
+  import { supabaseClient } from '$lib/supabase';
+	import { onMount } from 'svelte';
+  import { getScreenshot } from '../../../utils/getScreenshot';
+
 	export let data;
 
 	const userId = $page?.data?.session?.user?.id;
@@ -29,10 +33,11 @@
 	let author;
 	let authorId;
 	let title;
-	$: src = '';
 	$: url = '';
 
 	$: if (block) loadData();
+
+  $: screenshot = '';
 
 	const openCollectingModal = () => {
 		if (activeSession) {
@@ -49,9 +54,9 @@
 		title = block.title;
 		author = user && user[0] && user[0].name;
 		authorId = user && user[0] && user[0].id;
-		src = block.src;
 		url = block.url;
-
+    screenshot = (await getScreenshot(block.src)) || '';
+  
 		// fetch collections
 		let collectionIds = block.collectionIds;
 		collectionIds.forEach(async (id) => {
@@ -97,14 +102,14 @@
 					{/if}
 					<img
 						alt={title}
-						{src}
+						src={screenshot}
 						class={`h-auto w-[350px] object-fit border-2 border-gray-200 ${
 							!didImageLoad ? 'hidden' : ''
 						}`}
 						use:onload
 					/>
 				</a>
-			{:else if url && src}
+			{:else if url && screenshot}
 				<object
 					{title}
 					data={url}
@@ -122,7 +127,7 @@
 						{/if}
 						<img
 							alt={title}
-							{src}
+							src={screenshot}
 							class={`h-auto m-auto min-h-[500px] max-h-[700px] object-fit border-l-4 border-r-4 border-gray-300  ${
 								!didImageLoad ? 'hidden' : ''
 							}`}

@@ -47,7 +47,6 @@
 			const collectionsCount = await getCollectionsCountByUserId(userId);
       const user = await getUserById(userId);
       const isSubscriber = user?.[0].is_subscriber;
-
 			if ((blocksCount + collectionsCount > 200) && !isSubscriber) {
 				hasReachedLimit.set(true);
 			}

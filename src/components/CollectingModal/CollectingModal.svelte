@@ -10,6 +10,7 @@
 	import ErrorMessage from '../ui/ErrorMessage.svelte';
 	import SuccessMessage from '../ui/SuccessMessage.svelte';
 	import CollectionPills from '../Collections/CollectionPills.svelte';
+  import { getScreenshot } from '../../utils/getScreenshot';
 
 	let inProgress = false;
 	let successMessage = '';
@@ -18,6 +19,8 @@
 	let toggledCollectionIds: string | any[] = [];
 	let originalIds: string[] = [];
 	let objectWeAreCollecting: any;
+
+  $: screenshot = '';
 
 	let ids: any[] = [];
 
@@ -56,6 +59,7 @@
 	onMount(async () => {
 		const { objectType } = objectWeAreCollecting;
 
+    screenshot = await getScreenshot(objectWeAreCollecting.src) ?? '';
 		ids = await getCollectionsByUserId($page?.data?.session?.user?.id || '');
 
 		let all;
@@ -173,7 +177,7 @@
 
 		{#if objectWeAreCollecting.src}
 			<div class="preview w-full bg-gray-100 mt-6">
-				<img src={objectWeAreCollecting.src} alt={objectWeAreCollecting.title} />
+				<img src={screenshot} alt={objectWeAreCollecting.title} />
 				<h3>{objectWeAreCollecting.title}</h3>
 			</div>
 		{/if}
