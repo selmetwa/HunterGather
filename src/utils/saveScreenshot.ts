@@ -1,24 +1,27 @@
 import { supabaseClient } from '$lib/supabase';
-import { chromium } from 'playwright';
-import fs from 'fs';
 import { sha1 } from 'js-sha1';
+import fetch from 'node-fetch';
+import { v4 as uuidv4 } from 'uuid';
+
 
 export const saveScreenshot = async (url: string) => {
-	const browser = await chromium.launch();
-	const page = await browser.newPage();
-	await page.goto(url);
-	await page.screenshot({ path: `static/screenshot.png` });
-	await browser.close();
+  const res = await fetch('https://screenshot-from-url.fly.dev/screenshot', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ url }),
+  });
 
-	const screenshot = fs.readFileSync(`static/screenshot.png`);
-
+  const bufferObject = await res.json();
+  const buffer = Buffer.from(bufferObject.screenshot.data); // Create a Buffer from your data
   const hasher = sha1.create();
-  const id = hasher.update(url).hex();
+  const uniqueValue = `${url}-${uuidv4()}`; // Append a UUID
+  const id = hasher.update(uniqueValue).hex();
 
-	// Upload the screenshot to Supabase storage
 	const { data, error } = await supabaseClient.storage
-		.from('screenshots') // Replace with your bucket name
-		.upload(id, screenshot, {
+		.from('screenshots')
+		.upload(id, buffer, {
 			contentType: 'image/png'
 		});
 

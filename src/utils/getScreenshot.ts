@@ -1,18 +1,5 @@
 import { supabaseClient } from "$lib/supabase";
 
-// export const getScreenshot = async (url: string) => {
-//   const { data, error: err } = await supabaseClient.storage
-//     .from('screenshots')
-//     .download(url.split('/')[5]);
-
-//   let reader = new FileReader();
-
-//   reader.readAsDataURL(data);
-//   reader.onload = (e) => {
-//     return e.target?.result;
-//   };
-// };
-
 export const getScreenshot = async (url: string): Promise<string | undefined> => {
 
   const id = url.length === 40 ? url : url.split('/')[5];

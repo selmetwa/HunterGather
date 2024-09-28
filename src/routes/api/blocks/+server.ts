@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { error, json } from '@sveltejs/kit';
 import Urlbox from 'urlbox';
-import { PUBLIC_URLBOX_PUBLISHABLE_KEY, PUBLIC_URLBOX_SECRET_KEY } from '$env/static/public';
+// import { PUBLIC_URLBOX_PUBLISHABLE_KEY, PUBLIC_URLBOX_SECRET_KEY } from '$env/static/public';
 
 import type { RequestHandler } from './$types';
 import { supabaseClient } from '$lib/supabase';
@@ -9,7 +9,7 @@ import getTitleAtUrl from 'get-title-at-url';
 import { saveScreenshot } from '../../../utils/saveScreenshot';
 
 // Plugin your API key and secret
-const urlbox = Urlbox(PUBLIC_URLBOX_PUBLISHABLE_KEY, PUBLIC_URLBOX_SECRET_KEY);
+// const urlbox = Urlbox(PUBLIC_URLBOX_PUBLISHABLE_KEY, PUBLIC_URLBOX_SECRET_KEY);
 
 // create block
 export const POST: RequestHandler = async ({ locals, request }) => {
@@ -39,7 +39,7 @@ export const POST: RequestHandler = async ({ locals, request }) => {
 		quality: 100
 	};
 
-	const imgUrl = urlbox.buildUrl(options);
+	// const imgUrl = urlbox.buildUrl(options);
   
   // Save screenshot
   const src = await saveScreenshot(url);
