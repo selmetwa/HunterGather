@@ -108,7 +108,7 @@
 					</div>
 				{/if}
 				<img
-					class={`w-full aspect-4/3 border-2 border-gray-300 ${!didImageLoad ? 'hidden' : ''}`}
+					class={`w-full object-cover aspect-4/3 border-2 border-gray-300 ${!didImageLoad ? 'hidden' : ''}`}
 					src={screenshot}
 					alt={title}
 					use:onload

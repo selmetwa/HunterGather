@@ -3,14 +3,16 @@ import { sha1 } from 'js-sha1';
 import fetch from 'node-fetch';
 import { v4 as uuidv4 } from 'uuid';
 
+const local_url = 'http://localhost:3000/screenshot'
 
+const prod_url = 'https://screenshot-from-url.fly.dev/screenshot'
 export const saveScreenshot = async (url: string) => {
-  const res = await fetch('https://screenshot-from-url.fly.dev/screenshot', {
+  const res = await fetch(prod_url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ url }),
+    body: JSON.stringify({ url: url }),
   });
 
   const bufferObject = await res.json();
