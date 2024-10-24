@@ -14,7 +14,7 @@
 
 <div
 	class="my-8 sm:px-8 md:px-16 xl:px-24 flex justify-between items-center flex-col md:flex-row"
-	transition:fade
+	transition:fade|global
 >
 	{#if isSearchPage}
 		<h1 class="font-sans text-left text-3xl font-light tracking-tight text-gray-400 my-6">

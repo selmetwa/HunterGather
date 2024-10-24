@@ -38,7 +38,7 @@
 	class="border border-gray-200 bg-white py-4 relative"
 	on:mouseenter={enter}
 	on:mouseleave={leave}
-	in:fade
+	in:fade|global
 >
 	<a href={`/block/${blockId}`} class="relative">
 		<div class="flex items-center gap-4 flex-row">
@@ -58,7 +58,7 @@
 	</a>
 	{#if hovering && !isMobile}
 		<div
-			transition:scale={{ duration: 400, easing: quintOut, opacity: 0 }}
+			transition:scale|global={{ duration: 400, easing: quintOut, opacity: 0 }}
 			class="absolute top-0 right-0 m-auto z-50 p-6 cursor-default rounded-md"
 		>
 			<div class="w-full flex gap-4">
