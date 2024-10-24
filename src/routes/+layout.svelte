@@ -80,8 +80,8 @@
 		{#key data.pathname}
 			<div
 				class={`${$previewPanel ? 'w-6/12' : 'w-full'} overflow-auto`}
-				in:fade={{ duration: 300, delay: 400 }}
-				out:fade={{ duration: 300 }}
+				in:fade|global={{ duration: 300, delay: 400 }}
+				out:fade|global={{ duration: 300 }}
 			>
 		  <Header />
 				<slot />

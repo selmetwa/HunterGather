@@ -30,7 +30,7 @@
 	class="border bg-gray-200 border-gray-300 relative"
 	on:mouseenter={enter}
 	on:mouseleave={leave}
-	in:fade
+	in:fade|global
 >
 	<a href={`/collection/${collectionId}`}>
 		<div class="flex items-center gap-4 flex-row py-4">
@@ -50,7 +50,7 @@
 	</a>
 	{#if hovering && !isMobile}
 		<div
-			transition:scale={{ duration: 400, easing: quintOut, opacity: 0 }}
+			transition:scale|global={{ duration: 400, easing: quintOut, opacity: 0 }}
 			class="absolute top-0 right-0 m-auto z-50 p-6 cursor-default rounded-md"
 		>
 			<div class="w-full flex gap-4">

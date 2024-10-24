@@ -8,7 +8,7 @@ export const load: any = async ({ locals }: any) => {
 	const sessionExists = locals?.session;
 
 	if (sessionExists) {
-		throw redirect(303, '/');
+		redirect(303, '/');
 	}
 };
 
@@ -33,7 +33,7 @@ export const actions: Actions = {
 			}
 
 			const a = data.url;
-			throw redirect(303, data.url);
+			redirect(303, data.url);
 		}
 
 		const body = Object.fromEntries(await request.formData());
@@ -54,6 +54,6 @@ export const actions: Actions = {
 			});
 		}
 
-		throw redirect(303, '/');
+		redirect(303, '/');
 	}
 };

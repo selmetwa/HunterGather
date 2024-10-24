@@ -29,9 +29,9 @@ export const createBlock = async (
 			realTitle = responseTitle;
 		}
 	} catch (e) {
-		throw error(500, {
-			message: 'Invalid Url'
-		});
+		error(500, {
+        			message: 'Invalid Url'
+        		});
 	}
 
 	// Set your options
@@ -59,9 +59,9 @@ export const createBlock = async (
 		.select();
 
 	if (responseError) {
-		throw error(500, {
-			message: 'Something went wrong.'
-		});
+		error(500, {
+        			message: 'Something went wrong.'
+        		});
 	}
 
 	return json(responseData);

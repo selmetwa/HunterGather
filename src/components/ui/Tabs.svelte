@@ -14,7 +14,7 @@
 	{#each tabs as tab}
 		<button
 			value={tab.val}
-			transition:fade
+			transition:fade|global
 			class={`${
 				activeTab === tab.val
 					? 'border text-gray-800 border-gray-500 font-bold'

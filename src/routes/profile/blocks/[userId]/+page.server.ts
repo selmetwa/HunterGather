@@ -32,6 +32,6 @@ export const actions: Actions = {
 			})
 			.eq('id', userId);
 
-		throw redirect(303, `/profile/blocks/${userId}`);
+		redirect(303, `/profile/blocks/${userId}`);
 	}
 };

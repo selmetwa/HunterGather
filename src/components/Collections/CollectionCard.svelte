@@ -93,11 +93,11 @@
 		class="card aspect-4/3 transition-all bg-gray-100 border-2 border-gray-300 hover:bg-gray-200 relative"
 		on:mouseenter={enter}
 		on:mouseleave={leave}
-		in:fade
+		in:fade|global
 	>
 		{#if hovering && !isMobile}
 			<div
-				transition:scale={{ duration: 400, easing: quintOut, opacity: 0 }}
+				transition:scale|global={{ duration: 400, easing: quintOut, opacity: 0 }}
 				class="absolute border shadow-md top-0 m-auto z-50 bg-white shadow-xl p-6 w-full cursor-default rounded-md"
 			>
 				<div class="w-full flex gap-4">

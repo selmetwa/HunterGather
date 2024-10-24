@@ -97,7 +97,7 @@
 {#if $objectView === 'row'}
 	<BlockCardRow {title} {blockId} src={screenshot} {url} {toggleCollectingModal} {togglePreview} />
 {:else}
-	<div in:fade>
+	<div in:fade|global>
 		<div class="relative" on:mouseenter={enter} on:mouseleave={leave}>
 			<a href={`/block/${blockId}`} class="relative">
 				{#if !didImageLoad}
@@ -116,7 +116,7 @@
 			</a>
 			{#if hovering && !isMobile}
 				<div
-					transition:scale={{ duration: 400, easing: quintOut, opacity: 0 }}
+					transition:scale|global={{ duration: 400, easing: quintOut, opacity: 0 }}
 					class="absolute border shadow-md top-0 m-auto z-50 bg-white shadow-xl p-6 w-full cursor-default rounded-md"
 				>
 					<div class="w-full flex gap-4">

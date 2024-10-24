@@ -11,8 +11,8 @@
 	role="dialog"
 	aria-modal="true"
 	on:click|stopPropagation={onClose}
-	in:fade={{ duration: 300 }}
-	out:fade={{ duration: 300 }}
+	in:fade|global={{ duration: 300 }}
+	out:fade|global={{ duration: 300 }}
 >
 	<div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
 	<div class="fixed inset-0 z-50 overflow-y-auto">

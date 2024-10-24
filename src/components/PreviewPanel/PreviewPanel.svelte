@@ -25,7 +25,7 @@
 </script>
 
 <section
-  transition:slide
+  transition:slide|global
 	class="fixed right-0 bottom-0 w-6/12 h-screen overflow-x-hidden z-20 overflow-hidden opacity-100 flex flex-col bg-gray-100 panel-wrapper"
 >
 	<PreviewHeader {id} {type} {url} />
