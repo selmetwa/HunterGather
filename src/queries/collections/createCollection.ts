@@ -19,9 +19,9 @@ export const createCollection = async (
 		.eq('userId', userId);
 
 	if (existingCollection && !!existingCollection.length) {
-		throw error(500, {
-			message: 'You already have a collection with that name.'
-		});
+		error(500, {
+        			message: 'You already have a collection with that name.'
+        		});
 	}
 
 	const { data: responseData, error: responseError } = await supabaseClient
@@ -37,9 +37,9 @@ export const createCollection = async (
 		.select();
 
 	if (responseError) {
-		throw error(500, {
-			message: 'Something went wrong creating collection.'
-		});
+		error(500, {
+        			message: 'Something went wrong creating collection.'
+        		});
 	}
 
 	return json(responseData);

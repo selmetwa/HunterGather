@@ -31,6 +31,6 @@ export const actions: Actions = {
 			})
 			.eq('id', userId);
 
-		throw redirect(303, `/profile/collections/${userId}`);
+		redirect(303, `/profile/collections/${userId}`);
 	}
 };

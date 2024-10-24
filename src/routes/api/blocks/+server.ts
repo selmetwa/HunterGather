@@ -26,9 +26,9 @@ export const POST: RequestHandler = async ({ locals, request }) => {
 			t = responseTitle;
 		}
 	} catch (e) {
-		throw error(500, {
-			message: 'Invalid Url'
-		});
+		error(500, {
+      			message: 'Invalid Url'
+      		});
 	}
 
 	// Set your options
@@ -59,9 +59,9 @@ export const POST: RequestHandler = async ({ locals, request }) => {
 		.select();
 
 	if (responseError) {
-		throw error(500, {
-			message: 'Something went wrong.'
-		});
+		error(500, {
+        			message: 'Something went wrong.'
+        		});
 	}
 
 	return json(responseData);

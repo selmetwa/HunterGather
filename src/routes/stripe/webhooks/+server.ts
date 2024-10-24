@@ -25,7 +25,7 @@ export async function POST({ request, params }) {
     console.warn('⚠️  Webhook signature verification failed.', err.message)
 
     // return, because it's a bad request
-    throw error(400, 'Invalid request')
+    error(400, 'Invalid request');
   }
 
   // signature has been verified, so we can process events
